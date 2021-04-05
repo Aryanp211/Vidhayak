@@ -125,7 +125,7 @@ export default function Login(props) {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Email"
             name="email"
             onChange={(e)=>handleEmailChange(e.target.value)}
             autoComplete="email"
