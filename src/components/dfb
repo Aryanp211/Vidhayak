@@ -1,0 +1,11 @@
+  axios.get('http://localhost:5000/requests/','Maharashtra')
+  .then(response => {
+    if (response.data.length > 0) {
+      this.setState({
+        transactions: response.data,
+      })
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  })

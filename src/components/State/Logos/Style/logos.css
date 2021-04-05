@@ -1,0 +1,52 @@
+.StateLogo{
+    height: 18vmin;
+    pointer-events: none;
+    padding-top: 10px;
+    float:left;
+}
+.StateLogodiv{
+    
+    float:left;
+}
+.Emblem{
+    height: 18vmin;
+    
+}
+.Emblemdiv{
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    width:fit-content;
+    flex:auto;
+   
+    
+}
+.EmblemCentraldiv{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    width:fit-content;
+    flex:auto;
+}
+
+.EmblemCentral{
+    height: 18vmin;
+    
+}
+
+.main{
+    padding-left:200px;
+    padding-right:200px;
+}
+
+.StateName{
+   height:fit-content;
+   font-size: 30px;
+    /* margin */
+    align-self: center;
+    
+}
+
+.StateHeader{
+    display: flex;
+}
