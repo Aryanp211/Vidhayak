@@ -8,12 +8,14 @@ import Login from './components/Login/Login';
 import Stategov  from './components/State/Stategov';
 import central  from "./components/Central/central";
 import tp from './components/Central/tp'
+import ModalTest from './components/Test/ModalTest';
 
 class App extends Component{
   render(){
   return (
     <Router>
       {/* <Stategov/> */}
+      <ModalTest></ModalTest>
 
       <Switch>
     .. <Route exact path="/stategov" component={Stategov} />
