@@ -23,7 +23,7 @@ mongoose.connect(uri,{useNewUrlParser: true, useCreateIndex: true}
     // const crimetypeRouter = require('./routes/crimetypes');
      const centralRouter = require('./routes/central');
      const requestsRouter = require('./routes/requests');
-
+    //  const categoryRouter = require('./routes/central');
     // app.use('/criminals', criminalsRouter);
     app.use('/states', stateRouter);
     // app.use('/crimetypes', crimetypeRouter);

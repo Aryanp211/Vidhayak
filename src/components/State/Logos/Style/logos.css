@@ -24,19 +24,25 @@
 .EmblemCentraldiv{
     text-align: center;
     padding-top: 10px;
-    padding-bottom: 0px;
-    width:fit-content;
+    padding-bottom: 2px;
+    /* width:fit-content; */
+    /* height: fit-content; */
     flex:auto;
 }
 
 .EmblemCentral{
-    height: 18vmin;
+    height: 12vmin;
     
 }
 
-.main{
-    padding-left:200px;
-    padding-right:200px;
+/* .main{
+    padding-top:200px;
+   
+} */
+
+.state{
+    display:flex;
+    padding-bottom: 10px;
 }
 
 .StateName{

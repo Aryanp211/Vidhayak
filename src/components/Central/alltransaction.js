@@ -101,7 +101,7 @@ class alltransaction extends Component {
           </tbody>
         </table>
 
-      <button className="Register" onClick={()=>{this.props.history.push('/Authorized')}}>Back</button>
+      <button className="Register" onClick={()=>{this.props.history.push('central/Authorized')}}>Back</button>
       </div>
     )
   }

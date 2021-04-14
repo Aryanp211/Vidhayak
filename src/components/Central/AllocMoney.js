@@ -1,76 +1,77 @@
 import React, { Component } from "react";
 import categories from "../Categories";
-import "./CSS/AllocMoney.css"
+import "./CSS/AllocMoney.css";
+import {TextField,Select,MenuItem, Options,InputLabel,IconButton,FormControl} from '@material-ui/core'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import axios from 'axios'
+
+
 
 export default function App() {
-  const [email, setEmail] = React.useState("");
+  const [rs, setRs] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [category, setCategory] = React.useState("");
   const [acceptedTerms, setAcceptedTerms] = React.useState(false);
 
   const handleSubmit = (event) => {
-    console.log(`
-      Email: ${email}
-      Password: ${password}
-      Country: ${categories}
-      Accepted Terms: ${acceptedTerms}`
-      
-    );
-
     event.preventDefault();
+    const reque={
+      amount:rs
+    }
+    console.log(category)
+    console.log(rs)
+    axios.post('http://localhost:5000/central/allocate/'+category,reque)
+    .then(()=>console.log('Allocated'))
+    .catch(err=>console.log(err))
+
   }
+
+// app/post('abc/cat=cat', this.state.amount)
 
   return (
      <div className="AllocateClass">
          
     <form className='AllocForm' onSubmit={handleSubmit}>
-      <h1>Allocate {email}</h1>
-      <h2>To {category}</h2>
+      <h1>Allocate</h1>
+      {/* <h2>To</h2> */}
 
-      <label>
-        Rs:
-        <input
-          name="email"
-          type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+        <TextField id="standard-basic" label="Rs." 
+          name="rs"
+          type="number"
+          value={rs}
+          onChange={e => setRs(e.target.value)}
           required />
-      </label>
 
-      {/* <label>
-        Password:
-        <input
-          name="password"
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required />
-      </label> */}
+<FormControl>
+<InputLabel id="demo-simple-select-label">Category</InputLabel>
 
-      <label>
-        Category:
-        <select
+
+<Select
+          label='Category'
+          id="demo-simple-select"
           name="category"
           value={category}
           onChange={e => setCategory(e.target.value)}
           required>
-          <option key=""></option>
+        
           {categories.map(cat => (
-            <option key={cat}>{cat}</option>
+            <MenuItem value={cat}  key={cat}>{cat}</MenuItem >
           ))}
-        </select>
-      </label>
 
-      <label>
-        <input
-          name="acceptedTerms"
-          type="checkbox"
-          onChange={e => setAcceptedTerms(e.target.value)}
-          required />
-        I accept the terms of service
-      </label>
+</Select>
+</FormControl>
 
-      <button className="AllocateButton">Allocate</button>
+
+<div className='AllocButton'>
+  <IconButton type='submit'
+    color="primary" 
+    aria-label="Allocate" 
+    className='AllocateButton'>
+    <AddShoppingCartIcon fontSize='large'>
+    </AddShoppingCartIcon>
+  </IconButton>
+</div>
+
     </form>
     </div>
   );

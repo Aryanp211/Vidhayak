@@ -2,8 +2,90 @@
     color:black
 }
 
-
-
-AppBar{
-    padding-top: 50px;
+.NavButton{
+    width:100%;
+    text-align: left;
 }
+
+
+/* AppBar{
+    padding-top: 50px;
+} */
+
+
+.LogOutButton{
+    /* font-weight:900; */
+    /* background-color:black */
+    /* color:aqua */
+}
+.LogOutButton:hover{
+    color:white;
+    /* font-weight: 600; */
+    /* background-color:black */
+}
+
+.MuiDrawer-paper {
+    top: 0;
+    flex: 1 0 auto;
+    height: 100%;
+    display: flex;
+    outline: 0;
+    z-index: 1200;
+    position: fixed;
+    overflow-y: auto;
+    flex-direction: column;
+    margin-top: 175px;
+}
+
+ @media (min-width: 600px)
+{
+ .AppBar{
+    
+ background-color: rgb(226, 218, 110);
+ vertical-align:center;
+    /* align-items: center; */
+
+}
+}
+
+/* @media (min-width: 600px)
+{
+.MuiToolbar-regular {
+
+    min-height: 45px;
+}
+} */
+
+
+/* .MuiToolbar-root {
+    display: flex;
+    position: relative;
+    align-items: center;
+  }
+  .MuiToolbar-gutters {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  @media (min-width:600px) {
+    .MuiToolbar-gutters {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+  .MuiToolbar-regular {
+    min-height: 56px;
+  }
+  @media (min-width:0px) and (orientation: landscape) {
+    .MuiToolbar-regular {
+      min-height: 48px;
+    }
+  }
+  @media (min-width:600px) {
+    .MuiToolbar-regular {
+      min-height: 45px;
+    }
+  }
+  .MuiToolbar-dense {
+    min-height: 48px;
+  } */
+  

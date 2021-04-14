@@ -1,5 +1,7 @@
 const router = require('express').Router();
+const { Category } = require('@material-ui/icons');
 let Requests = require('../models/requests.model');
+let CategorySchema =require('../models/category.model');
 
 router.route('/').get((req, res) => {
   Requests.find()
@@ -92,31 +94,31 @@ router.route('/search').post((req,res)=>{
 router.route('/update/:id').post((req, res) => {
   Requests.findById(req.params.id)
     .then(requestss  => {
+      console.log('Bhag laude')
+      console.log(requestss.req_category)
+      CategorySchema.findOne( {category_name:requestss.req_category})
+      .then(res=>{
+        res.category_amount-=requestss.req_amount
+      
+      console.log('Amount kata')
+      console.log(res.category_amount)
+    requestss.req_status= "Authorized";
+    res.save()
+    requestss.save()
+      })
+      .catch(error=>{
+        console.log('Errorrrrr!!!!')
+      })
 
-  requestss.req_status= "Authorized";
 
-  
-      requestss.save()
-        .then(() => res.json('Requests updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
+  console.log(requestss)
+
+      // requestss.save()
+        // .then(() => res.json('Requests updated!'))
+        // .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));
 });
-
-
-
-router.route('/find').post((req,res)=>{
-    const name = req.body.requests_crime_type;
-    
-    Crimetype.find({Crime_name:name})
-  .then((crime) => {
-    crime.Crime_count=crime.Crime_count+1;
-    crime.save()
-    .then(() => res.json('Crimecount updated!'))
-    .catch(err => res.status(400).json('cant update count: ' + err));
-  })
-  .catch(err => res.status(400).json('Error: ' + err));
-  });
 
 
   router.route('/request/:statename').post((req,res)=>{

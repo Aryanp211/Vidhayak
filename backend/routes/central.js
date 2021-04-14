@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let Central = require('../models/central.model');
+let CategorySchema =require('../models/category.model');
 
 router.route('/').get((req, res) => {
   Central.find()
@@ -62,5 +63,32 @@ router.route('/update/:id').post((req, res) => {
     })
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+
+
+
+router.route('/allocate/:category').post((req, res) => {
+  var category=req.params.category;
+  // const category = req.body.username;
+  const amount=req.body.amount;
+
+  console.log(category,amount)
+  CategorySchema.findOne({category_name:category})
+  .then(x  => {
+    console.log('--------')
+    console.log(x)
+    x.category_amount=amount;
+    console.log('Rajat Bhadwa')
+    console.log(x)
+
+    x.save()
+    console.log(x)
+
+      .then(() => res.json('Money Allocated to ${category}!'))
+      .catch(err => res.status(400).json('Error: ' + err));
+  })
+  // .catch(err => res.status(400).json('Error: ' + err));
+});
+
 
 module.exports = router;

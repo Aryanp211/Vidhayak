@@ -20,8 +20,27 @@ import MadhyaPradesh from './Logos/mp.png'
 
 import Add from './Logos/Add';
 import './Logos/Style/logos.css';
+
+import {Container, makeStyles} from '@material-ui/core'
+import StateNavbar from './StateNavbar';
+
+import Home from './Home'
+import Authorized from'./Authorized'
 // import Emblem from 'src\Logos\Emblem'
 //import ShowCrimetype from './components/crimetype.component';
+
+const userStyles=makeStyles((theme)=>({
+  root:{
+    width:'100vw',
+    // height:'10vh',
+    // textAlign:'center',
+    
+    // backgroundColor:theme.palette.grey[300],
+    paddingTop:theme.spacing(1),
+
+  },
+}))
+
 
 function Stategov(props){
  let state=JSON.stringify(props.history.location.state.state);
@@ -91,29 +110,46 @@ let icon={'Andhra Pradesh':AndhraPradesh,
 }
  console.log(state)
 
+
+
+ const classes=userStyles() 
+
+
+
   return (
      <Router>
        <div className="main">
        <header className='StateHeader'>
 
+       <Container className={classes.root} disableGutters>
+    <div className='state'>
         <div className='StateLogodiv' >
      <img src={icon[props.history.location.state.state]} className='StateLogo' alt="svg" ></img>
         </div>
+
         <h1 className='StateName'>
        {props.history.location.state.state}
        </h1>
+
          <div className='Emblemdiv'>
-           <img src={Emblem} className='Emblem'></img></div>
+           <img src={Emblem} className='Emblem'></img>
+           </div>
+           </div>
+
+           <StateNavbar></StateNavbar>
+          
+           </Container>
        </header>
 
       
 
-       <Navbar/>
+      
       
          <Switch>
-       <Route exact path="/" component={Login} />
-       <Route path="/stategov/requests" component={Request} />
-
+       {/* <Route exact path="/" component={Login} /> */}
+       <Route path="/stategov/Home" component={Home} />
+       <Route path="/stategov/Request" component={Request} />
+       <Route path="/stategov/Authorized" component={Authorized} />
        {/* <Route path="/user/crimestat" component={ShowCrimetype} /> */}
        <Route exact path="/" component={Login} />
        </Switch>

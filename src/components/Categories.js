@@ -4,5 +4,5 @@ export default ['Education',
                 'Infrastructure',
                 'Technology',
                 'Energy',
-                'Enviornment',
+                'Environment',
                 'Health']

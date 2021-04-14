@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  /* background-color:#61dafb; */
 }
 
 .App-logo {
@@ -41,3 +42,11 @@
   max-width: 500px;
   min-width: 2px;
 } */
+
+
+.Father{
+  background-color:	rgb(242, 244, 247)
+}
+html{
+  background-color:	rgb(242, 244, 247)
+}

@@ -13,13 +13,14 @@ import ModalTest from './components/Test/ModalTest';
 class App extends Component{
   render(){
   return (
+    <div className='Father'>
     <Router>
       {/* <Stategov/> */}
-      <ModalTest></ModalTest>
+      
 
       <Switch>
-    .. <Route exact path="/stategov" component={Stategov} />
-      <Route exact path="/central" component={central} />
+    .. <Route exact path="/stategov/Home" component={Stategov} />
+      <Route exact path="/central/Home" component={central} />
       </Switch>
       <div className="container">
       <Switch>
@@ -29,11 +30,10 @@ class App extends Component{
       </div>
       
     </Router>
-
-    // <div>
-    //   <tp></tp>
-    //   </div>
+    </div>
+  
   );
+ 
 }
 }
 export default App;

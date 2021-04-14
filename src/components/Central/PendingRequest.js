@@ -15,7 +15,14 @@ const Pendingrequest = props => (
     <td>{props.pendingrequest.req_date.substring(0,10)}</td>
     <td>{props.pendingrequest.req_status}</td>
     <td>
-    <button className="btn btn-primary mx-1" onClick={() => { props.updaterequest(props.pendingrequest._id)}}>Approve Request</button>
+
+    <button className="btn btn-primary mx-1" 
+    onClick={
+        () => { 
+          props.updaterequest(props.pendingrequest._id)}}>
+            Approve Request
+      </button>
+      
     </td>
   </tr>
 )
@@ -31,22 +38,9 @@ class PendingRequest extends Component {
   componentDidMount() {
     console.log('Mai agaya')
 
-  // axios.get('http://localhost:5000/requests/finder/Pending')
-  // .then(response => {
-  //   if (response.data.length > 0) {
-  //     console.log(response.data)
-  //     this.setState({
-  //       pendingrequests: response.data,
-  //     })
-  //   }
-  // })
-  // .catch((error) => {
-  //   console.log('hahahaha');
-  // })
+ 
     console.log(this.props.history.location.state.name)
-    // let rawUrl = 'http://localhost:5000/requests/finderState/?page=2&limit=3';
-    // let parsedUrl = url.parse(rawUrl);
-    // let parsedQs = querystring.parse(parsedUrl.query);
+  
   axios.get('http://localhost:5000/requests/finderState/'+this.props.history.location.state.name)
   .then(response => {
     if (response.data.length > 0) {
@@ -103,12 +97,10 @@ class PendingRequest extends Component {
             {this.pendingrequestList()}
           </tbody>
         </table>
-]
-
-      <button className="Register" onClick={()=>{this.props.history.push('/Pending')}}>Back</button>
 
 
-      <button onClick={()=>{this.props.history.push('/Pending')}}>Back</button>
+      <button className="Register" onClick={()=>{this.props.history.push('central/Pending')}}>Back</button>
+
 
       </div>
     )

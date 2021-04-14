@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    // backgroundColor:,
   },
   avatar: {
     margin: theme.spacing(1),
@@ -90,10 +91,10 @@ export default function Login(props) {
     e.preventDefault();
     console.log(email,password,posit,state)
     if (posit==='Central'){
-        props.history.push('/central')
+        props.history.push('/central/Home')
     }
     else{
-        props.history.push('/stategov',{state:state})
+        props.history.push('/stategov/Home',{state:state})
     }
     
 }
