@@ -13,6 +13,18 @@ const categorySchema = new Schema({
   category_amount:
     {type :Number, 
     reqired:true},
+
+  category_amountAlloc:
+    {type :Number, 
+    reqired:true},
+
+  category_pending:
+    {type :Number, 
+    reqired:true},
+
+  category_authorized:
+    {type :Number, 
+    reqired:true},
     },
 
 {

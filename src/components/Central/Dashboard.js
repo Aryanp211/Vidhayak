@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     height:175,
     borderRadius:10,
     
+    
     // position:'relative'
     
     
@@ -64,14 +65,18 @@ const useStyles = makeStyles({
   
   }
 });
-    function Dashboard() {
+    function Dashboard(props) {
   const classes = useStyles();
   // const bull = <span className={classes.bullet}>•</span>;
-
+    console.log('AJAAAA')
+    // const {}
+    const {_id,category_name,category_amount}=props.item
+    console.log(category_name)
+    console.log(props.color)
   return (
     <div>
     {/* <div className={classes.head}>FIELD NAME</div> */}
-    <Card className={classes.root}>
+    <Card className={classes.root} style={{backgroundColor:props.color}} >
     
       <CardContent>
             <Grid item container spacing={2} alignItems='center' justify='center'>
@@ -79,8 +84,8 @@ const useStyles = makeStyles({
                   
                   <Grid item container xs={12}  justify='center'
                     alignItems='center'>
-                      <Grid item xs={8}><div className='Category'>Education</div></Grid>
-                      <Grid item xs={4}><div className='TotalAlloc'>1000</div></Grid>
+                      <Grid item xs={8}><div className='Category'>{props.item.category_name}</div></Grid>
+                      <Grid item xs={4}><div className='TotalAlloc'>{props.item.category_amountAlloc}</div></Grid>
                       
                   </Grid>
                   
@@ -98,7 +103,7 @@ const useStyles = makeStyles({
                       <img src={rupee} className='RupeeIcon'></img> 
                       {/* </Grid> */}
                       {/* <Grid item xs={8} className={classes.cost}> */}
-                      786</div></Grid>
+                      {props.item.category_amount}</div></Grid>
                       
           
 
@@ -113,9 +118,9 @@ const useStyles = makeStyles({
 
                   <Grid item container xs={12} alignItems='center' justify='center'>
                   
-                  <Grid item xs={5}><div className='PendingNum' id='SmallNum'>111</div></Grid>
+                  <Grid item xs={5}><div className='PendingNum' id='SmallNum'>{props.item.category_pending}</div></Grid>
                   <Grid item xs={2}></Grid>
-                  <Grid item xs={5}><div className='AuthNum' id='SmallNum'>44</div></Grid>
+                  <Grid item xs={5}><div className='AuthNum' id='SmallNum'>{props.item.category_authorized}</div></Grid>
                 </Grid>  
 
                   

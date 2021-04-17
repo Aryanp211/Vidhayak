@@ -9,6 +9,15 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
+router.route('/categories').get((req, res) => {
+  console.log('aaaa')
+  CategorySchema.find()
+    .then(requestss => res.json(requestss))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 router.route('/add').post((req, res) => {
   const username = req.body.username;
   const req_Projname=req.body.req_Projname;
@@ -23,7 +32,16 @@ router.route('/add').post((req, res) => {
   const newRequests = new Requests({username,req_Projname, req_category, req_state,req_description, req_duration,req_amount, req_date,req_status,req_authoby});
 
   newRequests.save()
-    .then(() => res.json('Requests added!'))
+    .then(() =>{ res.json('Requests added!')
+
+    CategorySchema.findOne( {category_name:req_category})
+    .then(res=>{
+      res.category_pending+=1
+      console.log('Parashar Beoda')
+  res.save()
+    })
+
+  })
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -94,12 +112,13 @@ router.route('/search').post((req,res)=>{
 router.route('/update/:id').post((req, res) => {
   Requests.findById(req.params.id)
     .then(requestss  => {
-      console.log('Bhag laude')
+     
       console.log(requestss.req_category)
       CategorySchema.findOne( {category_name:requestss.req_category})
       .then(res=>{
-        res.category_amount-=requestss.req_amount
-      
+        res.category_amount= res.category_amountAlloc-requestss.req_amount
+        res.category_pending-=1
+        res.category_authorized+=1
       console.log('Amount kata')
       console.log(res.category_amount)
     requestss.req_status= "Authorized";
@@ -127,4 +146,6 @@ router.route('/update/:id').post((req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
   });
   
+
+
 module.exports = router;

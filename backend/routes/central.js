@@ -77,12 +77,14 @@ router.route('/allocate/:category').post((req, res) => {
   .then(x  => {
     console.log('--------')
     console.log(x)
-    x.category_amount=amount;
-    console.log('Rajat Bhadwa')
+    x.category_amountAlloc=amount;
     console.log(x)
-
+    x.category_amount=0;
+    x.category_pending=0;
+    x.category_authorized=0;
+    console.log(x)
     x.save()
-    console.log(x)
+   
 
       .then(() => res.json('Money Allocated to ${category}!'))
       .catch(err => res.status(400).json('Error: ' + err));

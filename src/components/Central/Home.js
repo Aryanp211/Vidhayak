@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import Dashboard from './Dashboard';
 import './CSS/Home.css'
-import categories from '../Categories'
+// import categories from '../Categories'
 import axios from 'axios'
 // import ref from 
 
@@ -13,18 +13,20 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            Items:[]
+            Items:[],
+            colors:['aliceblue','blanchedalmond','wheat','green']
         }
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/requests')
+        // console.log('Idharrrr')
+        axios.get('http://localhost:5000/requests/categories')
         .then(res=>{
             this.setState({
             Items:res.data
             })
             console.log(res.data)
-        })
+        }).catch(()=>console.log('Nahi hora'))
     }
 
     scrolls = (scrollOffset) => {
@@ -33,6 +35,8 @@ class Home extends React.Component {
 
     
     render() {
+        let cnt=-1;
+
         return (
             <div>
                          {/* <Grid  container
@@ -48,15 +52,22 @@ class Home extends React.Component {
                         > */}
                         <div className='ContainerGrid'>
                 {this.state.Items.map((item)=>{
-                    
+                    cnt=cnt+1;
+                    console.log('hhh')
+                    console.log(this.state.colors[cnt])
                     return ( 
                       
                         <div className='GridItem'>
-                            <Dashboard></Dashboard>
+                            <Dashboard item={item} color={this.state.colors[cnt%4]}></Dashboard>
 
                         </div>
                         
-                )})}
+                )
+                
+                })
+                
+                
+                }
 
 
 
