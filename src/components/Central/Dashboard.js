@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-
+import './CSS/Dashboard.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,12 +10,15 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import { CardHeader } from '@material-ui/core';
 import tp1 from './tp1';
+import rupee from '../icons/rupee.svg'
+
 
 const useStyles = makeStyles({
   root: {
-    width: 200 ,
-    height:150,
-    borderRadius:15,
+    width: 260 ,
+    height:175,
+    borderRadius:10,
+    
     // position:'relative'
     
     
@@ -34,13 +37,31 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
   head:{
-    // backgroundColor:'red',
-    // position:'relative',
-    color:'red'  
+    backgroundColor:'red',
+    position:'relative',
+    color:'red' ,
   },
 
   cost:{
-    fontSize:30
+    fontSize:45,
+  },
+  pendingNum:{
+    textAlign:'right',
+  },
+  authnum:{
+    textAlign:'right',
+    fontSize:100,
+  },
+
+  // smallfonts:{
+  //   fontSize:5,
+  //   textAlign:'right'
+  // }
+  PendingAuth:{
+  borderTopStyle:'solid',
+  marginTop:14,
+
+  
   }
 });
     function Dashboard() {
@@ -53,32 +74,55 @@ const useStyles = makeStyles({
     <Card className={classes.root}>
     
       <CardContent>
-            <Grid item container spacing={2}>
-              <Grid item container xs direction='column'>
+            <Grid item container spacing={2} alignItems='center' justify='center'>
+              <Grid item container xs direction='column' alignItems='center' justify='space-around'>
                   
                   <Grid item container xs={12}  justify='center'
                     alignItems='center'>
-                      <Grid item xs={8}>Education</Grid>
-                      <Grid item xs={4}>1000</Grid>
+                      <Grid item xs={8}><div className='Category'>Education</div></Grid>
+                      <Grid item xs={4}><div className='TotalAlloc'>1000</div></Grid>
+                      
                   </Grid>
-
-                  <Grid item xs={12} className={classes.cost}>
-                      RS.30,000
-                      <hr></hr>
-                  </Grid>
-
-                  <Grid item container xs={12}>
                   
-                      <Grid item xs={4}>Pending</Grid>
-                      <Grid item xs={2}></Grid>
-                      <Grid item xs={4}>Authorized</Grid>
-                    </Grid>  
+
+                  <Grid item container xs={12} 
+                    alignItems='center' justify='center' className={classes.cost}>
+                  
+                      {/* <hr className='hrTag'></hr> */}
+                      {/* <Grid item xs={12} 
+                        alignItems='right'
+                        justify='right'
+    
+                      > */}
+                      <div>
+                      <img src={rupee} className='RupeeIcon'></img> 
+                      {/* </Grid> */}
+                      {/* <Grid item xs={8} className={classes.cost}> */}
+                      786</div></Grid>
+                      
+          
+
+                  <Grid item container xs={12}  className={classes.PendingAuth}>
+             
+                  <Grid item xs={5}><div className='PendingDiv' id='Attributes'>Pending</div></Grid>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={5} ><div className='AuthDiv' id='Attributes' >Authorized</div></Grid>
+                  
+                </Grid>  
+
+
+                  <Grid item container xs={12} alignItems='center' justify='center'>
+                  
+                  <Grid item xs={5}><div className='PendingNum' id='SmallNum'>111</div></Grid>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={5}><div className='AuthNum' id='SmallNum'>44</div></Grid>
+                </Grid>  
+
+                  
             </Grid>
           </Grid>
       </CardContent>
-      {/* <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
+  
     </Card>
     </div>
   );

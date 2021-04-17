@@ -1,0 +1,57 @@
+.RupeeDiv{
+    /* text-align: left;
+    /* padding-top: 10px; */
+    /* padding-bottom: 0px;
+    width:fit-content;
+    flex:auto; */ 
+}
+
+.PendingAuth{
+    /* margin:17px 0px; */
+    /* border-top-style: solid;
+    display:flex; */
+    /* border-color: black; */
+    
+}
+.Category{
+    text-align: left;
+    font-size:23px;
+    font-weight:600
+}
+
+.TotalAlloc{
+    text-align: right;
+    font-size:15px;
+    font-weight:300
+}
+
+.RupeeIcon{
+    height: 6.5vmin;
+}
+
+.PendingDiv{
+text-align:left;
+/* background-color:red; */
+/* font-size: 30px; */
+}
+
+
+.AuthDiv{
+    text-align:right;
+}
+
+#Attributes{
+    font-size: 15px;
+}
+
+.PendingNum{
+    text-align:left ;
+}
+
+.AuthNum{
+    text-align:right;
+    font-size:100px;
+}
+#SmallNum{
+    font-size: 12px;
+}

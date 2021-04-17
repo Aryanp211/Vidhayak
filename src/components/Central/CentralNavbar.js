@@ -30,10 +30,11 @@ const useStyles = makeStyles({
     list: {
       width: 250,
       
+      
     },
     fullList: {
       width: 'auto',
-      height:'30px'
+      // height:10
     },
     name: {
       

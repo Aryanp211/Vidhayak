@@ -59,7 +59,6 @@ class PendingRequest extends Component {
   updaterequest(id) {
     axios.post('http://localhost:5000/requests/update/'+id)
       .then(response => { console.log(response.data)});
-
     this.setState({
       pendingrequests: this.state.pendingrequests.filter(pc => pc._id !== id)
     })

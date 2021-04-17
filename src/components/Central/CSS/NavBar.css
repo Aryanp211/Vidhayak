@@ -34,7 +34,7 @@
     position: fixed;
     overflow-y: auto;
     flex-direction: column;
-    margin-top: 175px;
+    margin-top: 162px;
 }
 
  @media (min-width: 600px)
