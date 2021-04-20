@@ -1,0 +1,36 @@
+/* .ContainerGrid{
+
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}*/
+
+.MuiGrid-spacing-xs-7 {
+    width: calc(100% + 56px);
+    /* margin: -28px; */
+    text-align: -webkit-center;
+}
+
+/*
+.ContainerGrid::-webkit-scrollbar {
+        display: none;
+  /* } */
+
+
+/* .GridItem{
+    width:100%; 
+    flex: 0 0 auto;
+     margin:0px 10px; */
+/* } */
+  
+
+
+.GridItemCon{
+    text-align:-webkit-center;
+    /* color:#793c3c */
+}
+
+.GridContainerCon{
+    text-align:-webkit-center;
+    display: flex;
+}

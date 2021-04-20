@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Category } = require('@material-ui/icons');
 let Requests = require('../models/requests.model');
 let CategorySchema =require('../models/category.model');
+let project = require('../models/project.model');
 
 router.route('/').get((req, res) => {
   Requests.find()
@@ -110,6 +111,7 @@ router.route('/search').post((req,res)=>{
 
 
 router.route('/update/:id').post((req, res) => {
+  const reqid=req.params.id
   Requests.findById(req.params.id)
     .then(requestss  => {
      
@@ -122,8 +124,16 @@ router.route('/update/:id').post((req, res) => {
       console.log('Amount kata')
       console.log(res.category_amount)
     requestss.req_status= "Authorized";
+
+        
+
     res.save()
     requestss.save()
+    .then(r=>{
+      const newproject=new project({project_details:requestss,project_status:false,project_init:false,tender_amount:0})
+      newproject.save().then(e=>{console.log(newproject);
+                                  console.log(newproject.project_details.req_Projname)}).catch((error)=>console.log(error))
+    })
       })
       .catch(error=>{
         console.log('Errorrrrr!!!!')

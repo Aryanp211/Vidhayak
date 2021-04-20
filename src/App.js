@@ -7,6 +7,7 @@ import CreateUser from './components/Login/create-user.component';
 import Login from './components/Login/Login';
 import Stategov  from './components/State/Stategov';
 import central  from "./components/Central/central";
+import contractor  from "./components/Contractor/contractor"
 import tp from './components/Central/tp'
 import ModalTest from './components/Test/ModalTest';
 
@@ -21,6 +22,7 @@ class App extends Component{
       <Switch>
     .. <Route exact path="/stategov/Home" component={Stategov} />
       <Route exact path="/central/Home" component={central} />
+      <Route path='/contractor/Home' component={contractor}/>
       </Switch>
       <div className="container">
       <Switch>

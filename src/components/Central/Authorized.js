@@ -12,7 +12,7 @@ class Authorized extends Component {
             clicked:false,
             name:'',
             status:'Authorized',
-            category:['Education','Agriculture','Transportation','Infrastructure','Technology','Energy','Enviornment','Health']
+            category:['Education','Agriculture','Transportation','Infrastructure','Technology','Energy','Environment','Health']
              
         }
         // this.handleClick=this.handleClick.bind(this)

@@ -93,6 +93,10 @@ export default function Login(props) {
     if (posit==='Central'){
         props.history.push('/central/Home')
     }
+    else if (posit==='Contractor'){
+      props.history.push('/contractor/Home')
+    }
+
     else{
         props.history.push('/stategov/Home',{state:state})
     }
@@ -156,6 +160,18 @@ export default function Login(props) {
           label="Top"
           labelPlacement="top"
         /> */}
+
+
+<FormControlLabel
+          value="Contractor"
+          control={<Radio color="primary" />}
+          label="Contractor"
+          name='posit'
+          onChange={(e)=>handlePositChange(e.target.value)}
+          labelPlacement="start"
+        />        
+
+
 
     <FormControlLabel
           value="State"

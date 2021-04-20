@@ -26,6 +26,7 @@ import StateNavbar from './StateNavbar';
 
 import Home from './Home'
 import Authorized from'./Authorized'
+import PrintAuthTable from './PrintAuthTable';
 // import Emblem from 'src\Logos\Emblem'
 //import ShowCrimetype from './components/crimetype.component';
 
@@ -114,8 +115,9 @@ let icon={'Andhra Pradesh':AndhraPradesh,
 
  const classes=userStyles() 
 
-
-
+const statename=props.history.location.state.state
+console.log('----');
+console.log(statename)
   return (
      <Router>
        <div className="main">
@@ -149,7 +151,10 @@ let icon={'Andhra Pradesh':AndhraPradesh,
        {/* <Route exact path="/" component={Login} /> */}
        <Route path="/stategov/Home" component={Home} />
        <Route path="/stategov/Request" component={Request} />
-       <Route path="/stategov/Authorized" component={Authorized} />
+       <Route path="/stategov/Authorized" render={(props) => (
+    <Authorized {...props} statename={statename} />
+  )} />
+    <Route path="/PrintAuthTable" component={PrintAuthTable} />
        {/* <Route path="/user/crimestat" component={ShowCrimetype} /> */}
        <Route exact path="/" component={Login} />
        </Switch>
