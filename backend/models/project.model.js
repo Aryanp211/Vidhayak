@@ -34,6 +34,11 @@ project_init:{
     {type :Number, 
     reqired:true},
 
+    tender_date:{
+      type:Date,
+      default:null
+    },
+
   total_bids:[{
     contractor_details: {type:mongoose.Types.ObjectId,ref:'contractor',default:null,sparse: true},
     bid_amount:{type:Number,default:0,sparse: true}

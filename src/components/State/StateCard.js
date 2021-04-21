@@ -58,7 +58,7 @@ class StateCard extends Component {
      })
     })
     .catch((error) => {
-      console.log('hahahaha');
+      console.log('hahahaha Rajat chutiya');
     })
   }
 }
