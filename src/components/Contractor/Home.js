@@ -15,6 +15,7 @@ class Home extends React.Component {
         this.state={
             Items:[],
             Cat:['New Tenders','Filed Tenders','Archived Tenders','See Transactions'],
+            routes:['NewTenders','FiledTenders','ArchivedTenders','SeeTransactions'],
             colors:['#793c3c']
         }
     }
@@ -36,15 +37,15 @@ class Home extends React.Component {
 
     
     render() {
-    let cnt=0
+    let cnt=-1
         return(
             <div className='Griddiv' style={{textAlign:'center'}}>
             <Grid container justify='center' alignItems='center' className='GridContainerCon' spacing={4} >
             {this.state.Cat.map((mapItem)=>{
-                // cnt=cnt+1;
+                cnt=cnt+1;
                 return(
                     <Grid item className='GridItemCon'  xs={6}>
-                        <Dashboard item={mapItem} color={this.state.colors[cnt]}></Dashboard>
+                        <Dashboard item={mapItem} color={this.state.colors[cnt]} route={this.state.routes[cnt]} ></Dashboard>
                     </Grid>
                 )
                 

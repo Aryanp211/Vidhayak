@@ -16,6 +16,8 @@ import ContractorNavbar from './ContractorNavbar';
 import '../State/Logos/Style/logos.css'
 import {Container, makeStyles} from '@material-ui/core'
 import './CSS/Contractor.css'
+import NewTenders from './NewTenders';
+import Bidform from './Form/Bidform';
 
 
 
@@ -76,7 +78,7 @@ const classes=userStyles()
     
       <Switch>
       
-       
+      {/* 'NewTenders','FiledTenders','ArchivedTenders','SeeTransactions' */}
       <div className="CentralContainer container">  
       <Route exact path='/contractor/Home' component={Home}/>
       {/* <Route exact path="/alltransaction" component={alltransaction} />
@@ -84,6 +86,10 @@ const classes=userStyles()
       <Route exact path="/PendingRequest" component={PendingRequest} />
       {/* <Route exact path="/statewisetransaction" component={Statewise}/> */}
       <Route exact path="/" component={Login} />
+      <Route path='/contractor/NewTenders' component={NewTenders}/>
+      <Route path='/contractor/Bidform' component={Bidform}/>
+      {/* <Route path='/contractor/NewTenders' component={NewTenders}/>
+      <Route path='/contractor/NewTenders' component={NewTenders}/> */}
       {/* <Route exact path='/central/Pending' component={Pending}/> */}
       {/* <Route exact path='/central/Authorized' component={Authorized}/>  */}
       {/* <Route exact path='/' component={Login}></Route>s */}

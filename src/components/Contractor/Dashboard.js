@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import { CardHeader } from '@material-ui/core';
+import {withRouter} from 'react-router-dom';
 
 import rupee from '../icons/rupee.svg'
 
@@ -76,25 +77,36 @@ centreText:{
   borderTopStyle:'solid',
   marginTop:14,
 
-  
   }
+
+
+
 });
     function Dashboard(props) {
   const classes = useStyles();
   // const bull = <span className={classes.bullet}>•</span>;
     console.log('AJAAAA')
     console.log(props.item)
+
+    
+  
+
+
+
+
+
+    const handleClick=e=>{props.history.push('/contractor/'+props.route) }
     // const {}
     // const {_id,category_name,category_amount}=props.item
     // console.log(category_name)
     // console.log(props.color)
   return (
-    <div>
+    <div onClick={handleClick}> 
     {/* <div className={classes.head}>FIELD NAME</div> */}
     <Card className={classes.root} 
-    style={{backgroundColor:props.color}} >
+    style={{backgroundColor:props.color}}  >
     
-      <CardContent style={{textAlign:'center'}}>
+      <CardContent style={{textAlign:'center'}} >
         <div className={classes.centreText}>{props.item}</div>
       </CardContent>
   
@@ -104,4 +116,4 @@ centreText:{
 }
 
 
-export default Dashboard
+export default withRouter(Dashboard)

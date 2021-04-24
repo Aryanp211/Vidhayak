@@ -18,9 +18,12 @@ router.route('/findAuth').get((req,res)=>{
   console.log(statename)
   console.log(cat)
   console.log("Idhar state")
-  Requests.find({req_status:'Authorized', req_category:cat, req_state:statename})
+  Project.find({req_status:'Authorized', req_category:cat, req_state:statename, project_init:false})
   
-.then((requestss) =>{console.log(requestss); res.json(requestss)})
+.then((requestss) =>{
+  
+  
+  console.log(requestss); res.json(requestss)})
 .catch(err => res.status(400).json('Error: ' + err));
 });
 

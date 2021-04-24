@@ -25,15 +25,17 @@ mongoose.connect(uri,{useNewUrlParser: true, useCreateIndex: true}
      const requestsRouter = require('./routes/requests');
      const contractorRouter = require('./routes/contractor');
      const projectRouter = require('./routes/project');
+     const userRouter = require('./routes/user')
     
     //  const categoryRouter = require('./routes/central');
-    // app.use('/criminals', criminalsRouter);
+    
     app.use('/states', stateRouter);
-    // app.use('/crimetypes', crimetypeRouter);
+    
      app.use('/central', centralRouter);
     app.use('/requests',requestsRouter);
     app.use('/contractor',contractorRouter);
     app.use('/project',projectRouter)
+    app.use('/user',userRouter)
         
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

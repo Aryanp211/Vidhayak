@@ -27,26 +27,6 @@ import States from '../States'
 import { BottomNavigationAction } from '@material-ui/core';
 
 
-// let email=''
-// let password=''
-// let posit=''
-
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -67,15 +47,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-//   select:{
-//    backgroundColor: "white",
-//   }
+
+
 }));
-
-// const handleChange=e=>{
-//     email=e.target.value
-// }
-
 
 
 
@@ -103,9 +77,7 @@ export default function Login(props) {
     
 }
 
-    // function handleChange(e){
-        
-    // }
+
 
   return (
     <Container component="main" maxWidth="xs">

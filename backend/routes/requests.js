@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const { Category } = require('@material-ui/icons');
-let Requests = require('../models/requests.model');
+// let Requests = require('../models/requests.model');
 let CategorySchema =require('../models/category.model');
-let project = require('../models/project.model');
+let Project = require('../models/project.model');
 
 router.route('/').get((req, res) => {
-  Requests.find()
+  Project.find()
     .then(requestss => res.json(requestss))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -30,7 +30,7 @@ router.route('/add').post((req, res) => {
   const req_duration = req.body.req_duration;
   const req_status= req.body.req_status;
   const req_authoby = req.body.req_authoby;
-  const newRequests = new Requests({username,req_Projname, req_category, req_state,req_description, req_duration,req_amount, req_date,req_status,req_authoby});
+  const newRequests = new Project({username:username,req_Projname:req_Projname, req_category:req_category, req_state:req_state,req_description:req_description, req_duration:req_duration,req_amount:req_amount, req_date:req_date,req_status:req_status,req_authoby:req_authoby});
 
   newRequests.save()
     .then(() =>{ res.json('Requests added!')
@@ -47,13 +47,13 @@ router.route('/add').post((req, res) => {
 });
 
 router.route('/:id').get((req, res) => {
-  Requests.findById(req.params.id)
+  Project.findById(req.params.id)
     .then(requestss => res.json(requestss))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').delete((req, res) => {
-  Requests.findByIdAndDelete(req.params.id)
+  Project.findByIdAndDelete(req.params.id)
     .then(() => res.json('Requests deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -61,7 +61,7 @@ router.route('/:id').delete((req, res) => {
 router.route('/finder/:status').get((req,res)=>{
   var status=req.params.status
   console.log(status)
-  Requests.find({req_status:status})
+  Project.find({req_status:status})
   
 .then((requestss) => res.json(requestss))
 .catch(err => res.status(400).json('Error: ' + err));
@@ -75,7 +75,7 @@ router.route('/finderState/:q').get((req,res)=>{
   console.log(name)
   // console.log(status)
   console.log("Idhar")
-  Requests.find({req_status:'Pending', req_category:name})
+  Project.find({req_status:'Pending', req_category:name})
   
 .then((requestss) => res.json(requestss))
 .catch(err => res.status(400).json('Error: ' + err));
@@ -87,7 +87,7 @@ router.route('/finderAuth/:q').get((req,res)=>{
   console.log(name)
   // console.log(status)
   console.log("Idhar")
-  Requests.find({req_status:'Authorized', req_category:name})
+  Project.find({req_status:'Authorized', req_category:name})
   
 .then((requestss) => res.json(requestss))
 .catch(err => res.status(400).json('Error: ' + err));
@@ -96,7 +96,7 @@ router.route('/finderAuth/:q').get((req,res)=>{
 
 
 router.route('/findAuthorized').post((req,res)=>{
-    Requests.find({req_status:'Authorized'})
+    Project.find({req_status:'Authorized'})
   .then((requestss) => res.json(requestss))
   .catch(err => res.status(400).json('Error: ' + err));
   });
@@ -105,14 +105,14 @@ router.route('/findAuthorized').post((req,res)=>{
 router.route('/search').post((req,res)=>{
   //const bd = req.body.bd;
   //const ed = req.body.ed;
-  Requests.find({req_date:{"$gte": new Date("1999")}})
+  Project.find({req_date:{"$gte": new Date("1999")}})
 .then((requestss) => res.json(requestss))
 });
 
 
 router.route('/update/:id').post((req, res) => {
   const reqid=req.params.id
-  Requests.findById(req.params.id)
+  Project.findById(req.params.id)
     .then(requestss  => {
      
       console.log(requestss.req_category)
@@ -124,16 +124,13 @@ router.route('/update/:id').post((req, res) => {
       console.log('Amount kata')
       console.log(res.category_amount)
     requestss.req_status= "Authorized";
+    
 
         
 
     res.save()
     requestss.save()
-    .then(r=>{
-      const newproject=new project({project_details:requestss,project_status:false,project_init:false,tender_amount:0})
-      newproject.save().then(e=>{console.log(newproject);
-                                  console.log(newproject.project_details.req_Projname)}).catch((error)=>console.log(error))
-    })
+   
       })
       .catch(error=>{
         console.log('Errorrrrr!!!!')
@@ -151,7 +148,7 @@ router.route('/update/:id').post((req, res) => {
 
 
   router.route('/request/:statename').post((req,res)=>{
-    Requests.find({req_state:{statename}})
+    Project.find({req_state:{statename}})
   .then((requestss) => res.json(requestss))
   .catch(err => res.status(400).json('Error: ' + err));
   });

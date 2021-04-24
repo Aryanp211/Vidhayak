@@ -10,7 +10,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 // import DateFnsUtils from '@date-io/date-fns';
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
+import DatePicker from 'react-date-picker';
 import "react-datepicker/dist/react-datepicker.css";
 import {
     MuiPickersUtilsProvider,
@@ -34,7 +35,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 // import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
+import {withRouter} from 'react-router-dom'
+import PrintAuthTable from './PrintAuthTable'
 
 
 // let email=''
@@ -84,12 +86,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function InitForm(props) {
+ function InitForm(props) {
   const classes = useStyles();
   
   const [bid,handleBidChange]=useState('')
   const [date,handleDateChange]=useState(new Date())
   const [id,handleId]=useState(props.id)
+  const [init,handleInit]=useState(true)
   // let finaldate = date.getDate() + '-' +  (date.getMonth() + 1)  + '-' +  date.getFullYear()
   // const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
 
@@ -98,6 +101,9 @@ export default function InitForm(props) {
   // }
 //   const [posit,handlePositChange]=useState('')
 //   const [state,handleStateChange]=useState('')
+const handleClick=()=>{
+  handleInit(false)
+}
 
   const handleSubmit=e=>{
     e.preventDefault();
@@ -110,8 +116,15 @@ export default function InitForm(props) {
     }
     // console.log(bid,date,id)
     console.log('DATE')
-    console.log(JSON.parse(date))
+    console.log(date)
     axios.post('http://localhost:5000/project/initialise/',details)
+    // .then((res)=>{
+      
+      handleInit(false)
+      console.log(init)
+    // })
+    // console.log(init)
+
    
     
     
@@ -123,8 +136,8 @@ export default function InitForm(props) {
 
   return (
 
-
-    
+    <div>
+    {init===true ?
     <Container component="main" maxWidth="xs">
         
        <CssBaseline />
@@ -169,26 +182,29 @@ export default function InitForm(props) {
            
           //   onChange={(e)}
           // > */}
-{/* <DatePicker
-   selected={date}
+
+
+ <DatePicker
+   style={{width:100}}
    className={classes.textField}
+   value={date}
     // id="date"
     // label="Date"
     // variant="outlined"
     // margin="normal"
     // type="date"
     // selected={date}
-    // fullWidth
-    onChange={(date)=>handleDateChange(date)}
+
+    onChange={handleDateChange}
     // defaultValue="2017-05-24"
     // InputLabelProps={{
     //   shrink: true,
     // }}
-  /> */}
+  /> 
 {/* </TextField> */}
 
 
-<TextField
+{/* <TextField
     id="date"
     label="Birthday"
     type="date"
@@ -199,7 +215,7 @@ export default function InitForm(props) {
       shrink: true,
     }}
     onChange={(date)=>handleDateChange(date)}
-  />
+  /> */}
 
 
 
@@ -234,8 +250,28 @@ export default function InitForm(props) {
         Submit
           </Button>
 
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleClick}
+          >
+        Cancel
+          </Button>
+
         </form>
       </div>    
     </Container>
+    :
+      <PrintAuthTable init={init}></PrintAuthTable>
+      
+      }
+</div>
   );
 }
+
+
+
+export default withRouter(InitForm);

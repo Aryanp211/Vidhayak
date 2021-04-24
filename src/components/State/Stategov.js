@@ -27,6 +27,7 @@ import StateNavbar from './StateNavbar';
 import Home from './Home'
 import Authorized from'./Authorized'
 import PrintAuthTable from './PrintAuthTable';
+import InitForm from './InitForm';
 // import Emblem from 'src\Logos\Emblem'
 //import ShowCrimetype from './components/crimetype.component';
 
@@ -149,12 +150,13 @@ console.log(statename)
       
          <Switch>
        {/* <Route exact path="/" component={Login} /> */}
-       <Route path="/stategov/Home" component={Home} />
+       <Route exact path="/stategov/Home" component={Home} />
        <Route path="/stategov/Request" component={Request} />
        <Route path="/stategov/Authorized" render={(props) => (
     <Authorized {...props} statename={statename} />
   )} />
-    <Route path="/PrintAuthTable" component={PrintAuthTable} />
+    <Route path="/stategov/PrintAuthTable" component={PrintAuthTable} />
+    <Route path="/stategov/Initialise" component={InitForm} />
        {/* <Route path="/user/crimestat" component={ShowCrimetype} /> */}
        <Route exact path="/" component={Login} />
        </Switch>

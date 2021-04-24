@@ -126,7 +126,7 @@ class StateCard extends Component {
      <header onClick={()=>{
 
      if (this.state.status==='Authorized'){
-      this.props.history.push('/PrintAuthTable',{category:this.state.category,statename:this.state.statename})}
+      this.props.history.push('/stategov/PrintAuthTable',{category:this.state.category,statename:this.state.statename})}
      
      
      else if (this.state.status==='Pending'){

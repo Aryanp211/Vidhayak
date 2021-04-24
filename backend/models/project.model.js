@@ -17,11 +17,25 @@ const totalbid = require('./totalbid.model');
 // })
 
 const projectSchema = new Schema({
-  project_details: {type:mongoose.Types.ObjectId,ref:'Requests'}, 
 
-  project_status:
-    {type :Boolean, 
-    reqired:true,
+  username:{ type: String, required: true },
+  //   user_mobile:{type :Number , reqired:true},
+    req_Projname:{type: String, required: true},
+    req_category:{type: String,required: true},
+    req_state:{type: String,required: true}, //Pending or Authorized?
+    req_amount:{type:Number,required: true},
+    req_description :{type: String, required:true},
+    req_duration:{type:String,required: true},
+    req_status:{type: String, required: true },
+    req_date:{ type: Date, required: true },
+    req_authoby:{type: String, required: true},
+
+
+  // project_details: {type:mongoose.Types.ObjectId,ref:'Requests'}, 
+
+project_status: {    //Project Complete or not?
+    type:Boolean,
+    // reqired:true,
     default:false},
 
 project_init:{
@@ -32,7 +46,9 @@ project_init:{
 
   tender_amount:
     {type :Number, 
-    reqired:true},
+    // reqired:true,
+    default:0
+  },
 
     tender_date:{
       type:Date,
