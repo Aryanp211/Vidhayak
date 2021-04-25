@@ -75,4 +75,3 @@ project_status: {    //Project Complete or onGoing?
 
 const project= mongoose.model('project', projectSchema);
 module.exports = project;
-//  module.exports=mongoose.model("bid", bid);

@@ -20,6 +20,7 @@ router.route('/').get(async (req, res) => {
 console.log(x)
 })
 
+})
 
     // x.map(z=>{
     //   cnt=cnt+1
@@ -51,8 +52,47 @@ console.log(x)
 
     //      })
 
+
+
+
+
+
+router.route('/tenders/:statename').get((req, res) => {
+  let statename=req.params.statename
+  console.log("tenders in state",statename)
+  let cnt=0;
+  var data=[];
+  var data2=[]
+ project.find({project_init:true,project_status:"Tender Initialised",req_state:statename})
+ .then((x)=>{res.json(x)
+    console.log(x)
+})
 })
 
+router.route('/Ongoing/:statename').get((req, res) => {
+  let statename=req.params.statename
+  console.log("tenders in state",statename)
+  let cnt=0;
+  var data=[];
+  var data2=[]
+ project.find({project_init:false,project_status:"Project Started",req_state:statename})
+ .then((x)=>{res.json(x)
+    console.log(x)
+})
+})
+
+
+router.route('/terminatetender').post((req, res) => {
+ let id=req.body.e
+ console.log(id)
+ project.findById(id)
+ .then((x)=>{
+    x.project_status="Project Started"
+    x.project_init=false
+    x.save()
+    console.log(x)
+})
+})
 
 
 router.route('/initialise').post((req,res)=>{

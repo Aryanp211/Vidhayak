@@ -47,7 +47,7 @@ import PrintAuthTable from './PrintAuthTable'
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
+//       {'Copyright Â© '}
 //       <Link color="inherit" href="https://material-ui.com/">
 //         Your Website
 //       </Link>{' '}

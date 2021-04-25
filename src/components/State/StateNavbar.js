@@ -103,10 +103,21 @@ const classes = useStyles();
 <ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/Authorized'>Authorized Projects</Button>
 </ListItem>
 
+
+
+
+
 <ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/Pending'>Pending Projects</Button>
 </ListItem>
 
+
+<ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/Tenders'>Initialised Tenders</Button>
+</ListItem>
+
 <ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/Request'>Request Project</Button>
+</ListItem>
+
+<ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/OngoingProjects'>Ongoing Projects</Button>
 </ListItem>
 </List>
           <Divider />

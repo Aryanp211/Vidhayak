@@ -8,18 +8,18 @@ import categories from '../Categories'
 class Pending extends Component {
     constructor(props) {
         super(props)
-    
+
         this.state = {
             clicked:false,
             name:'',
             status:'Pending',
             category: categories,
             state:this.props.statename
-             
+
         }
         // this.handleClick=this.handleClick.bind(this)
     }
-    
+
     handleClick=e=>{
         console.log(e.target.value)
         this.setState({
@@ -27,11 +27,11 @@ class Pending extends Component {
             name:e.target.value,
             status:'Pending'
         })
-        
+
     }
 
     render() {
-    
+
         return (
             <div>
                 <Grid container spacing={3}>
@@ -42,7 +42,6 @@ class Pending extends Component {
                         <Grid item xs={4}>
                         <StateCard category={mapitem} status='Pending' statename={this.props.statename}></StateCard>
                         </Grid>
-                        
                 )})}
                 </Grid>
             </div>
