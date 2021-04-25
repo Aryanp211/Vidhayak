@@ -18,7 +18,7 @@ router.route('/findAuth').get((req,res)=>{
   console.log(statename)
   console.log(cat)
   console.log("Idhar state")
-  Project.find({req_status:'Authorized', req_category:cat, req_state:statename, project_init:false})
+  Project.find({req_status:'Authorized', req_category:cat, req_state:statename, project_init:false, project_status:'Tender Not Initialised' })
   
 .then((requestss) =>{
   
@@ -27,6 +27,26 @@ router.route('/findAuth').get((req,res)=>{
 .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
+
+router.route('/findPending').get((req,res)=>{
+  console.log(req.query)
+  console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB')
+  let cat=req.query.category
+  // console.log(cat)
+  let statename=req.query.statename
+  // var status=req.query.status
+  console.log(statename)
+  console.log(cat)
+  console.log("Idhar state")
+  Project.find({req_status:'Pending', req_category:cat, req_state:statename, project_init:false, project_status:'Tender Not Initialised' })
+  
+.then((requestss) =>{
+  
+  
+  console.log(requestss); res.json(requestss)})
+.catch(err => res.status(400).json('Error: ' + err));
+});
 
 
 // router.route('/update/:id').post((req, res) => {

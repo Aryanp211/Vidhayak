@@ -4,11 +4,21 @@ let Contractor =require('../models/contractor.model');
 let Project =require('../models/project.model')
 
 
-router.route('/').get((req, res) => {
-  Contractor.find()
-    .then(centralusers => res.json(centralusers))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+// router.route('/').get((req, res) => {
+//   Contractor.find()
+//     .then(centralusers => res.json(centralusers))
+//     .catch(err => res.status(400).json('Error: ' + err));
+// });
+
+router.route('/filedtenders/:id').get((req, res) => {
+   
+  Contractor.findOne({user_id:req.params.id}).then((x)=>{res.json(x)
+ 
+    console.log("filed tenders mein aa gaya")
+    console.log(x)
+ })
+
+})
 
 router.route('/filetender').post((req,res)=>{
   console.log('rajat filetender me aya hai ')
@@ -81,6 +91,11 @@ console.log(r.req_state)
 
   
   });
+
+
+
+
+
 
 
 module.exports = router;

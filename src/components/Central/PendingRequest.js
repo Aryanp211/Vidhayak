@@ -19,6 +19,7 @@ const Pendingrequest = props => (
     <button className="btn btn-primary mx-1" 
     onClick={
         () => { 
+          console.log(props.pendingrequest._id)
           props.updaterequest(props.pendingrequest._id)}}>
             Approve Request
       </button>
@@ -57,6 +58,7 @@ class PendingRequest extends Component {
 
   
   updaterequest(id) {
+    console.log("This is the id ",id)
     axios.post('http://localhost:5000/requests/update/'+id)
       .then(response => { console.log(response.data)});
     this.setState({

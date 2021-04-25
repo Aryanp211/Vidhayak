@@ -108,6 +108,11 @@ onClick={
 class PrintAuthTable extends Component {
   constructor(props) {
     super(props);
+    console.log('------------')
+    console.log(this.props.init)
+    // if(this.props.init===false){
+    //   this.componentDidMount()
+    // }
     this.updaterequest = this.updaterequest.bind(this)
     this.state = {
       pendingrequests: [],
@@ -117,6 +122,12 @@ class PrintAuthTable extends Component {
       category:this.props.history.location.state.category,
       statename:this.props.history.location.state.statename
     };
+    // if(this.props.init===false){
+    //   console.log('AGAIN')
+    //   this.setState({
+    //   pendingrequests: this.state.pendingrequests.filter(pc => pc.project_init !== true)
+    //   })
+    // }
   }
 
   componentDidMount() {
@@ -141,10 +152,11 @@ class PrintAuthTable extends Component {
 
   axios.get('http://localhost:5000/states/findAuth/',request)
   .then(response => {
-    console.log(response)
+    console.log('length',response.data.length)
     if (response.data.length > 0) {
       console.log('Rajat Gand mara')
       console.log(response.data)
+      
       this.setState({
         pendingrequests: response.data,
       })
@@ -203,7 +215,7 @@ class PrintAuthTable extends Component {
             {this.pendingrequestList()}
           </tbody>
         </table>
-        <button className="Register" onClick={()=>{this.props.history.push('stategov/Authorized')}}>Back</button>
+        <button className="Register" onClick={()=>{this.props.history.push('/stategov/Authorized')}}>Back</button>
         </div>
         
       :

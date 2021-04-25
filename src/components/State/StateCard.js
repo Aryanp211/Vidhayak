@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { BrowserRouter as Router, Link, Route,Switch} from "react-router-dom";
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
+import { CodeSharp } from '@material-ui/icons';
 
 class StateCard extends Component {
 
@@ -51,8 +52,18 @@ class StateCard extends Component {
     }
 
     else if(this.state.status==='Pending'){
-    axios.get('http://localhost:5000/state/findPending/'+this.props.category)
+      var request = {
+        params: {
+            statename:this.state.statename,
+            category:this.state.category
+      }
+    }
+    console.log('PENDING')
+    console.log(request)
+    axios.get('http://localhost:5000/states/findPending/',request)
     .then(response => {
+      console.log('inside response')
+      console.log(response)
      this.setState({
        count:response.data.length
      })
@@ -130,7 +141,7 @@ class StateCard extends Component {
      
      
      else if (this.state.status==='Pending'){
-      this.props.history.push('/PendingRequest',{name:this.state.category})
+      this.props.history.push('stategov/PrintPendingTable',{category:this.state.category,statename:this.state.statename})
      }
     }
     }>

@@ -18,6 +18,7 @@ import {Container, makeStyles} from '@material-ui/core'
 import './CSS/Contractor.css'
 import NewTenders from './NewTenders';
 import Bidform from './Form/Bidform';
+import FiledTenders from './FiledTenders';
 import {withRouter} from 'react-router-dom'
 
 
@@ -94,6 +95,9 @@ const classes=userStyles()
         <NewTenders {...props} data={data}/> )}/>
       <Route path='/contractor/Bidform' render={(props)=>(
         <Bidform {...props} data={data}/> )}/>
+
+      <Route path='/contractor/FiledTenders' render={(props)=>(
+        <FiledTenders {...props} data={data}/> )}/>
       {/* <Route path='/contractor/NewTenders' component={NewTenders}/>
       <Route path='/contractor/NewTenders' component={NewTenders}/> */}
       {/* <Route exact path='/central/Pending' component={Pending}/> */}

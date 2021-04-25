@@ -28,6 +28,11 @@ import Home from './Home'
 import Authorized from'./Authorized'
 import PrintAuthTable from './PrintAuthTable';
 import InitForm from './InitForm';
+import Tenders from './Tenders';
+import OngoingProjects from './OngoingProjects';
+
+import Projectinfo from './projectinfo';
+import Pending from './Pending';
 // import Emblem from 'src\Logos\Emblem'
 //import ShowCrimetype from './components/crimetype.component';
 
@@ -139,16 +144,17 @@ console.log(statename)
            </div>
            </div>
 
-           <StateNavbar></StateNavbar>
+           
           
            </Container>
        </header>
 
       
-
+       <StateNavbar></StateNavbar>
       
       
          <Switch>
+         <div className="CentralContainer container"> 
        {/* <Route exact path="/" component={Login} /> */}
        <Route exact path="/stategov/Home" component={Home} />
        <Route path="/stategov/Request" component={Request} />
@@ -157,8 +163,22 @@ console.log(statename)
   )} />
     <Route path="/stategov/PrintAuthTable" component={PrintAuthTable} />
     <Route path="/stategov/Initialise" component={InitForm} />
+    <Route path="/stategov/projectinfo" component={Projectinfo} />
+    <Route path="/stategov/OngoingProjects" render={(props) => (
+    <OngoingProjects {...props} statename={statename} />
+  )} />
+    <Route path="/stategov/Tenders" render={(props) => (
+    <Tenders {...props} statename={statename} />
+  )} />
+
+<Route path="/stategov/Pending" render={(props) => (
+    <Pending {...props} statename={statename} />
+  )} />
+
+
        {/* <Route path="/user/crimestat" component={ShowCrimetype} /> */}
        <Route exact path="/" component={Login} />
+       </div>
        </Switch>
        </div>
       
