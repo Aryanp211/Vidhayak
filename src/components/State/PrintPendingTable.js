@@ -105,7 +105,7 @@ onClick={
 )
 
 
-class PrintAuthTable extends Component {
+class PrintPendingTable extends Component {
   constructor(props) {
     super(props);
     console.log('------------')
@@ -150,7 +150,7 @@ class PrintAuthTable extends Component {
     }
   }
 
-  axios.get('http://localhost:5000/states/findAuth/',request)
+  axios.get('http://localhost:5000/states/findPending/',request)
   .then(response => {
     console.log('length',response.data.length)
     if (response.data.length > 0) {
@@ -215,7 +215,7 @@ class PrintAuthTable extends Component {
             {this.pendingrequestList()}
           </tbody>
         </table>
-        <button className="Register" onClick={()=>{this.props.history.push('/stategov/Authorized')}}>Back</button>
+        <button className="Register" onClick={()=>{this.props.history.push('stategov/Pending')}}>Back</button>
         </div>
         
       :
@@ -229,4 +229,4 @@ class PrintAuthTable extends Component {
   }
 }
 
-export default withRouter(PrintAuthTable);
+export default withRouter(PrintPendingTable);

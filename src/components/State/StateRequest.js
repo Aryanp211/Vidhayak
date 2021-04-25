@@ -127,7 +127,7 @@ import {Form} from 'react-advanced-form'
       username: '',
       req_Projname:'',
       req_category: 'Education',
-      req_state: 'Mharashtra',
+      req_state: 'Maharashtra',
       req_description:'',
       req_duration:'',
       req_amount: 0,

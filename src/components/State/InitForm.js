@@ -118,10 +118,10 @@ const handleClick=()=>{
     console.log('DATE')
     console.log(date)
     axios.post('http://localhost:5000/project/initialise/',details)
-    // .then((res)=>{
-      
+      .then(r=>{
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAa')
       handleInit(false)
-      console.log(init)
+      console.log(init)})
     // })
     // console.log(init)
 
@@ -202,24 +202,6 @@ const handleClick=()=>{
 
 
 
-
- <DatePicker
-   style={{width:100}}
-   className={classes.textField}
-   value={date}
-    // id="date"
-    // label="Date"
-    // variant="outlined"
-    // margin="normal"
-    // type="date"
-    // selected={date}
-
-    onChange={handleDateChange}
-    // defaultValue="2017-05-24"
-    // InputLabelProps={{
-    //   shrink: true,
-    // }}
-  /> 
 {/* </TextField> */}
 
 
@@ -270,7 +252,7 @@ const handleClick=()=>{
           </Button>
 
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"

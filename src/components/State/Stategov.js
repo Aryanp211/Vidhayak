@@ -28,6 +28,10 @@ import Home from './Home'
 import Authorized from'./Authorized'
 import PrintAuthTable from './PrintAuthTable';
 import InitForm from './InitForm';
+
+
+import Pending from './Pending'
+
 // import Emblem from 'src\Logos\Emblem'
 //import ShowCrimetype from './components/crimetype.component';
 
@@ -139,12 +143,12 @@ console.log(statename)
            </div>
            </div>
 
-           <StateNavbar></StateNavbar>
+          
           
            </Container>
        </header>
 
-      
+       <StateNavbar></StateNavbar>
 
       
       
@@ -155,6 +159,14 @@ console.log(statename)
        <Route path="/stategov/Authorized" render={(props) => (
     <Authorized {...props} statename={statename} />
   )} />
+
+
+
+<Route path="/stategov/Pending" render={(props) => (
+    <Pending {...props} statename={statename} />
+  )} />
+
+
     <Route path="/stategov/PrintAuthTable" component={PrintAuthTable} />
     <Route path="/stategov/Initialise" component={InitForm} />
        {/* <Route path="/user/crimestat" component={ShowCrimetype} /> */}

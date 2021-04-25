@@ -61,6 +61,7 @@ export default function Login(props) {
   const [password,handlePassChange]=useState('')
   const [posit,handlePositChange]=useState('')
   const [state,handleStateChange]=useState('')
+  const [status,handleStatusChange]=useState(false)
   // const [id]
 
   const handleSubmit=e=>{
@@ -88,15 +89,24 @@ export default function Login(props) {
     .then(r=>{
       console.log(r.data)
       let data=r.data
+
+      if (data===null){
+          handleStatusChange(true)
+      }
+
+      else{
+
       if(data.user_posit==='State'){
         props.history.push('/stategov/Home',{state:data.user_state, data:data})
       }
       else if (data.user_posit==='Central'){
         props.history.push('/central/Home',{data:data})
       }
-      else{
+      else if (data.user_posit==='Contractor'){
         props.history.push('/contractor/Home',{data:data})
       }
+    }
+    
 
 
 
@@ -251,10 +261,12 @@ export default function Login(props) {
       
     </FormControl>
         <div>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+            {status===false?
+            <div></div>
+            :
+              <div style={{color:'red'}}>
+                Entered Email/Password is wrong
+                </div>}
           </div>
           <Button
             type="submit"

@@ -22,23 +22,28 @@ const projectSchema = new Schema({
   //   user_mobile:{type :Number , reqired:true},
     req_Projname:{type: String, required: true},
     req_category:{type: String,required: true},
-    req_state:{type: String,required: true}, //Pending or Authorized?
+    req_state:{type: String,required: true}, 
     req_amount:{type:Number,required: true},
     req_description :{type: String, required:true},
     req_duration:{type:String,required: true},
-    req_status:{type: String, required: true },
+    req_status:{type: String, required: true },//Project Auth or not?
     req_date:{ type: Date, required: true },
     req_authoby:{type: String, required: true},
 
 
   // project_details: {type:mongoose.Types.ObjectId,ref:'Requests'}, 
 
-project_status: {    //Project Complete or not?
-    type:Boolean,
+project_status: {    //Project Complete or onGoing?
+    type:String,
     // reqired:true,
-    default:false},
+    default:'Tender Not Initialised'},
+                          //Tender Not Initialised,
+                          // Tender Initialised, 
+                          //Project Started, 
+                          //Project Completed
 
-project_init:{
+
+  project_init:{ //Only for Tender initialised or not 
     type:Boolean,
     // required:true,
     default:false
