@@ -64,6 +64,7 @@ function Row(props) {
     
   }
 const handleClick=e=>{
+  console.log('iiiiiiiiiii',e)
     history.push('/stategov/projectinfo',{project_id:e})
 }
 

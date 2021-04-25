@@ -22,6 +22,23 @@ console.log(x)
 
 })
 
+router.route('/details/:id').get( (req, res) => {
+const id=req.params.id;
+console.log(id)
+project.findById(id)
+.then(ress=>{
+  res.json(ress)
+})
+//   let cnt=0;
+//   var data=[];
+//   var data2=[]
+//  project.find({project_init:true}).then((x)=>{res.json(x)
+// console.log(x)
+// })
+
+})
+
+
     // x.map(z=>{
     //   cnt=cnt+1
     //   console.log(2,data)

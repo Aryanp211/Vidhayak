@@ -1,0 +1,18 @@
+.ContainerGrid{
+
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.ContainerGrid::-webkit-scrollbar {
+        display: none;
+  }
+
+
+.GridItem{
+    /* width:100%; */
+    flex: 0 0 auto;
+    margin:0px 10px;
+}
+
