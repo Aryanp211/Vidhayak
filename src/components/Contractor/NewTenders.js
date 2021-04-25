@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewTendersTable from './NewTendersTable'
+import {withRouter} from 'react-router-dom'
 export class NewTenders extends Component {
 
     render() {
@@ -12,4 +13,4 @@ export class NewTenders extends Component {
     }
 }
 
-export default NewTenders
+export default withRouter(NewTenders);

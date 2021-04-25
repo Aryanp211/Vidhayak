@@ -14,7 +14,7 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ProposalDetails from './ProposalDetails';
-
+import {withRouter} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -55,22 +55,23 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Personal Details', 'Verification details','Proposal Details','Review your bid'];
 
-function getStepContent(step) {
+function getStepContent(step,data,proj_id) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm data={data} />;
     case 1:
-      return <PaymentForm />;
+      return <PaymentForm data={data}/>;
     case 2:
-      return <ProposalDetails/>;
+      return <ProposalDetails data={data} proj_id={proj_id}/>;
     case 3:
-        return <Review />;
+        return <Review data={data}/>;
     default:
       throw new Error('Unknown step');
   }
 }
 
- function Bidform() {
+ function Bidform(props) {
+   console.log('BID FORM',props.data)
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -117,7 +118,7 @@ function getStepContent(step) {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
+                {getStepContent(activeStep,props.data,props.history.location.state.proj_id)}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>
@@ -137,10 +138,10 @@ function getStepContent(step) {
             )}
           </React.Fragment>
         </Paper>
-        
-      </main>
+          </main>
     </React.Fragment>
+    
   );
 }
 
-export default Bidform;
+export default withRouter(Bidform);

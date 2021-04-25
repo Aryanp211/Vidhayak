@@ -5,7 +5,19 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function AddressForm() {
+export default function AddressForm(props) {
+
+
+// const [verify,handleVerify]=useState(false);
+// const toggleVerify=()=>{
+//   if (verify===true){
+//     handleVerify(false)
+//   }
+//   else
+//   handleVerify(true)
+// }
+  console.log('Address Form')
+  console.log(props.data.user_email)
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -18,8 +30,13 @@ export default function AddressForm() {
             id="firstName"
             name="firstName"
             label="First name"
+            value={props.data.user_firstname}
+            // placeholder={props.data.user_firstname}
             fullWidth
             autoComplete="given-name"
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -30,6 +47,10 @@ export default function AddressForm() {
             label="Last name"
             fullWidth
             autoComplete="family-name"
+            value={props.data.user_lastname}
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -37,20 +58,16 @@ export default function AddressForm() {
             required
             id="address1"
             name="address1"
-            label="Address line 1"
+            label="Address"
             fullWidth
             autoComplete="shipping address-line1"
+            value={props.data.user_address}
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-          />
-        </Grid>
+        
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -59,11 +76,24 @@ export default function AddressForm() {
             label="City"
             fullWidth
             autoComplete="shipping address-level2"
+            value={props.data.user_city}
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
+          <TextField 
+          id="state" 
+          name="state" 
+          label="State/Province/Region" 
+          fullWidth 
+          value={props.data.user_state}  
+          InputLabelProps={{
+              shrink: true,
+            }}/>
         </Grid>
+        
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -72,25 +102,18 @@ export default function AddressForm() {
             label="Zip / Postal code"
             fullWidth
             autoComplete="shipping postal-code"
+            value={props.data.user_zipcode}
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-          />
+    
         </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
+        <FormControlLabel
+            control={<Checkbox color="secondary" name="saveAddress"  />}
             label="Verify the personal details"
           />
-        </Grid>
-      </Grid>
     </React.Fragment>
   );
 }

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import Dashboard from './Dashboard';
 import './CSS/Home.css'
+import {withRouter} from 'react-router-dom'
 // import categories from '../Categories'
 import axios from 'axios'
 // import ref from 
@@ -57,4 +58,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home
+export default withRouter(Home);

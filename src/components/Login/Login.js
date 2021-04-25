@@ -25,6 +25,7 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import States from '../States'
 import { BottomNavigationAction } from '@material-ui/core';
+import axios from 'axios'
 
 
 
@@ -60,20 +61,57 @@ export default function Login(props) {
   const [password,handlePassChange]=useState('')
   const [posit,handlePositChange]=useState('')
   const [state,handleStateChange]=useState('')
+  // const [id]
 
   const handleSubmit=e=>{
     e.preventDefault();
-    console.log(email,password,posit,state)
-    if (posit==='Central'){
-        props.history.push('/central/Home')
-    }
-    else if (posit==='Contractor'){
-      props.history.push('/contractor/Home')
+
+ 
+
+ 
+
+    let details={
+      user_state:null,
+      user_email:email,
+      user_password:password,
+      user_posit:posit
     }
 
-    else{
-        props.history.push('/stategov/Home',{state:state})
-    }
+    if (posit==='State'){
+      
+      details.user_state=state
+  
+      }
+    console.log(details)
+    console.log(email,password,posit,state)
+    axios.post('http://localhost:5000/user/',details)
+    .then(r=>{
+      console.log(r.data)
+      let data=r.data
+      if(data.user_posit==='State'){
+        props.history.push('/stategov/Home',{state:data.user_state, data:data})
+      }
+      else if (data.user_posit==='Central'){
+        props.history.push('/central/Home',{data:data})
+      }
+      else{
+        props.history.push('/contractor/Home',{data:data})
+      }
+
+
+
+    }).catch('Nahi hai andar')
+
+    // if (posit==='Central'){
+    //     props.history.push('/central/Home')
+    // }
+    // else if (posit==='Contractor'){
+    //   props.history.push('/contractor/Home')
+    // }
+
+    // else{
+    //     props.history.push('/stategov/Home',{state:state})
+    // }
     
 }
 
@@ -228,18 +266,13 @@ export default function Login(props) {
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
+          
+            <div>
               <Link href="http://localhost:3000/register" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
-            </Grid>
-          </Grid>
+          </div>
+       
         </form>
       </div>
       {/* <Box mt={8}>

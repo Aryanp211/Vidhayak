@@ -184,6 +184,25 @@ const handleClick=()=>{
           // > */}
 
 
+
+<TextField
+        required
+        variant='outlined'
+          id="date"
+         label="Date"
+         type="date"
+         fullWidth
+   
+             onChange={(e)=>handleDateChange(e.target.value)}
+             InputLabelProps={{
+            shrink: true}}
+        />
+
+
+
+
+
+
  <DatePicker
    style={{width:100}}
    className={classes.textField}

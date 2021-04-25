@@ -18,7 +18,7 @@ import {Container, makeStyles} from '@material-ui/core'
 import './CSS/Contractor.css'
 import NewTenders from './NewTenders';
 import Bidform from './Form/Bidform';
-
+import {withRouter} from 'react-router-dom'
 
 
 
@@ -35,7 +35,10 @@ const userStyles=makeStyles((theme)=>({
 }))
 
 
-function contractor() {
+function contractor(props) {
+
+
+const data=props.history.location.state.data
 
 const classes=userStyles()
 
@@ -80,14 +83,17 @@ const classes=userStyles()
       
       {/* 'NewTenders','FiledTenders','ArchivedTenders','SeeTransactions' */}
       <div className="CentralContainer container">  
-      <Route exact path='/contractor/Home' component={Home}/>
+      <Route exact path='/contractor/Home' render={(props)=>(
+        <Home {...props} data={data}/> )}/>
       {/* <Route exact path="/alltransaction" component={alltransaction} />
       <Route exact path="/central/Allocate" component={AllocMoney} />
       <Route exact path="/PendingRequest" component={PendingRequest} />
       {/* <Route exact path="/statewisetransaction" component={Statewise}/> */}
-      <Route exact path="/" component={Login} />
-      <Route path='/contractor/NewTenders' component={NewTenders}/>
-      <Route path='/contractor/Bidform' component={Bidform}/>
+      <Route exact path="/" render={Login} />
+      <Route path='/contractor/NewTenders' render={(props)=>(
+        <NewTenders {...props} data={data}/> )}/>
+      <Route path='/contractor/Bidform' render={(props)=>(
+        <Bidform {...props} data={data}/> )}/>
       {/* <Route path='/contractor/NewTenders' component={NewTenders}/>
       <Route path='/contractor/NewTenders' component={NewTenders}/> */}
       {/* <Route exact path='/central/Pending' component={Pending}/> */}

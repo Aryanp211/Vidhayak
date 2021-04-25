@@ -64,7 +64,7 @@ export default function Login(props) {
   const [password,handlePassChange]=useState('')
   const [firstname,handleFirstnameChange]=useState('')
   const [lastname,handleLastnameChange]=useState('')
-  const [dob,handleDobChange]=useState('')
+  const [dob,handleDobChange]=useState(new Date())
   const [mobilenumber,handleMobilenumberChange]=useState(0)
   const [gender,handleGenderChange]=useState('')
   const [address1,handleAddress1Change]=useState('')
@@ -94,10 +94,11 @@ export default function Login(props) {
       user_adhaar:adhaar,
       user_pan:pan
     }
+    console.log(details)
     axios.post('http://localhost:5000/user/add/',details)
-    .then(r=>{console.log(r,'User added');
-          props.history.push('http://localhost:5000/')
-  })
+    .then(r=>{console.log(r,'User added')
+          props.history.push('/')
+  }).catch(error=>console.log('Did not post'))
     
 }
 
@@ -262,8 +263,8 @@ const handleToggleVerify=()=>{
           <TextField
             required
             variant='outlined'
-            id="address1"
-            name="address1"
+            id="address"
+            name="address"
             label="Address"
             fullWidth
             autoComplete="shipping address-line1"
