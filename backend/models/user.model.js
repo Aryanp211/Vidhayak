@@ -19,6 +19,8 @@ const UserSchema = new Schema({
   user_pan:{type :Number , reqired:true},
   user_posit:{type: String, required:true}
 
+  
+
 }, {
   timestamps: true,
 });

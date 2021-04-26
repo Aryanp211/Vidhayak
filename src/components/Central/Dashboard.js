@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     width: 260 ,
     height:175,
     borderRadius:10,
+    // background:'linear-gradient({col1},{col2})'
     
     
     // position:'relative'
@@ -73,10 +74,14 @@ const useStyles = makeStyles({
     const {_id,category_name,category_amount}=props.item
     console.log(category_name)
     console.log(props.color)
+    const col1='#17ead9'
+    const col2='##36b8e0'
+    console.log(col1)
+    // style={{background: 'linear-gradient({col1},{col2})'}}
   return (
     <div>
     {/* <div className={classes.head}>FIELD NAME</div> */}
-    <Card className={classes.root} style={{backgroundColor:props.color}} >
+    <Card className={classes.root} style={{background:'linear-gradient(#17ead9,#36b8e0)'}}  >
     
       <CardContent>
             <Grid item container spacing={2} alignItems='center' justify='center'>

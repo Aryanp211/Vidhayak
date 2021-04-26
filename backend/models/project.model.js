@@ -28,7 +28,7 @@ const projectSchema = new Schema({
     req_duration:{type:String,required: true},
     req_status:{type: String, required: true },//Project Auth or not?
     req_date:{ type: Date, required: true },
-    req_authoby:{type: String, required: true},
+    req_authoby:{type: String, default: null},
 
 
   // project_details: {type:mongoose.Types.ObjectId,ref:'Requests'}, 
@@ -59,14 +59,33 @@ project_status: {    //Project Complete or onGoing?
       type:Date,
       default:null
     },
-
+  
+    
   total_bids:[{
     contractor_details: {type:mongoose.Types.ObjectId,ref:'contractor',default:null,sparse: true},
     bid_amount:{type:Number,default:0,sparse: true}
     }],
 
-  contractor_Authorized:{contractor_details: {type:mongoose.Types.ObjectId,ref:'contractor',default:null,sparse: true},
-  bid_amount:{type:Number,default:0,sparse: true},
+  contractor_Authorized:{
+    contractor_details: {
+      contractor_id:{type:mongoose.Types.ObjectId,ref:'contractor',default:null,sparse: true},
+      contractor_name:{type: String, default:null},
+      contractor_email:{type: String,default:null},
+      contractor_mobile:{type :Number ,default:null},
+      contractor_city:{type: String,default:null},
+      contractor_state:{type: String, default:null},
+      contractor_adharno:{type :Number , default:null},
+      contractor_pancard:{type :Number ,default:null},
+      proposal_description:{type: String,default:null},
+      project_proposed_planofwork:{type: String, default:null},
+      project_bidamount:{type :Number , default:null},
+      project_duration:{type: String, default:null},
+      project_estimatedenddate:{type: Date, default:null},
+      // project_transactionhistory:{type:mongoose.Types.ObjectId,ref:'contractor',default:null,sparse: true},
+      
+
+    },
+    bid_amount:{type:Number,default:0,sparse: true},
   }},
 
 {                                                 

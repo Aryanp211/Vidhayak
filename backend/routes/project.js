@@ -11,7 +11,7 @@ let Request= require('../models/requests.model')
 // });
 
 
-router.route('/').get(async (req, res) => {
+router.route('/').get( (req, res) => {
 
   let cnt=0;
   var data=[];
@@ -22,23 +22,12 @@ console.log(x)
 
 })
 
-router.route('/details/:id').get( (req, res) => {
-const id=req.params.id;
-console.log(id)
-project.findById(id)
-.then(ress=>{
-  res.json(ress)
+
+router.route('/details/:id').get((req,res)=>{
+  let id=req.params.id
+  project.findById(id)
+  .then(re=>res.json(re))
 })
-//   let cnt=0;
-//   var data=[];
-//   var data2=[]
-//  project.find({project_init:true}).then((x)=>{res.json(x)
-// console.log(x)
-// })
-
-})
-
-
     // x.map(z=>{
     //   cnt=cnt+1
     //   console.log(2,data)
@@ -82,32 +71,75 @@ router.route('/tenders/:statename').get((req, res) => {
   var data2=[]
  project.find({project_init:true,project_status:"Tender Initialised",req_state:statename})
  .then((x)=>{res.json(x)
-    console.log(x)
+    // console.log(x)
 })
 })
 
-router.route('/Ongoing/:statename').get((req, res) => {
-  let statename=req.params.statename
-  console.log("tenders in state",statename)
+router.route('/Ongoing').post((req, res) => {
+  let statename=req.body.statename
+
+  console.log("------------------------------------------------------------------------------------------------------------------")
+  console.log(statename)
+  console.log(" Ongoing tenders in state",statename)
   let cnt=0;
-  var data=[];
-  var data2=[]
+  
  project.find({project_init:false,project_status:"Project Started",req_state:statename})
- .then((x)=>{res.json(x)
+  .then((x)=>{
+    res.json(x)
+    // x.save()
+    console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     console.log(x)
+    
+    
+  }
+)
+
+ 
 })
-})
+
 
 
 router.route('/terminatetender').post((req, res) => {
  let id=req.body.e
  console.log(id)
- project.findById(id)
+ project.findById(id).
+ populate(
+ {
+   path:'contractor_Authorized',
+   populate:{path:'contractor_details'}
+ }
+ )
  .then((x)=>{
+    
+    console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    console.log(x)
     x.project_status="Project Started"
     x.project_init=false
     x.save()
-    console.log(x)
+    // console.log(x)
+    console.log("Total bids contractor details")
+    // console.log(x.total_bids)
+
+  console.log("=4=4=4=4==4=4=4=4=4=4=4==4=4=4=4==4=4=4==4=4=4=4=4==4=4=4==4=4=4=4==4=4=4=4==4=4=4==4=4")
+    console.log(x.contractor_Authorized)
+    console.log(x.contractor_Authorized.contractor_details.user_firstname)
+    // let doc =  x.total_bids.aggregate([
+    //  { $group:
+    //   {
+    //     _id:'$_id',
+    //     minbid:{$min:'$bid_amount'}
+    //   },
+    // },
+
+    //   {
+    //     $project:{id:'$_id',minbid:1}
+    //   }
+
+    // ]);
+    // console.log(doc)
+    
+    // console.log(cont,minbid)
+   
 })
 })
 
@@ -117,21 +149,21 @@ console.log('rajat initialise me aya hai ')
   let id=req.body.id;
   let bid=req.body.bid;
   let date=req.body.date;
-  console.log(req.body)
+  // console.log(req.body)
   // let date=Date(req.body);
   // let date=req.body.date;
   console.log('-------')
-  console.log(id,bid)
+  // console.log(id,bid)
   project.findOne({_id:id})
 .then((ress) =>{
-  console.log('andar')
+  // console.log('andar')
   ress.tender_amount=bid;
   ress.tender_date=date;
   ress.project_init=true;
   ress.project_status='Tender Initialised'
   ress.save()
   .then((e)=>{
-   console.log('init hogya');
+  //  console.log('init hogya');
   res.json(ress)})
   .catch(e=>console.log('Rajat _ hai'))
 } )

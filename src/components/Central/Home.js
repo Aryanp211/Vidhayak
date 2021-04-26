@@ -14,7 +14,8 @@ class Home extends React.Component {
         super(props)
         this.state={
             Items:[],
-            colors:['aliceblue','blanchedalmond','wheat','green']
+            // colors:['aliceblue','blanchedalmond','wheat','green'],
+            colors:[['#5b247a','#1bcedf'],['#F36265','#961276'],['#0FF0B3','#036ED9'],['#7117ea','#ea6060']]
         }
     }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 // import './CSS/Dashboard.css'
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import { CardHeader } from '@material-ui/core';
 import {withRouter} from 'react-router-dom';
+import { useEffect } from "react";
+
 
 import rupee from '../icons/rupee.svg'
 
@@ -46,6 +48,9 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 
+  grid:{
+    overflowX:true,
+  },
 
   head:{
     backgroundColor:'red',
@@ -55,8 +60,10 @@ const useStyles = makeStyles({
 
 centreText:{
     fontSize:15,
-    top:32,
-    position:'relative'
+    top:8,
+    position:'relative',
+    fontFamily: 'Montserrat',
+    fontWeight:'bold'
     // textDecoration:'underline',
     // textDecorationStyle:'wavy'
 },
@@ -86,7 +93,7 @@ centreText:{
       marginTop:10,
       fontSize:28,
       fontWeight:'bold',
-    //   fontFamily:
+      fontFamily: 'Montserrat',
   }
 
 
@@ -95,9 +102,16 @@ centreText:{
     function ProjectDashboard(props) {
   const classes = useStyles();
   
+  const[data,handleData]= useState(props.details)
     console.log('AJAAAA')
-    console.log(props.item)
+    // console.log(props.item)
 
+    // useEffect(()=>{
+    //   handleData(props.details)
+
+    // })
+
+    
     
   
 
@@ -106,13 +120,21 @@ centreText:{
 
 
     const handleClick=e=>{props.history.push('/contractor/'+props.route) }
+    const contractor_name= props.details.contractor_Authorized.contractor_details.contractor_name
+    // .contractor_details.contractor_name
+    // props.details.contractor_Authorized.contractor_details.contractor_name
+    console.log('#######################################################################')
+    console.log('contractor',props.details)
+    // console.log(data)
     
   return (
+    
+
     <div > 
         
 
 
-<Grid container xs={12} sm={12}>
+<Grid container xs={12} sm={12} className={classes.grid}>
 
 
     <Grid item xs={3}>
@@ -122,6 +144,7 @@ centreText:{
     
       <CardContent style={{textAlign:'center'}} >
           <div className={classes.text}>35,50,098</div>
+          <hr></hr>
         <div className={classes.centreText}> TOTAL MONEY ALLOCATED  </div>
       </CardContent>
   
@@ -138,6 +161,7 @@ centreText:{
     
       <CardContent style={{textAlign:'center'}} >
       <div className={classes.text}>35,50,098</div>
+      <hr></hr>
         <div className={classes.centreText}>EXPENDITURE</div>
       </CardContent>
   
@@ -152,8 +176,9 @@ centreText:{
      >
     
       <CardContent style={{textAlign:'center'}} >
-      <div className={classes.text}>35,50,098</div>
-        <div className={classes.centreText}>TOTAL TRANSACTIONS</div>
+      <div className={classes.text}>{contractor_name}</div>
+      <hr></hr>
+        <div className={classes.centreText}>CONTRACTOR</div>
       </CardContent>
   
     </Card>
@@ -169,6 +194,7 @@ centreText:{
     
       <CardContent style={{textAlign:'center'}} >
           <div className={classes.text}>Nagpur</div>
+          <hr></hr>
         <div className={classes.centreText}>PLACE</div>
       </CardContent>
   
@@ -176,6 +202,7 @@ centreText:{
     </Grid>
 
 
+    
 
 
 

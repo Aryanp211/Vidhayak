@@ -10,17 +10,17 @@ let Project =require('../models/project.model')
 //     .catch(err => res.status(400).json('Error: ' + err));
 // });
 
-router.route('/filedtenders/:id').get((req, res) => {
+router.route('/filedtenders/:id').get((req, res) => { //to display filed tenders
    
   Contractor.findOne({user_id:req.params.id}).then((x)=>{res.json(x)
  
     console.log("filed tenders mein aa gaya")
-    console.log(x)
+    // console.log(x)
  })
 
 })
 
-router.route('/filetender').post((req,res)=>{
+router.route('/filetender').post((req,res)=>{ //to post: to file tender
   console.log('rajat filetender me aya hai ')
     let user_id1=req.body.user_id;
     let bidamount=req.body.bidamount;
@@ -37,15 +37,15 @@ router.route('/filetender').post((req,res)=>{
 
   (Contractor.findOne({user_id:user_id1})
   .then(resp=>{
-    console.log(resp)
+    // console.log(resp)
  
-console.log(32)
+// console.log(32)
     
-
+    let name=resp.user_firstname+' '+resp.user_lastname
     Project.findById(proj_id)
     .then(r=>{
-console.log(37)
-console.log(r.req_state)
+// console.log(37)
+// console.log(r.req_state)
       resp.filed_tenders.push({
         project_proposed_planofwork:plan,
         proposal_description:proposal,
@@ -56,31 +56,68 @@ console.log(r.req_state)
         project_state:r.req_state,
         project_category:r.req_category,
         proposal_description:r.req_description,
-        project_proposed_planofwork:plan,
+        project_proposed_planofwork:proposal,
         project_duration: r.req_duration,
         project_estimatedenddate:date,
 
 
+
       }
         )
+        if(r.contractor_Authorized.bid_amount===0){
+          r.contractor_Authorized.bid_amount=bidamount,
+          r.contractor_Authorized.contractor_details.contractor_id=resp._id
+          r.contractor_Authorized.contractor_details.contractor_name=name,
+          r.contractor_Authorized.contractor_details.contractor_email=resp.user_email,
+          r.contractor_Authorized.contractor_details.contractor_mobile=resp.user_mobile,
+          r.contractor_Authorized.contractor_details.contractor_city=resp.user_city,
+          r.contractor_Authorized.contractor_details.contractor_state=resp.user_state,
+          r.contractor_Authorized.contractor_details.contractor_adharno=resp.user_adharno,
+          r.contractor_Authorized.contractor_details.contractor_pancard=resp.user_pancard,
+          r.contractor_Authorized.contractor_details.proposal_description=proposal,
+          r.contractor_Authorized.contractor_details.project_proposed_planofwork=plan,
+          r.contractor_Authorized.contractor_details.project_bidamount=bidamount,
+          r.contractor_Authorized.contractor_details.project_duration=r.req_duration,
+          r.contractor_Authorized.contractor_details.project_estimatedenddate=date
+          // project_id=proj_id
+        }
+        else{
+          if(r.contractor_Authorized.bid_amount>bidamount){
+            r.contractor_Authorized.bid_amount=bidamount,
+            r.contractor_Authorized.contractor_details.contractor_id=resp._id
+            r.contractor_Authorized.contractor_details.contractor_name=name,
+            r.contractor_Authorized.contractor_details.contractor_email=resp.user_email,
+            r.contractor_Authorized.contractor_details.contractor_mobile=resp.user_mobile,
+            r.contractor_Authorized.contractor_details.contractor_city=resp.user_city,
+            r.contractor_Authorized.contractor_details.contractor_state=resp.user_state,
+            r.contractor_Authorized.contractor_details.contractor_adharno=resp.user_adharno,
+            r.contractor_Authorized.contractor_details.contractor_pancard=resp.user_pancard,
+            r.contractor_Authorized.contractor_details.proposal_description=proposal,
+            r.contractor_Authorized.contractor_details.project_proposed_planofwork=plan,
+            r.contractor_Authorized.contractor_details.project_bidamount=bidamount,
+            r.contractor_Authorized.contractor_details.project_duration=r.req_duration,
+            r.contractor_Authorized.contractor_details.project_estimatedenddate=date
+            // project_id=proj_id
+          }
 
+        }
 
         r.total_bids.push({
           contractor_details: resp._id,
           bid_amount:bidamount
         })
         r.save()
-        console.log(47)
+        // console.log(47)
         resp.save()
-      console.log(resp)
+      // console.log(resp)
       }
         
       )
 
-  console.log(50)
-      console.log('ggggggggggggggggggggggggg')
-    // console.log(resp.save())
-    console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+  // console.log(50)
+  //     console.log('ggggggggggggggggggggggggg')
+  //   // console.log(resp.save())
+  //   console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
    
    
     

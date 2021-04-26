@@ -54,7 +54,10 @@ function Row(props) {
   const handleTerminate=e=>{
     console.log(e)
     props.condition(true)
-    axios.post('http://localhost:5000/project/terminatetender',{e})
+    axios.post('http://localhost:5000/project/terminatetender',{e}).then(r=>{
+      console.log("---------------------------------------------------------")
+      console.log(r.data)
+    })
     
   }
   return (

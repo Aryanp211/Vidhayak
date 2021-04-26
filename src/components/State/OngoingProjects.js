@@ -64,12 +64,12 @@ function Row(props) {
     
   }
 const handleClick=e=>{
-  console.log('iiiiiiiiiii',e)
-    history.push('/stategov/projectinfo',{project_id:e})
+    history.push('/stategov/projectinfo',{details:row})
 }
 
   return (
     <React.Fragment>
+    {/* <div> */}
       <TableRow className={classes.root}  onClick={function(){handleClick(row._id)}}>
         {/* <TableCell>
           <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
@@ -83,31 +83,17 @@ const handleClick=e=>{
         <TableCell >{row.req_duration}</TableCell>
         <TableCell >{row.req_amount}</TableCell>
         <TableCell >{row.project_status}</TableCell>
-        <TableCell>bannena ka hai</TableCell>
-        
+        <TableCell>{row.contractor_Authorized.contractor_details.contractor_name}</TableCell>
+        {console.log(row.contractor_Authorized)}
         {/* <TableCell align="right">  
         
         <Button variant="contained" color="secondary"   onClick={function(){handleTerminate(row._id)}}>Terminate Bidding</Button>
         </TableCell> */}
       </TableRow>
-
-      {/* <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1}>
-              <Typography variant="h7" gutterBottom component="div">
-               Description:
-              </Typography>
-              {row.req_description}
-              {row._id}
-              <TableRow>
-              <Button variant="contained" color="secondary" onClick={()=>history.push('/contractor/Bidform',{proj_id:row._id})}> Place Bid</Button>
-              </TableRow>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow> */}
-    </React.Fragment>
+      {/* </div> */}
+      
+     </React.Fragment>
+    // {/* </div> */}
   );
 }
 
@@ -141,15 +127,15 @@ function OngoingProjects(props) {
 
     const [datax,updatedata]=React.useState([]);
     const [condition,updatecondition]=React.useState(true);
-
+    let statename=props.statename
     useEffect(() => {
       // let zz=[]
       console.log(condition)
         if(condition===true){
-        axios.get('http://localhost:5000/project/Ongoing/'+props.statename)
+        axios.post('http://localhost:5000/project/Ongoing',{statename})
         .then(response => {
           
-          console.log(datax)
+          // console.log(datax)
         updatedata(response.data)
         console.log(datax)
           console.log("Hi this is avalaibe tenders list")

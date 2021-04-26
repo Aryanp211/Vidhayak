@@ -1,7 +1,8 @@
 const router = require('express').Router();
 let State = require('../models/states.model');
 let Requests = require('../models/requests.model');
-let Project = require('../models/project.model')
+let Project = require('../models/project.model');
+let Transaction = require('../models/Transaction.model')
 
 router.route('/').get((req, res) => {
   State.find()

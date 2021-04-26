@@ -113,7 +113,7 @@ const useRowStyles = makeStyles({
           
           {/* <TableCell align="right">{row.project_estimatedamt}</TableCell> */}
           {console.log(row.project_estimatedenddate)}
-          <TableCell >{JSON.stringify(row.project_estimatedenddate).substring(1,10)}</TableCell>
+          <TableCell>{JSON.stringify(row.project_estimatedenddate).substring(1,10)}</TableCell>
           <TableCell align="right">{row.bid_status}</TableCell>
         </TableRow>
         <TableRow>
