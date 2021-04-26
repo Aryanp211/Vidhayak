@@ -10,8 +10,9 @@ router.route('/').get((req, res) => {
 });
 
 
-router.route('/seeTransactions').get((req,res)=>{
-  Transaction.find()
+router.route('/seeTransactions/:category').get((req,res)=>{ //return transaction wrt category
+  let category=req.params.category;
+  Transaction.find({category:category})
   .then(re=>
     res.json(re))
 })

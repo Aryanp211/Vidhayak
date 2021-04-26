@@ -28,7 +28,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip'
 import { useHistory } from 'react-router-dom'
 import { withRouter } from 'react-router';
+
 import statename from '../States';
+
+import FormHelperText from "@material-ui/core/FormHelperText";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import { DataUsageTwoTone } from '@material-ui/icons';
 
 
 const useRowStyles = makeStyles({
@@ -89,7 +94,14 @@ const useRowStyles = makeStyles({
   function Row(props) {
     let history = useHistory();
     let row = props.row;
-    {console.log(row)}
+    // {console.log(row)}
+    let rang='red'
+    let khulega=false
+    if(row.bid_status=='Tender Won'){
+      rang='green'
+      khulega=true
+      
+    }
     // let data=props.data
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
@@ -98,12 +110,14 @@ const useRowStyles = makeStyles({
     // const handleSubmit=data_id=>{props.history.push('contractor/bidform')}
     return (
       <React.Fragment>
-        <TableRow className={classes.root}>
-          <TableCell>
-            <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+        
+        <TableRow className={classes.root} style={{backgroundColor:rang}} >
+          {/* <TableCell>
+            {khulega ? <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
-          </TableCell>
+            :null}
+          </TableCell> */}
           <TableCell component="th" scope="row">
             {row.project_name}
           </TableCell>
@@ -112,7 +126,7 @@ const useRowStyles = makeStyles({
           <TableCell >{row.project_duration}</TableCell>
           
           {/* <TableCell align="right">{row.project_estimatedamt}</TableCell> */}
-          {console.log(row.project_estimatedenddate)}
+          {/* {console.log(row.project_estimatedenddate)} */}
           <TableCell>{JSON.stringify(row.project_estimatedenddate).substring(1,10)}</TableCell>
           <TableCell align="right">{row.bid_status}</TableCell>
         </TableRow>
@@ -168,7 +182,7 @@ function FiledTenders(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [personName, setPersonName] = React.useState([]);
-  
+    const [datawon,updatedatawon]=React.useState([]);
     const handleChange = (event) => {
       setPersonName(event.target.value);
     };
@@ -185,23 +199,79 @@ function FiledTenders(props) {
     };
 
 
+    const [state, setState] = React.useState({
+      age: ""
+    });
+  
+    const handleChange2 = (event) => {
+      updatecondition(true);
+      const age = event.target.name;
+      setState({
+        ...state,
+        [age]: event.target.value
+      });
+    };
+    
 
-    console.log(props.data._id)
+
+   
     useEffect(() => {
         let zz=[]
-        console.log(props.data._id)
+        
+        // console.log(props.data._id)
           if(condition===true){
             
-            
+          
           axios.get('http://localhost:5000/contractor/filedtenders/'+props.data._id)
           .then(response => {
+          // updatedata(response.data.filed_tenders)
+          if(state.age==10){
             
-          // datax.push(response.data)
-          updatedata(response.data.filed_tenders)
-            console.log("Hi this is avalaibe filed  tenders list")
-            // console.log(response)
+              for(const i of response.data.filed_tenders){
+                updatedatawon([])
+                if(i.bid_status=='Tender Won'){
+                  datawon.push(i)
+                  console.log(i)
+                }
+              }
+              updatedata([])
+              console.log(datawon)
+              updatedata(datawon)
+          }
+          else if (state.age==30){
+            for(const i of response.data.filed_tenders){
+              updatedatawon([])
+              if(i.bid_status=='Tender Lost'){
+                datawon.push(i)
+                console.log(i)
+              }
+            }
+            updatedata([])
+            console.log(datawon)
+            updatedata(datawon)
+          }
+          else if(state.age==20){
+            for(const i of response.data.filed_tenders){
+              updatedatawon([])
+              if(i.bid_status=='Ongoing'){
+                datawon.push(i)
+                console.log(i)
+              }
+            }
+            updatedata([])
+            console.log(datawon)
+            updatedata(datawon)
+          }
+          else{
+            updatedatawon([])
+            updatedata([])
+            console.log(datawon)
+            updatedata(response.data.filed_tenders)
+          }
+          
+          console.log(state.age)
+            // console.log("Hi this is avalaibe filed  tenders list")
      
-          //  console.log(response.data)
             
             })
             
@@ -217,8 +287,8 @@ function FiledTenders(props) {
 
 
         let cnt=-1
-        console.log(personName)
-        console.log(props.data._id)
+     
+      
 
     return (
         <div>
@@ -243,6 +313,25 @@ function FiledTenders(props) {
           ))}
         </Select>
       </FormControl>
+      
+
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="age-native-helper">Tender Status</InputLabel>
+        <NativeSelect
+          value={state.age}
+          onChange={handleChange2}
+          inputProps={{
+            name: "age",
+            id: "age-native-helper"
+          }}
+        >
+          <option aria-label="None" value="" />
+          <option value={10}>WON</option>
+          <option value={20}>Ongoing</option>
+          <option value={30}>Lost</option>
+        </NativeSelect>
+        {/* <FormHelperText>Some important helper text</FormHelperText> */}
+      </FormControl>
 
     <TableContainer component={Paper}>
       
@@ -251,7 +340,7 @@ function FiledTenders(props) {
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell />
+            {/* <TableCell /> */}
             <TableCell>Project name</TableCell>
             <TableCell>Project category</TableCell>
             <TableCell>Project state</TableCell>
@@ -266,8 +355,8 @@ function FiledTenders(props) {
           {/* {cnt=cnt+1} */}
           {data.map((row) => {
             cnt+=1;
-            console.log(cnt)
-            console.log(row.project_name)
+            // console.log(cnt)
+            // console.log(row.project_name)
             return (
               <Row key={row.project_id} row={row} />
             )

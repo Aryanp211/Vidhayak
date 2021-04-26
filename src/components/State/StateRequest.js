@@ -26,10 +26,11 @@ import {Form} from 'react-advanced-form'
     this.state = {
       
       username: '',
+      state_id:0,
       req_Projname:'',
       req_category: 'Education',
       req_duration:'',
-      req_authoby:'none',
+    
       req_state:'Maharashtra',
       req_description:'',
       req_amount: 0,
@@ -43,6 +44,8 @@ import {Form} from 'react-advanced-form'
 
   componentDidMount() {
       this.setState({
+        username:this.props.data.user_firstname+' '+this.props.data.user_lastname,
+        state_id:this.props.data._id,
           state: ['Maharashtra','Uttar Pradesh','Madhya Pradesh','Kerela','Punjab','West Bengal'],
           category:['Education','Agriculture','Transportation','Infrastructure','Technology','Energy','Enviornment','Health'],
       })
@@ -107,6 +110,7 @@ import {Form} from 'react-advanced-form'
 
     const reque = {
       username: this.state.username,
+      state_id:this.state.state_id,
       req_Projname:this.state.req_Projname,
       req_state: this.state.req_state,
       req_category: this.state.req_category,
@@ -115,7 +119,7 @@ import {Form} from 'react-advanced-form'
       req_amount: this.state.req_amount,
       req_date: this.state.req_date,
       req_status : this.state.req_status ,
-      req_authoby:this.state.req_authoby
+     
     }
 
     console.log(reque);

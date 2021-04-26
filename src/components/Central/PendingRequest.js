@@ -4,7 +4,7 @@ import {Button} from '@material-ui/core'
 
 const Pendingrequest = props => (
   <tr>
-    <td>{props.pendingrequest.username}</td>
+    <td>{props.pendingrequest.state_gov.username}</td>
     <td>{props.pendingrequest.req_Projname}</td>
     <td>{props.pendingrequest.req_state}</td>
     <td>{props.pendingrequest.req_category}</td>
@@ -12,7 +12,7 @@ const Pendingrequest = props => (
     <td>{props.pendingrequest.req_duration}</td>
 
     <td>{props.pendingrequest.req_amount}</td>
-    <td>{props.pendingrequest.req_date.substring(0,10)}</td>
+    <td>{props.pendingrequest.state_gov.req_date.substring(0,10)}</td>
     <td>{props.pendingrequest.req_status}</td>
     <td>
 
@@ -20,7 +20,7 @@ const Pendingrequest = props => (
     onClick={
         () => { 
           console.log(props.pendingrequest._id)
-          props.updaterequest(props.pendingrequest._id)}}>
+          props.updaterequest(props.pendingrequest.state_gov.req_date,props.pendingrequest._id)}}>
             Approve Request
       </button>
       
@@ -33,18 +33,26 @@ class PendingRequest extends Component {
   constructor(props) {
     super(props);
     this.updaterequest = this.updaterequest.bind(this)
-    this.state = {pendingrequests: []};
+    this.state = {pendingrequests: [], data:this.props.data,category:this.props.history.location.state.name};
+
   }
 
   componentDidMount() {
     console.log('Mai agaya')
+    console.log(this.props)
 
- 
+ console.log('||||||||||||||||||||||||||||||||||||||||')
     console.log(this.props.history.location.state.name)
-  
-  axios.get('http://localhost:5000/requests/finderState/'+this.props.history.location.state.name)
+    var request = {
+      params: {
+          data:this.props.data,
+          category:this.props.history.location.state.name
+    }
+  }
+  axios.get('http://localhost:5000/requests/finderState/'+this.state.category)
   .then(response => {
     if (response.data.length > 0) {
+      console.log('[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[')
       console.log(response.data)
       this.setState({
         pendingrequests: response.data,
@@ -57,10 +65,18 @@ class PendingRequest extends Component {
   }
 
   
-  updaterequest(id) {
+  updaterequest(req_date,id) {
     console.log("This is the id ",id)
-    axios.post('http://localhost:5000/requests/update/'+id)
-      .then(response => { console.log(response.data)});
+   
+     let details= {
+          data:this.props.data,
+          id:id,
+          date:new Date(),
+          req_daye:req_date()
+    }
+  console.log('ZZZZZZZZZZZZZZZZZ',this.props.data)
+    axios.post('http://localhost:5000/requests/update/',details)
+      .then(response => { console.log(response.data)}).catch(e=>console.log('ERROR!!!!!!!!!!!!'));
     this.setState({
       pendingrequests: this.state.pendingrequests.filter(pc => pc._id !== id)
     })

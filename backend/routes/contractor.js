@@ -10,15 +10,55 @@ let Project =require('../models/project.model')
 //     .catch(err => res.status(400).json('Error: ' + err));
 // });
 
-router.route('/filedtenders/:id').get((req, res) => { //to display filed tenders
-   
-  Contractor.findOne({user_id:req.params.id}).then((x)=>{res.json(x)
- 
-    console.log("filed tenders mein aa gaya")
-    // console.log(x)
+router.route('/filedtenders/:id').get(async(req, res) => {
+  console.log("-----------------=----------------=---------------=--------=")
+  console.log(1)
+  let x= await Contractor.findOne({user_id:req.params.id})
+    console.log(2)
+
+     for( zz of x.filed_tenders){
+       console.log(3)
+       console.log(zz.project_id)
+      const projectdetails= await Project.findById(zz.project_id);
+    console.log(4)
+   // console.log(projectdetails)
+
+    if(projectdetails===null){
+        zz.bid_status='Ongoing'
+    }
+
+    else 
+    {
+      console.log(typeof(x._id))
+      console.log(typeof(projectdetails.contractor_Authorized.contractor_details.contractor_id) ) 
+      if(projectdetails.project_status=='Project Started' && JSON.stringify(projectdetails.contractor_Authorized.contractor_details.contractor_id)==JSON.stringify(x._id))
+      { 
+        console.log('helo ,');
+        zz.bid_status='Tender Won';
+    }
+    else if(projectdetails.project_status=='Project Started' && projectdetails.contractor_Authorized.contractor_details.contractor_id!=x._id){
+      console.log('pagal hao kya be');
+      zz.bid_status='Tender Lost';
+    }
+    else{
+      zz.bid_status='Ongoing';
+    }
+  }
+  //  console.log(zz)
+    }
+
+
+
+  res.json(x)
  })
 
-})
+
+
+
+
+
+
+
 
 router.route('/filetender').post((req,res)=>{ //to post: to file tender
   console.log('rajat filetender me aya hai ')

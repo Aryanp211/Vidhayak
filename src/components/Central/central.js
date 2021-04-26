@@ -33,11 +33,12 @@ const userStyles=makeStyles((theme)=>({
 }))
 
 
-function central() {
+function central(props) {
 
 const classes=userStyles()
-
-
+console.log(props.history.location.state.data)
+const data=props.history.location.state.data
+// console.log(props)
   // render() {
 
 
@@ -78,13 +79,14 @@ const classes=userStyles()
       
        
       <div className="CentralContainer container">  
-      <Route exact path='/central/Home' component={Home}/>
-      <Route exact path="/alltransaction" component={alltransaction} />
-      <Route exact path="/central/Allocate" component={AllocMoney} />
-      <Route exact path="/PendingRequest" component={PendingRequest} />
+      <Route exact path='/central/Home' render={(props)=>(<Home {...props} data={data}/>)}/>
+      {/* <Route  path="/alltransaction" render={(props)=>(<alltransaction {...props} data={data}/>)}/> */}
+      <Route path="/central/Allocate" component={AllocMoney} />
+      <Route  path="/PendingRequest" render={(props)=>(<PendingRequest {...props} data={data}/>)}/>
       {/* <Route exact path="/statewisetransaction" component={Statewise}/> */}
       <Route exact path="/" component={Login} />
       <Route exact path='/central/Pending' component={Pending}/>
+      <Route exact path='/alltransaction' component={alltransaction}/>
       <Route exact path='/central/Authorized' component={Authorized}/>
       {/* <Route exact path='/' component={Login}></Route>s */}
       </div>

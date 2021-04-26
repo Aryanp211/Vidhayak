@@ -120,7 +120,7 @@ let icon={'Andhra Pradesh':AndhraPradesh,
 
 
  const classes=userStyles() 
-
+const data=props.history.location.state.data
 const statename=props.history.location.state.state
 console.log('----');
 console.log(statename)
@@ -157,7 +157,7 @@ console.log(statename)
          <div className="CentralContainer container"> 
        {/* <Route exact path="/" component={Login} /> */}
        <Route exact path="/stategov/Home" component={Home} />
-       <Route path="/stategov/Request" component={Request} />
+       <Route path="/stategov/Request" render={(props)=>(<Request {...props} data={data}/>)}/>
        <Route path="/stategov/Authorized" render={(props) => (
     <Authorized {...props} statename={statename} />
   )} />

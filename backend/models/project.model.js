@@ -18,7 +18,11 @@ const totalbid = require('./totalbid.model');
 
 const projectSchema = new Schema({
 
-  username:{ type: String, required: true },
+state_gov: {  
+  username:{ type: String, default:null},
+  id:{type:mongoose.Types.ObjectId,ref:'user',default:null,sparse: true},
+  req_date:{ type: Date, required: true },
+},
   //   user_mobile:{type :Number , reqired:true},
     req_Projname:{type: String, required: true},
     req_category:{type: String,required: true},
@@ -27,8 +31,12 @@ const projectSchema = new Schema({
     req_description :{type: String, required:true},
     req_duration:{type:String,required: true},
     req_status:{type: String, required: true },//Project Auth or not?
-    req_date:{ type: Date, required: true },
-    req_authoby:{type: String, default: null},
+    
+  central_gov:{  
+    username:{type: String, default: null},
+    id:{type:mongoose.Types.ObjectId,ref:'user',default:null,sparse: true},
+  },
+    // req_reqby:{type: String, default: null},
 
 
   // project_details: {type:mongoose.Types.ObjectId,ref:'Requests'}, 

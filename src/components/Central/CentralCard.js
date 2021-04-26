@@ -113,6 +113,7 @@ class CentralCard extends Component {
      <header onClick={()=>{
 
      if (this.state.status==='Authorized'){
+       console.log('Authorized')
       this.props.history.push('/alltransaction',{name:this.state.category})}
      
      

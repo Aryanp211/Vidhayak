@@ -4,6 +4,7 @@ import {Button} from '@material-ui/core'
 
 const Pendingrequest = props => (
   <tr>
+    <td>{props.pendingrequest.req_authoby}</td>
     <td>{props.pendingrequest.username}</td>
     <td>{props.pendingrequest.req_Projname}</td>
     <td>{props.pendingrequest.req_state}</td>
@@ -45,9 +46,11 @@ class alltransaction extends Component {
     // let rawUrl = 'http://localhost:5000/requests/finderState/?page=2&limit=3';
     // let parsedUrl = url.parse(rawUrl);
     // let parsedQs = querystring.parse(parsedUrl.query);
+    console.log('DIDMOUNT')
   axios.get('http://localhost:5000/requests/finderAuth/'+this.props.history.location.state.name)
   .then(response => {
     if (response.data.length > 0) {
+      console.log('RESPONSE')
       console.log(response.data)
       this.setState({
         pendingrequests: response.data,
@@ -61,6 +64,7 @@ class alltransaction extends Component {
 
   
   updaterequest(id) {
+    console.log('inside update')
     axios.post('http://localhost:5000/requests/update/'+id)
       .then(response => { console.log(response.data)});
 
@@ -85,6 +89,7 @@ class alltransaction extends Component {
         <table className="table">
           <thead className="thead-light">
             <tr>
+              <th>Authorized By</th>
               <th>Leader Name</th>
               <th>Project Name</th>
               <th>State</th>
