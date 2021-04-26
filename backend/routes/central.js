@@ -1,12 +1,20 @@
 const router = require('express').Router();
 let Central = require('../models/central.model');
 let CategorySchema =require('../models/category.model');
+let Transaction = require('../models/transaction.model');
 
 router.route('/').get((req, res) => {
   Central.find()
     .then(centralusers => res.json(centralusers))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+
+router.route('/seeTransactions').get((req,res)=>{
+  Transaction.find()
+  .then(re=>
+    res.json(re))
+})
 
 router.route('/add').post((req, res) => {
   const centraluser_name = req.body.centraluser_name;
