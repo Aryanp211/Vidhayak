@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let Central = require('../models/central.model');
 let CategorySchema =require('../models/category.model');
-let Transaction = require('../models/transaction.model');
+let Transaction = require('../models/alltransaction.model');
 
 router.route('/').get((req, res) => {
   Central.find()

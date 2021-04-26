@@ -12,7 +12,7 @@ const project =require('./project.model');
 const user = require('./user.model');
 
 
-const transaction= new Schema({
+const transactionSchema= new Schema({
     project_id:{type:mongoose.Types.ObjectId,ref:'project',default:null,sparse: true},
     from: {type:mongoose.Types.ObjectId,ref:'user',default:null,sparse: true},
     to: {type:mongoose.Types.ObjectId,ref:'user',default:null,sparse: true},
@@ -24,5 +24,5 @@ const transaction= new Schema({
     timestamps: true,
   });
 
-  module.exports= mongoose.model('transaction', transaction);
+  module.exports= mongoose.model('alltransaction', transactionSchema);
 //  = totalbid;
