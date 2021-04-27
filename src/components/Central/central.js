@@ -16,6 +16,7 @@ import CentralNavbar from './CentralNavbar';
 import '../State/Logos/Style/logos.css'
 import {Container, makeStyles} from '@material-ui/core'
 import './CSS/Central.css'
+import Transactions from './Transactions';
 
 
 
@@ -88,6 +89,7 @@ const data=props.history.location.state.data
       <Route exact path='/central/Pending' component={Pending}/>
       <Route exact path='/alltransaction' component={alltransaction}/>
       <Route exact path='/central/Authorized' component={Authorized}/>
+      <Route exact path='/central/Transactions' component={Transactions}/>
       {/* <Route exact path='/' component={Login}></Route>s */}
       </div>
       

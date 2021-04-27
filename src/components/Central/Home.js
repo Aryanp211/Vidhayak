@@ -6,7 +6,7 @@ import './CSS/Home.css'
 // import categories from '../Categories'
 import axios from 'axios'
 // import ref from 
-
+import Graph from './graph';
 
 
 class Home extends React.Component {
@@ -74,7 +74,7 @@ class Home extends React.Component {
 
 
                 </div>
-                
+                <Graph></Graph>
             </div>
         )
     }

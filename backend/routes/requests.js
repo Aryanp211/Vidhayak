@@ -152,10 +152,11 @@ const newTransaction= new Transaction({
 
       category:requestss.req_category,
         project_details:{project_name:requestss.req_Projname,project_id:proj_id},
-        from:{from_id:from._id,from_name:name,from_posit:from.user_posit},
-        to:{to_id:requestss.state_gov.id,to_name:requestss.state_gov.username,t_posit:'State'},
+        from:{from_id:from._id,from_name:name,from_posit:'Central',from_state:requestss.req_state},
+        to:{to_id:requestss.state_gov.id,to_name:requestss.state_gov.username,to_posit:'State',to_state:requestss.req_state},
         amount:requestss.req_amount,
-        desc:'Project Request'
+        desc:'Central Approved Project Request',
+        date:new Date()
       
         })
 
