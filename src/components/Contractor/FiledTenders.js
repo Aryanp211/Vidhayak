@@ -96,28 +96,43 @@ const useRowStyles = makeStyles({
     let row = props.row;
     // {console.log(row)}
     let rang='red'
-    let khulega=false
+    let op=false
     if(row.bid_status=='Tender Won'){
       rang='green'
-      khulega=true
+      op=true
       
     }
     // let data=props.data
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
+
+
+    const handleClick=e=>{
+    if (op===true){
+      setOpen(true);
+      handlePush();
+      
+    }
+    }
+
+
+    const handlePush=()=>{
+      history.push('/contractor/projectinfo',{details:row})
+    }
     // const []
     
     // const handleSubmit=data_id=>{props.history.push('contractor/bidform')}
     return (
       <React.Fragment>
         
-        <TableRow className={classes.root} style={{backgroundColor:rang}} >
+        <TableRow className={classes.root} style={{backgroundColor:rang}} onClick={open=>handleClick(open)} >
           {/* <TableCell>
             {khulega ? <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
             :null}
           </TableCell> */}
+          {console.log(row)}
           <TableCell component="th" scope="row">
             {row.project_name}
           </TableCell>
@@ -369,4 +384,4 @@ function FiledTenders(props) {
     )
 }
 
-export default FiledTenders
+export default withRouter(FiledTenders)

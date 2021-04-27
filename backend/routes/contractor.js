@@ -54,6 +54,24 @@ router.route('/filedtenders/:id').get(async(req, res) => {
 
 
 
+ router.route('/contractor/ContractorRequest').post((req,res)=>{
+ let project_id=req.body.project_id
+  let date=req.body.date
+  let project_name=req.body.project_name
+  let request_amount=req.body.request_amount
+  let contractor_id=req.body.contractor_id
+  let contractor_firstname=req.body.user_firstname
+  let contractor_lastname=req.body.user_lastname
+  let description=req.body.description
+
+  Project.findById(project_id)
+  .then(res=>{
+    let details={requests_status:'Pending',requests_amount:request_amount,requests_date:date, requests_description:description}
+    res.contractor_Authorized.contractor_details.contractor_requests.push(details)
+    res.save()
+  })
+
+});
 
 
 

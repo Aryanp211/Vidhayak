@@ -19,7 +19,9 @@ import './CSS/Contractor.css'
 import NewTenders from './NewTenders';
 import Bidform from './Form/Bidform';
 import FiledTenders from './FiledTenders';
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
+import Projectinfo from './projectinfo';
+import RequestToState from './RequestToState';
 
 
 
@@ -91,6 +93,10 @@ const classes=userStyles()
       <Route exact path="/PendingRequest" component={PendingRequest} />
       {/* <Route exact path="/statewisetransaction" component={Statewise}/> */}
       <Route exact path="/" render={Login} />
+      <Route path="/contractor/projectinfo" component={Projectinfo} />
+      <Route path="/contractor/request" render={(props)=>(
+        <RequestToState {...props} data={data}/>)}/>
+      
       <Route path='/contractor/NewTenders' render={(props)=>(
         <NewTenders {...props} data={data}/> )}/>
       <Route path='/contractor/Bidform' render={(props)=>(

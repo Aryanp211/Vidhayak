@@ -89,14 +89,30 @@ project_status: {    //Project Complete or onGoing?
       proposal_description:{type: String,default:null},
       project_proposed_planofwork:{type: String, default:null},
       project_bidamount:{type :Number , default:null},
+      project_amountused:{type :Number, default: null},
       project_duration:{type: String, default:null},
       project_estimatedenddate:{type: Date, default:null},
+
+      contractor_requests:[{
+        requests_status:{type:String,default:null},
+        requests_amount:{type:Number,default:null},
+        requests_date:{type:Date, default:null},
+        requests_description:{type:String, default:null}
+      }],
+
+
+      vendor_requests:[{
+
+      }]
       // project_transactionhistory:{type:mongoose.Types.ObjectId,ref:'contractor',default:null,sparse: true},
       
 
     },
     bid_amount:{type:Number,default:0,sparse: true},
-  }},
+  },
+
+ 
+},
 
 {                                                 
   timestamps: true,

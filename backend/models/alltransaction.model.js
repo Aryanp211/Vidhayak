@@ -18,6 +18,7 @@ const transactionSchema= new Schema({
     project_details:{
       project_name:{type:String,default:null},
     project_id:{type:mongoose.Types.ObjectId,ref:'project',default:null,sparse: true},
+    project_state:{type:String,default:null}
     },
     
     from: {

@@ -10,6 +10,7 @@ import central  from "./components/Central/central";
 import contractor  from "./components/Contractor/contractor"
 import tp from './components/Central/tp'
 import ModalTest from './components/Test/ModalTest';
+import Lower from './components/Login/Lower';
 
 class App extends Component{
   render(){
@@ -28,6 +29,7 @@ class App extends Component{
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/register" component={CreateUser} />
+        <Route  exact path="/form" component={Lower}/>
       </Switch>
       </div>
       

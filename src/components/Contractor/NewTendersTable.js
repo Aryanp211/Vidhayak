@@ -205,7 +205,7 @@ function NewTendersTable() {
           console.log(personName)
         updatedata(response.data)
         // console.log(datax)
-          console.log("Hi this is avalaibe tenders list")
+          console.log("Hi this is availabe tenders list")
           updatecondition(false);
           
           }).catch(()=>console.log('Then Unsuccessful'))
