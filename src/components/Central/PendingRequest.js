@@ -72,7 +72,7 @@ class PendingRequest extends Component {
           data:this.props.data,
           id:id,
           date:new Date(),
-          req_daye:req_date()
+          //req_date:req_date()
     }
   console.log('ZZZZZZZZZZZZZZZZZ',this.props.data)
     axios.post('http://localhost:5000/requests/update/',details)

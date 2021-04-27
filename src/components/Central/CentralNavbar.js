@@ -108,6 +108,11 @@ function CentralNavbar() {
 {/* <ListItemText primary='Allocate Budget' /> */}
 </ListItem>
 
+<ListItem>
+<Button className='NavButton' color='inherit' component={Link} to='/central/Transactions'>Transactions</Button>
+{/* <ListItemText primary='Authorized Projects' /> */}
+</ListItem>
+
 
 
             

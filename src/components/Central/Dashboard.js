@@ -11,6 +11,8 @@ import { red } from '@material-ui/core/colors';
 import { CardHeader } from '@material-ui/core';
 import tp1 from './tp1';
 import rupee from '../icons/rupee.svg'
+// import graph from './graph';
+import Graph from './graph';
 
 
 const useStyles = makeStyles({
@@ -134,6 +136,7 @@ const useStyles = makeStyles({
       </CardContent>
   
     </Card>
+   
     </div>
   );
 }

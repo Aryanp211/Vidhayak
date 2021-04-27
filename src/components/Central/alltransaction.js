@@ -4,8 +4,8 @@ import {Button} from '@material-ui/core'
 
 const Pendingrequest = props => (
   <tr>
-    <td>{props.pendingrequest.req_authoby}</td>
-    <td>{props.pendingrequest.username}</td>
+    <td>{props.pendingrequest.central_gov.username}</td>
+    <td>{props.pendingrequest.state_gov.username}</td>
     <td>{props.pendingrequest.req_Projname}</td>
     <td>{props.pendingrequest.req_state}</td>
     <td>{props.pendingrequest.req_category}</td>
@@ -13,7 +13,7 @@ const Pendingrequest = props => (
     <td>{props.pendingrequest.req_duration}</td>
 
     <td>{props.pendingrequest.req_amount}</td>
-    <td>{props.pendingrequest.req_date.substring(0,10)}</td>
+    <td>{props.pendingrequest.state_gov.req_date.substring(0,10)}</td>
     <td>{props.pendingrequest.req_status}</td>
     
   </tr>

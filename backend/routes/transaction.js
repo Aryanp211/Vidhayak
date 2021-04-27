@@ -5,8 +5,8 @@ let Project = require('../models/project.model');
 let Transaction = require('../models/alltransaction.model')
 
 router.route('/').get((req, res) => {
-  State.find()
-    .then(stateusers => res.json(stateusers))
+  Transaction.find()
+    .then(transactions => res.json(transactions))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

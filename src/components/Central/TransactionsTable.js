@@ -1,4 +1,3 @@
-import { Typography } from '@material-ui/core'
 import React from 'react'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,7 +11,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-// import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -22,7 +21,6 @@ import { useHistory } from 'react-router-dom'
 import { withRouter } from 'react-router';
 
 
-
 const useRowStyles = makeStyles({
     root: {
       '& > *': {
@@ -30,8 +28,7 @@ const useRowStyles = makeStyles({
       },
     },
   });
-
-
+  
 
   function Row(props) {
     let history = useHistory();
@@ -64,7 +61,7 @@ const useRowStyles = makeStyles({
             {row.project_details.project_name}
           </TableCell>
           <TableCell >{row.category}</TableCell>
-          {/* <TableCell>{row.from.from_state}</TableCell> */}
+          <TableCell>{row.from.from_state}</TableCell>
           <TableCell>{row.from.from_name}<p>{row.from.from_posit}</p></TableCell>
           <TableCell >{row.to.to_name}<p>{row.to.to_posit}</p></TableCell>
           <TableCell >Rs.{row.amount}</TableCell>
@@ -89,7 +86,6 @@ const useRowStyles = makeStyles({
       </React.Fragment>
     );
   }
-
 
   Row.propTypes = {
     row: PropTypes.shape({
@@ -119,33 +115,23 @@ const useRowStyles = makeStyles({
       project_details: PropTypes.string.isRequired,
     }).isRequired,
   };
+  
+  
 
-
-
-
-function ProjectTransaction(props) {
+function TransactionsTable() {
 
     const [datax,updatedata]=React.useState([]);
     const [condition,updatecondition]=React.useState(true);
-    var ele={
-        params:
-        {
-            proj_id:props.details._id,
-            statename:props.details.req_state,
-            projname:props.details.req_Projname
-        }
-    }
+   
     useEffect(() => {
       // let zz=[]
-
-    //   console.log(condition)
+      console.log(condition)
         if(condition===true){
-        axios.get('http://localhost:5000/states/projecttransactions/',ele)
+        axios.get('http://localhost:5000/transaction/')
         .then(response => {
           
-          
+          console.log(datax)
         updatedata(response.data)
-        console.log(datax,'heloo')
           updatecondition(false);
           
           }).catch(()=>console.log('Then Unsuccessful'))
@@ -159,14 +145,10 @@ function ProjectTransaction(props) {
       )
 
 
-
-
-
     return (
-        
         <div>
-        <Typography>TRANSACTIONS</Typography>
-        <TableContainer component={Paper}>
+              All transactions
+    <TableContainer component={Paper}>
       
       
       <Table aria-label="collapsible table">
@@ -175,6 +157,7 @@ function ProjectTransaction(props) {
             <TableCell />
             <TableCell>Project name</TableCell>
             <TableCell>Project Category</TableCell>
+            <TableCell>Project State</TableCell>
             <TableCell>From </TableCell>
             <TableCell>To</TableCell>
             <TableCell>Amount</TableCell>
@@ -195,9 +178,8 @@ function ProjectTransaction(props) {
         </TableBody>
       </Table>
     </TableContainer>
-             
         </div>
     )
 }
 
-export default ProjectTransaction
+export default TransactionsTable

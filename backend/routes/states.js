@@ -1,7 +1,25 @@
 const router = require('express').Router();
 let State = require('../models/states.model');
 let Requests = require('../models/requests.model');
-let Project = require('../models/project.model')
+let Project = require('../models/project.model');
+let Transaction = require('../models/alltransaction.model');
+
+
+
+router.route('/projecttransactions').get((req, res) => {
+  let proj_id=req.query.proj_id
+  let projname=req.query.projname
+  console.log(proj_id)
+  let statename=req.query.statename
+  Transaction.find({"project_details.project_id":proj_id, $or: [{"from.from_state":statename},{"to.to_state":statename}]})
+    .then(transactions => {
+      console.log(transactions)
+      res.json(transactions)})
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+
 
 router.route('/').get((req, res) => {
   State.find()

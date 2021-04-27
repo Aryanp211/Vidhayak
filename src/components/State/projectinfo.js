@@ -71,12 +71,12 @@ handleClick=()=>{
                         
                         <Grid item xs={12} style={{paddingTop:50}}>
                             <hr></hr>
-                            <ProjectDescription details={this.props.details}></ProjectDescription>
+                            <ProjectDescription details={this.props.history.location.state.details}></ProjectDescription>
                             <hr></hr>
                         </Grid>
 
                         <Grid item xs={12} style={{paddingTop:50}}>
-                            <ProjectTransaction details={this.props.details}></ProjectTransaction>
+                            <ProjectTransaction details={this.props.history.location.state.details}></ProjectTransaction>
                         </Grid>
 
 
