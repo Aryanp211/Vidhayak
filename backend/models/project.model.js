@@ -102,7 +102,16 @@ project_status: {    //Project Complete or onGoing?
 
 
       vendor_requests:[{
-
+        projectid:{type:String,default:null},
+        name:{type:String,default:null},
+        mobile:{type:Number,default:null},
+        jobtitle:{type:String,default:null},
+        reason:{type:String,default:null},
+        amount:{type:Number,default:null},
+        adhaar:{type:Number,default:null},
+        pan:{type:Number,default:null},
+        date:{type:Date,default:null},
+        payment_status:{type:String, default:'Pending'}
       }]
       // project_transactionhistory:{type:mongoose.Types.ObjectId,ref:'contractor',default:null,sparse: true},
       

@@ -138,10 +138,10 @@ const useStyles = makeStyles((theme) => ({
     // console.log(bid,date,id)
     console.log('DATE')
     console.log(date)
-    axios.post('http://localhost:5000/contractor/RequestToState/',details)
+    axios.post('http://localhost:5000/contractor/ContractorRequest/',details)
       .then(r=>{
         console.log('Requesting State')
-    })
+    }).catch(error=>console.log(error))
 
    
     

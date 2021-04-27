@@ -11,12 +11,49 @@ import { red } from '@material-ui/core/colors';
 import { CardHeader } from '@material-ui/core';
 import {withRouter} from 'react-router-dom';
 import { useEffect } from "react";
-
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import axios from 'axios';
 
 import rupee from '../icons/rupee.svg'
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
+  
+
+  tablerow: {
+    '& > *': {
+      borderBottom: 'unset',
+    },
+  },
+
+  table: {
+    minWidth: 650,
+  },
+
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // maxWidth:100
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    width:800,
+    height:300
+  },
   root: {
     width:275,
     height:150,
@@ -98,7 +135,9 @@ centreText:{
 
 
 
-});
+}));
+
+
     function ProjectDashboard(props) {
   const classes = useStyles();
   
@@ -125,10 +164,13 @@ centreText:{
     // props.details.contractor_Authorized.contractor_details.contractor_name
     console.log('#######################################################################')
     // console.log('contractor',props.details)
-
+    const [open,setOpen]=useState(false)
    const details=props.details
   const project_state=details.project_state
   const request_amount=55
+  const bid_amount=props.details.contractor_Authorized.bid_amount;
+  const vendor_requests=props.details.contractor_Authorized.contractor_details.vendor_requests;
+  let dueamount=0
   console.log(details)
     // console.log(data)
 
@@ -152,9 +194,9 @@ centreText:{
       >
     
       <CardContent style={{textAlign:'center'}} >
-          <div className={classes.text}>35,50,098</div>
+          <div className={classes.text}>{bid_amount}</div>
           <hr></hr>
-        <div className={classes.centreText}> TOTAL MONEY ALLOCATED  </div>
+        <div className={classes.centreText}> PROJECT BID AMOUNT  </div>
       </CardContent>
   
     </Card>
@@ -192,14 +234,101 @@ centreText:{
       <CardContent style={{textAlign:'center'}} >
           <div className={classes.text}>Nagpur</div>
           <hr></hr>
-        <div className={classes.centreText}>PLACE</div>
+        <div className={classes.centreText}>PAYMENT DUE</div>  
+        {/* Request from Vendors */}
       </CardContent>
   
     </Card>
+
     </Grid>
 
 
     
+    <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            {/* <h2 id="transition-modal-title">Transition modal</h2>
+            <p id="transition-modal-description">react-transition-group animates me.</p> */}
+
+
+<TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            {/* <TableCell>Dessert (100g serving)</TableCell> */}
+            <TableCell/>
+            <TableCell align="right">FROM</TableCell>
+            <TableCell align="right">JOB TITLE</TableCell>
+            <TableCell align="right">AMOUNT</TableCell>
+            <TableCell align="right">DATE</TableCell>
+            <TableCell/>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          { vendor_requests.filter(i=>i.payment_status==='Pending').map((row) => {
+            
+            
+            // if(reqdata.requests_status==='Pending'){
+
+            
+            dueamount+=row.amount
+          
+            return (
+
+<React.Fragment>
+<TableRow className={classes.tablerow}>
+        <TableCell>
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell component="th" scope="row">
+          {row.req_Projname}
+        </TableCell>
+        <TableCell >{row.req_category}</TableCell>
+        <TableCell >{row.req_state}</TableCell>
+        <TableCell >{row.req_duration}</TableCell>
+        <TableCell >{row.tender_amount}</TableCell>
+        {/* {console.log(row.tender_date)} */}
+        <TableCell align="right">{JSON.stringify(row.tender_date).substring(1,10)}</TableCell>
+      </TableRow>
+
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box margin={1}>
+              <Typography variant="h7" gutterBottom component="div">
+               Description:
+              </Typography>
+              {row.req_description}
+              {row._id}
+              <TableRow>
+              <Button variant="contained" color="secondary" onClick={()=>history.push('/contractor/Bidform',{proj_id:row._id})}> Place Bid</Button>
+              </TableRow>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+      </React.Fragment>
+          )})}
+        </TableBody>
+      </Table>
+    </TableContainer>
+          </div>
+        </Fade>
+      </Modal>
+
 
 
 

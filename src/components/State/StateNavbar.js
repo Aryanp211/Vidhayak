@@ -119,6 +119,9 @@ const classes = useStyles();
 
 <ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/OngoingProjects'>Ongoing Projects</Button>
 </ListItem>
+
+<ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/alltransaction'>All transactions</Button>
+</ListItem>
 </List>
           <Divider />
         </div>

@@ -1,4 +1,3 @@
-// import './App.css';
 import { Component } from 'react';
 import Request from './StateRequest';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -33,6 +32,7 @@ import OngoingProjects from './OngoingProjects';
 
 import Projectinfo from './projectinfo';
 import Pending from './Pending';
+import Statealltransaction from './Statealltransaction';
 // import Emblem from 'src\Logos\Emblem'
 //import ShowCrimetype from './components/crimetype.component';
 
@@ -178,6 +178,11 @@ console.log(statename)
     <Route path="/stategov/Tenders" render={(props) => (
     <Tenders {...props} statename={statename} />
   )} />
+
+<Route path="/stategov/alltransaction" render={(props) => (
+    <Statealltransaction {...props} statename={statename} />
+  )} />
+
 
 <Route path="/stategov/Pending" render={(props) => (
     <Pending {...props} statename={statename} />

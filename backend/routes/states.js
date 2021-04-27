@@ -6,6 +6,19 @@ let Transaction = require('../models/alltransaction.model');
 
 
 
+
+router.route('/transaction/:statename').get((req, res) => {
+  var statename=req.params.statename
+  
+  console.log(statename)
+  
+  Transaction.find({ $or: [{"from.from_state":statename},{"to.to_state":statename}]})
+    .then(transactions => {
+      console.log(transactions)
+      res.json(transactions)})
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/projecttransactions').get((req, res) => {
   let proj_id=req.query.proj_id
   let projname=req.query.projname

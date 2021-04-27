@@ -103,16 +103,17 @@ const useStyles = makeStyles((theme) => ({
       jobtitle:jobtitle,
       reason:reason,
       amount:amount,
-      user_adhaar:adhaar,
-      user_pan:pan,
+      adhaar:adhaar,
+      pan:pan,
+      date:new Date()
     }
     
 
     console.log(details)
-  //   axios.post('http://localhost:5000/user/add/',details)
-  //   .then(r=>{console.log(r,'User added')
-  //         props.history.push('/')
-  // }).catch(error=>console.log('Did not post'))
+    axios.post('http://localhost:5000/contractor/vendorrequest',details)
+    .then(r=>{console.log(r,'Requstedd!!')
+          props.history.push('/')
+  }).catch(error=>console.log('Did not post'))
     
 }
 

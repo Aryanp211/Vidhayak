@@ -56,13 +56,15 @@ class Home extends React.Component {
                     cnt=cnt+1;
                     console.log('hhh')
                     console.log(this.state.colors[cnt])
+                    // if(1){
+                        
                     return ( 
                       
                         <div className='GridItem'>
                             <Dashboard item={item} color={this.state.colors[cnt%4]}></Dashboard>
 
                         </div>
-                        
+                      
                 )
                 
                 })

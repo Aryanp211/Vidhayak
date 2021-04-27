@@ -283,8 +283,12 @@ export default function Login(props) {
               <Link href="http://localhost:3000/register" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
+
+              
           </div>
-       
+          <Link href="http://localhost:3000/form" variant="body2">
+                {"Vendor requesting contractor"}
+              </Link>
         </form>
       </div>
       {/* <Box mt={8}>

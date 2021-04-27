@@ -54,9 +54,11 @@ router.route('/filedtenders/:id').get(async(req, res) => {
 
 
 
- router.route('/contractor/ContractorRequest').post((req,res)=>{
+ router.route('/ContractorRequest').post((req,res)=>{
  let project_id=req.body.project_id
   let date=req.body.date
+  console.log('##############')
+  
   let project_name=req.body.project_name
   let request_amount=req.body.request_amount
   let contractor_id=req.body.contractor_id
@@ -69,10 +71,45 @@ router.route('/filedtenders/:id').get(async(req, res) => {
     let details={requests_status:'Pending',requests_amount:request_amount,requests_date:date, requests_description:description}
     res.contractor_Authorized.contractor_details.contractor_requests.push(details)
     res.save()
+
   })
 
 });
 
+
+router.route('/vendorrequest').post((req,res)=>{
+  let projectid=req.body.projectid;
+  let name=req.body.firstname+" "+req.body.lastname
+  let mobile=req.body.mobile
+  let jobtitle=req.body.jobtitle
+  let reason=req.body.reason
+  let amount=req.body.amount
+  let adhaar=req.body.adhaar
+  let pan=req.body.pan
+  let date=req.body.date
+
+
+
+ 
+   Project.findById(mongoose.Types.ObjectId(req.body.projectid))
+   .then(res=>{
+     console.log(res)
+     let details={
+      projectid:projectid,
+      name:name,
+      mobile:mobile,
+      jobtitle:jobtitle,
+      reason:reason,
+      amount:amount,
+      adhaar:adhaar,
+      pan:pan,
+      date:date
+     }
+     res.contractor_Authorized.contractor_details.vendor_requests.push(details)
+     res.save()
+   })
+ 
+ });
 
 
 
