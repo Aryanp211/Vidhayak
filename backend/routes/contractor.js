@@ -2,8 +2,7 @@ const router = require('express').Router();
 let Central = require('../models/central.model');
 let Contractor =require('../models/contractor.model');
 let Project =require('../models/project.model')
-
-
+const mongoose = require('mongoose');
 // router.route('/').get((req, res) => {
 //   Contractor.find()
 //     .then(centralusers => res.json(centralusers))

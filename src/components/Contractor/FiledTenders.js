@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles ,useTheme } from '@material-ui/core/styles';
@@ -97,6 +97,7 @@ const useRowStyles = makeStyles({
     // {console.log(row)}
     let rang='red'
     let op=false
+    const [details,updatedetails]=useState([])
     if(row.bid_status=='Tender Won'){
       rang='green'
       op=true
@@ -105,19 +106,28 @@ const useRowStyles = makeStyles({
     // let data=props.data
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
-
+    axios.get('http://localhost:5000/project/details/'+row.project_id)
+    .then((response)=>{
+      
+      updatedetails(response.data)
+      console.log(details)
+    })
 
     const handleClick=e=>{
     if (op===true){
       setOpen(true);
+    
       handlePush();
       
     }
     }
 
-
+    
+      
+    
     const handlePush=()=>{
-      history.push('/contractor/projectinfo',{details:row})
+     
+      history.push('/contractor/projectinfo',{details:details})
     }
     // const []
     
@@ -193,7 +203,7 @@ function FiledTenders(props) {
     const [datayy,updatedatayy]=React.useState([]);
     const [datax,updatedatax]=React.useState([]);
 
-
+    let details=[];
     const classes = useStyles();
     const theme = useTheme();
     const [personName, setPersonName] = React.useState([]);
@@ -239,6 +249,8 @@ function FiledTenders(props) {
           
           axios.get('http://localhost:5000/contractor/filedtenders/'+props.data._id)
           .then(response => {
+            details=response.data
+            console.log(details)
           // updatedata(response.data.filed_tenders)
           if(state.age==10){
             
@@ -373,7 +385,7 @@ function FiledTenders(props) {
             // console.log(cnt)
             // console.log(row.project_name)
             return (
-              <Row key={row.project_id} row={row} />
+              <Row key={row.project_id} row={row} details={details} />
             )
            
           })}

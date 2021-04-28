@@ -24,9 +24,13 @@ console.log(x)
 
 
 router.route('/details/:id').get((req,res)=>{
+  console.log("mein aya")
   let id=req.params.id
+  console.log(id)
   project.findById(id)
-  .then(re=>res.json(re))
+  .then(re=>{
+    console.log(re)
+    res.json(re)})
 })
     // x.map(z=>{
     //   cnt=cnt+1

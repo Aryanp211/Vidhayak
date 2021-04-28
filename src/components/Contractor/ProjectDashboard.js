@@ -22,10 +22,51 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+// import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import axios from 'axios';
-
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import ListItemText from '@material-ui/core/ListItemText';
+import Select from '@material-ui/core/Select';
+import Checkbox from '@material-ui/core/Checkbox';
+import Chip from '@material-ui/core/Chip'
+import { useHistory } from 'react-router-dom'
+// import { withRouter } from 'react-router';
+import statename from '../States';
 import rupee from '../icons/rupee.svg'
-
+// import React from 'react'
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+// import { makeStyles ,useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+// import { useEffect } from "react";
+// import Button from '@material-ui/core/Button';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+// import Table from '@material-ui/core/Table';
+// import TableBody from '@material-ui/core/TableBody';
+// import TableCell from '@material-ui/core/TableCell';
+// import TableContainer from '@material-ui/core/TableContainer';
+// import TableHead from '@material-ui/core/TableHead';
+// import TableRow from '@material-ui/core/TableRow';
+// import Typography from '@material-ui/core/Typography';
+// import Paper from '@material-ui/core/Paper';
+// import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+// import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+// import axios from 'axios';
+// import Input from '@material-ui/core/Input';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import FormControl from '@material-ui/core/FormControl';
+// import ListItemText from '@material-ui/core/ListItemText';
+// import Select from '@material-ui/core/Select';
+// import Checkbox from '@material-ui/core/Checkbox';
+// import Chip from '@material-ui/core/Chip'
+// import { useHistory } from 'react-router-dom'
+// import { withRouter } from 'react-router';
 
 const useStyles = makeStyles((theme)=>({
   
@@ -138,38 +179,35 @@ centreText:{
 }));
 
 
-    function ProjectDashboard(props) {
+
+
+
+function ProjectDashboard(props) {
   const classes = useStyles();
+  console.log(props.details.project_id)
   
-  const[data,handleData]= useState(props.details)
-    console.log('AJAAAA')
-    // console.log(props.item)
-
-    // useEffect(()=>{
-    //   handleData(props.details)
-
-    // })
-
-    
-    
-  
-
-
-
-
-
     const handleClick=e=>{props.history.push('/contractor/'+props.route) }
-    // const contractor_name= props.details.contractor_Authorized.contractor_details.contractor_name
-    // .contractor_details.contractor_name
-    // props.details.contractor_Authorized.contractor_details.contractor_name
-    console.log('#######################################################################')
-    // console.log('contractor',props.details)
+   
     const [open,setOpen]=useState(false)
-   const details=props.details
-  const project_state=details.project_state
-  const request_amount=55
-  const bid_amount=props.details.contractor_Authorized.bid_amount;
-  const vendor_requests=props.details.contractor_Authorized.contractor_details.vendor_requests;
+    const [openq, setOpenq] = React.useState(false);
+    const handleOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+    
+   
+
+
+ const details=props.details
+  console.log("hooooo",details)
+  let project_state=details.project_state
+  let request_amount=55
+  let bid_amount=details.contractor_Authorized.bid_amount
+  console.log("gekfipoefew",bid_amount)
+  const vendor_requests=details.contractor_Authorized.contractor_details.vendor_requests;
   let dueamount=0
   console.log(details)
     // console.log(data)
@@ -194,7 +232,7 @@ centreText:{
       >
     
       <CardContent style={{textAlign:'center'}} >
-          <div className={classes.text}>{bid_amount}</div>
+          <div className={classes.text}></div>
           <hr></hr>
         <div className={classes.centreText}> PROJECT BID AMOUNT  </div>
       </CardContent>
@@ -227,7 +265,7 @@ centreText:{
 
 
     <Grid item xs={3}>
-    <Card className={classes.root} 
+    <Card onClick={handleOpen} className={classes.root } 
     // style={{backgroundColor:props.color}} 
      >
     
@@ -268,20 +306,19 @@ centreText:{
           <TableRow>
             {/* <TableCell>Dessert (100g serving)</TableCell> */}
             <TableCell/>
-            <TableCell align="right">FROM</TableCell>
-            <TableCell align="right">JOB TITLE</TableCell>
-            <TableCell align="right">AMOUNT</TableCell>
+            <TableCell  >FROM</TableCell>
+            <TableCell  >JOB TITLE</TableCell>
+            <TableCell >AMOUNT</TableCell>
             <TableCell align="right">DATE</TableCell>
             <TableCell/>
           </TableRow>
         </TableHead>
         <TableBody>
+          {console.log(vendor_requests)}
           { vendor_requests.filter(i=>i.payment_status==='Pending').map((row) => {
             
             
-            // if(reqdata.requests_status==='Pending'){
-
-            
+           
             dueamount+=row.amount
           
             return (
@@ -289,32 +326,30 @@ centreText:{
 <React.Fragment>
 <TableRow className={classes.tablerow}>
         <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpenq(!openq)}>
+            {openq ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
-          {row.req_Projname}
-        </TableCell>
-        <TableCell >{row.req_category}</TableCell>
-        <TableCell >{row.req_state}</TableCell>
-        <TableCell >{row.req_duration}</TableCell>
-        <TableCell >{row.tender_amount}</TableCell>
+        {/* <TableCell/> */}
+        <TableCell >{row.name}</TableCell>
+        <TableCell >{row.jobtitle}</TableCell>
+        <TableCell >{row.amount}</TableCell>
+        {/* <TableCell >{row.tender_amount}</TableCell> */}
         {/* {console.log(row.tender_date)} */}
-        <TableCell align="right">{JSON.stringify(row.tender_date).substring(1,10)}</TableCell>
+        <TableCell align="right">{JSON.stringify(row.date).substring(1,10)}</TableCell>
       </TableRow>
 
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={openq} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h7" gutterBottom component="div">
                Description:
               </Typography>
-              {row.req_description}
-              {row._id}
+              {row.reason}
+              
               <TableRow>
-              <Button variant="contained" color="secondary" onClick={()=>history.push('/contractor/Bidform',{proj_id:row._id})}> Place Bid</Button>
+              <Button variant="contained" color="secondary" onClick={()=>props.history.push('/contractor/Bidform',{proj_id:row._id})}>Settle Payment</Button>
               </TableRow>
             </Box>
           </Collapse>
@@ -322,6 +357,12 @@ centreText:{
       </TableRow>
       </React.Fragment>
           )})}
+          <TableRow>
+          <TableCell/>
+          <TableCell/>
+          <TableCell>Toatal Amount</TableCell>
+          <TableCell>{dueamount}</TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
@@ -341,7 +382,7 @@ centreText:{
       <div className={classes.centreText}>REQUEST</div>
       <div className={classes.text}>{request_amount}</div>
       <hr></hr>
-        <div className={classes.centreText}>TO GOVT OF {(project_state).toUpperCase()}</div>
+        <div className={classes.centreText}>TO GOVT OF {(project_state)}</div>
       </CardContent>
   
     </Card>

@@ -51,7 +51,7 @@ handleClick=()=>{
     render() {
     let cnt=-1
     console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
-    console.log(this.props.history.location.state.details)
+    console.log(this.props.history.location.state.details.project_id)
         return(
             <div className='Griddiv' style={{textAlign:'center'}}>
             {/* <Grid container justify='center' alignItems='center' className='GridContainerCon' spacing={4} >

@@ -183,7 +183,7 @@ const handleApprove=e=>{
 
   }
 
-    axios.post('http://localhost:5000/project/ApproveContractorRequest',details)
+    axios.post('http://localhost:5000/project/ApproveContractorRequest',d)
     .then(r=>{
       console.log('Request Approved by state')
     })
