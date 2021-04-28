@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
  function InitForm(props) {
   const classes = useStyles();
   
-  const [bid,handleBidChange]=useState('')
+  const [bid,handleBidChange]=useState(props.amount)
   const [date,handleDateChange]=useState(new Date())
   const [id,handleId]=useState(props.id)
   const [init,handleInit]=useState(true)
@@ -164,8 +164,9 @@ const handleClick=()=>{
             fullWidth
             id="bid"
             label="Bid Amount"
+            value={props.amount}
             name="bid"
-            onChange={(e)=>handleBidChange(e.target.value)}
+            // onChange={(e)=>handleBidChange(e.target.value)}
             autoComplete="bid"
             autoFocus
           />

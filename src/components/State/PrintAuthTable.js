@@ -91,7 +91,7 @@ const Pendingrequest = props =>
 <button className="btn btn-primary mx-1" 
 onClick={
     () => 
-       { props.updaterequest(props.pendingrequest._id)}}> 
+       { props.updaterequest(props.pendingrequest._id,props.pendingrequest.req_amount)}}> 
      
         Initialise Project
   </button>
@@ -118,6 +118,7 @@ class PrintAuthTable extends Component {
       pendingrequests: [],
       init:false,
       send_id:0,
+      amount:0,
       // open:false,
       category:this.props.history.location.state.category,
       statename:this.props.history.location.state.statename
@@ -168,11 +169,12 @@ class PrintAuthTable extends Component {
   }
 
   
-  updaterequest(id) {
+  updaterequest(id,amount) {
 
       this.setState({
         init:true,
         send_id:id,
+        amount:amount,
         pendingrequests: this.state.pendingrequests.filter(pc => pc._id !== id)
       })
     
@@ -220,7 +222,7 @@ class PrintAuthTable extends Component {
         
       :
       
-            <InitForm id={this.state.send_id}></InitForm>
+            <InitForm id={this.state.send_id} amount={this.state.amount}></InitForm>
           }
 
       

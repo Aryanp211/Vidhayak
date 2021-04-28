@@ -99,10 +99,11 @@ const useStyles = makeStyles((theme) => ({
 
  function RequestToState(props) {
   const classes = useStyles();
+  console.log('-------------------')
   console.log(props)
   const statename=props.history.location.state.details.project_state;
   const project_name=props.history.location.state.details.project_name;
-  const project_id=props.history.location.state.details.project_id;
+  const project_id=props.history.location.state.details._id;
   const request_amount=props.history.location.state.request_amount;
   const user_firstname=props.data.user_firstname;
   const user_lastname=props.data.user_lastname;
@@ -137,6 +138,7 @@ const useStyles = makeStyles((theme) => ({
     }
     // console.log(bid,date,id)
     console.log('DATE')
+    console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',details)
     console.log(date)
     axios.post('http://localhost:5000/contractor/ContractorRequest/',details)
       .then(r=>{

@@ -38,7 +38,7 @@ state_gov: {
   },
     // req_reqby:{type: String, default: null},
 
-  state_projectaccount:{type:Number,required: true},
+  state_projectaccount:{type:Number,required: true,default:0},
 
 
   // project_details: {type:mongoose.Types.ObjectId,ref:'Requests'}, 

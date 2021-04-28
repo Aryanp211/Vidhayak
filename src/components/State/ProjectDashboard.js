@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 // import './CSS/Dashboard.css'
 import { makeStyles } from '@material-ui/core/styles';
@@ -142,11 +142,15 @@ centreText:{
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
+      
       setOpen(true);
+      handleCondition(true);
     };
   
     const handleClose = () => {
+      
       setOpen(false);
+      handleCondition(true)
     };
     
 
@@ -160,15 +164,15 @@ const [requests,handleRequests]=useState([])
 
     const handleClick=e=>{props.history.push('/contractor/'+props.route) }
     const contractor_name= props.details.contractor_Authorized.contractor_details.contractor_name
-
-    const reqdata=props.details.contractor_Authorized.contractor_details.contractor_requests
+    
+    // const reqdata=props.details.contractor_Authorized.contractor_details.contractor_requests
     // .contractor_details.contractor_name
     // props.details.contractor_Authorized.contractor_details.contractor_name
     console.log('#######################################################################')
-    console.log('contractor',reqdata)
-
     
-
+const [condition,handleCondition]=useState(false)
+    const [reqdata,handleReqdata]=useState([])
+    console.log('contractor',reqdata)
 
     let content=[]
     for (let i=0;i<reqdata.length;i++){
@@ -176,19 +180,36 @@ const [requests,handleRequests]=useState([])
         content.push()
       }
     }
+
+
+
 const handleApprove=e=>{
   let d={
     proj_id:props.details._id,
     request_id:e
 
   }
-
     axios.post('http://localhost:5000/states/ApproveContractorRequest',d)
     .then(r=>{
       console.log('Request Approved by state')
+      // handleCondition(true)
     })
 
 }
+
+
+useEffect(()=>{
+
+  // if(condition===true){
+  axios.get('http://localhost:5000/project/details/'+props.details._id)
+  .then(res=>{
+    handleReqdata(res.data.contractor_Authorized.contractor_details.contractor_requests)
+    console.log(reqdata)
+    handleCondition(false)
+  }
+    )
+// }
+})
 
     // console.log(data)
     
@@ -306,6 +327,10 @@ const handleApprove=e=>{
           </TableRow>
         </TableHead>
         <TableBody>
+
+
+
+          {console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRR',reqdata)}
           { reqdata.filter(i=>i.requests_status==='Pending').map((row) => {
             
             
@@ -324,8 +349,8 @@ const handleApprove=e=>{
               </TableCell> */}
               <TableCell align="right">{row.requests_amount}</TableCell>
               <TableCell align="right">{row.requests_description}</TableCell>
-              <TableCell align="right">{row.requests_date}</TableCell>
-              <TableCell align='right'><Button onClick={handleApprove(row._id)}>ACCEPT</Button></TableCell>
+              <TableCell align="right">{JSON.stringify(row.requests_date).substring(1,10)}</TableCell>
+              <TableCell align='right'><Button onClick={()=>handleApprove(row._id)}>ACCEPT</Button></TableCell>
               {/* <TableCell align="right">{row.protein}</TableCell> */}
             </TableRow>
           )})}

@@ -19,10 +19,26 @@ class projectinfo extends React.Component {
         this.state={
             Items:[],
             details:[],
+            condition:false,
+            
             Cat:['Total Money Allocated','Total Transactions','','See Transactions'],
             routes:['NewTenders','FiledTenders','ArchivedTenders','SeeTransactions'],
             colors:['#793c3c']
         }
+    }
+
+
+    componentDidMount() {
+console.log('HHHCHCHCHCHCHC')
+        console.log(this.props.history.location.state.details)
+
+        axios.get('http://localhost:5000/project/details/'+this.props.history.location.state.details._id)
+        .then(res=>{
+            this.setState({ 
+                details:res.data,
+                condition:true
+            })
+        })
     }
 
     // componentDidMount(){
@@ -43,15 +59,29 @@ handleClick=()=>{
     this.props.history.push('/stategov/OngoingProjects')
 
 }
+
+
+handleRefresh=()=>{
+    axios.get('http://localhost:5000/project/details/'+this.props.history.location.state.details._id)
+        .then(res=>{
+            this.setState({ 
+                details:res.data,
+                condition:true
+            })
+})
+}
     // scrolls = (scrollOffset) => {
     //     this.myRef.current.scrollLeft += scrollOffset;
     //   };
+
+
 
     
     render() {
     let cnt=-1
     console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
     console.log(this.props.history.location.state.details)
+    // this.componentDidMount()
         return(
             <div className='Griddiv' style={{textAlign:'center'}}>
             {/* <Grid container justify='center' alignItems='center' className='GridContainerCon' spacing={4} >
@@ -59,30 +89,34 @@ handleClick=()=>{
                 cnt=cnt+1; */}
                 {/* // return(
                     // <Grid item className='GridItemCon'  xs={3}> */}
-
+                    {this.state.condition===true?
                     <Grid container xs>
                         <Grid item xs={12}>
                     
                             <Button onClick={this.handleClick}>Back</Button>
                         </Grid>
                         <Grid item xs={12} >
-                        <ProjectDashboard details={this.props.history.location.state.details}></ProjectDashboard>
+                        <ProjectDashboard details={this.state.details}></ProjectDashboard>
                         </Grid>
                         
                         <Grid item xs={12} style={{paddingTop:50}}>
                             <hr></hr>
-                            <ProjectDescription details={this.props.history.location.state.details}></ProjectDescription>
+                            <ProjectDescription details={this.state.details}></ProjectDescription>
                             <hr></hr>
                         </Grid>
 
                         <Grid item xs={12} style={{paddingTop:50}}>
-                            <ProjectTransaction details={this.props.history.location.state.details}></ProjectTransaction>
+                            <Button onClick={this.handleRefresh}>Refresh</Button>
+                        </Grid>
+                        <Grid item xs={12} style={{paddingTop:50}}>
+                            <ProjectTransaction details={this.state.details}></ProjectTransaction>
                         </Grid>
 
 
 
 
           </Grid>
+           : null} 
             </div>
         )
         

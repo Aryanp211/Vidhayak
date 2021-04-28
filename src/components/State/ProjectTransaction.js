@@ -139,14 +139,14 @@ function ProjectTransaction(props) {
       // let zz=[]
 
     //   console.log(condition)
-        if(condition===true){
+        
         axios.get('http://localhost:5000/states/projecttransactions/',ele)
         .then(response => {
           
           
         updatedata(response.data)
         console.log(datax,'heloo')
-          updatecondition(false);
+          // updatecondition(false);
           
           }).catch(()=>console.log('Then Unsuccessful'))
           
@@ -154,7 +154,7 @@ function ProjectTransaction(props) {
          }
        
       
-       }
+       
       
       )
 

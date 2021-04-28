@@ -103,7 +103,7 @@ router.route('/filedtenders/:id').get(async(req, res) => {
  let project_id=req.body.project_id
   let date=req.body.date
   console.log('##############')
-  
+  console.log(req.body)
   let project_name=req.body.project_name
   let request_amount=req.body.request_amount
   let contractor_id=req.body.contractor_id

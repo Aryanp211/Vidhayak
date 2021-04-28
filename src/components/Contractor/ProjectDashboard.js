@@ -198,6 +198,20 @@ function ProjectDashboard(props) {
       setOpen(false);
     };
     
+
+    const handleApprove=e=>{
+      let d={
+        proj_id:props.details._id,
+        request_id:e
+    
+      }
+        axios.post('http://localhost:5000/states/ApproveContractorRequest',d)
+        .then(r=>{
+          console.log('Request Approved by state')
+          // handleCondition(true)
+        })
+    
+    }
    
 
 
@@ -214,6 +228,7 @@ function ProjectDashboard(props) {
 
     const handleRequest=()=>{
       props.history.push('/contractor/request',{details:details,request_amount:request_amount})
+      
     }
     
     const handlePayment=e=>{
@@ -340,6 +355,7 @@ function ProjectDashboard(props) {
 
 <React.Fragment>
 <TableRow className={classes.tablerow}>
+  
         <TableCell>
           <IconButton aria-label="expand row" size="small" onClick={() => setOpenq(!openq)}>
             {openq ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}

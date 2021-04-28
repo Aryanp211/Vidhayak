@@ -124,15 +124,15 @@ router.route('/ApproveContractorRequest').post((req,res)=>{
   
   Project.findById(proj_id)
   .then(resp=>{
-    resp.contractor_Authorized.contractor_details.contractor_requests.findById(request_id)
-    .then(rre=>{
+    let rre= resp.contractor_Authorized.contractor_details.contractor_requests.find(x=>x._id==request_id)
+    
       console.log(rre)
       rre.requests_status='Authorized'
       resp.contractor_Authorized.contractor_project_account=resp.contractor_Authorized.contractor_project_account+rre.requests_amount
       
       const newTransaction= new Transaction({
 
-        category:res.req_category,
+        category:resp.req_category,
           project_details:{project_name:resp.req_Projname,project_id:resp._id, project_state:resp.req_state},
          
           from:{
@@ -148,7 +148,7 @@ router.route('/ApproveContractorRequest').post((req,res)=>{
             to_state:resp.contractor_Authorized.contractor_details.contractor_state},
 
 
-          amount:amountpaid,
+          amount:rre.requests_amount,
           desc:rre.requests_description,
           date:new Date(),
         
@@ -157,7 +157,7 @@ router.route('/ApproveContractorRequest').post((req,res)=>{
           resp.save()
           newTransaction.save()
           .then(r=>console.log('yess')).catch(r=>console.log('transaction failed'))
-    })
+    
   })
   
   })

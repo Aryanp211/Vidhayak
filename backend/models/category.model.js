@@ -10,21 +10,26 @@ const categorySchema = new Schema({
     trim: true, 
     minlength: 3}, 
 
-  category_amount:
+  category_amount: //Category Amount LEFT
     {type :Number, 
-    reqired:true},
+    
+    default:0
+  },
 
-  category_amountAlloc:
+  category_amountAlloc: //Amount Allocated by Centre
     {type :Number, 
-    reqired:true},
+   
+    default:0,
+  },
 
   category_pending:
     {type :Number, 
-    reqired:true},
+   
+    default:0,},
 
   category_authorized:
     {type :Number, 
-    reqired:true},
+      default:0,},
     },
 
 {

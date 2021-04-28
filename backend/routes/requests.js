@@ -50,7 +50,7 @@ router.route('/add').post((req, res) => {
     CategorySchema.findOne( {category_name:req_category})
     .then(res=>{
       res.category_pending+=1
-      console.log('Parashar Beoda')
+     
   res.save()
     })
 
@@ -141,7 +141,7 @@ router.route('/update').post((req, res) => {
         res.category_amount= res.category_amountAlloc-requestss.req_amount
         res.category_pending-=1
         res.category_authorized+=1
-        console.log('Amount kata')
+        console.log('Amount cut')
         console.log(res.category_amount)
         requestss.state_projectaccount=requestss.req_amount
         requestss.req_status= "Authorized";
