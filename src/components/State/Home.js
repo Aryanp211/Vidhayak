@@ -5,6 +5,7 @@ import Dashboard from './Dashboard';
 import './CSS/Home.css'
 // import categories from '../Categories'
 import axios from 'axios'
+import CategoryWise from './CategoryWise'
 // import ref from 
 
 
@@ -59,7 +60,7 @@ class Home extends React.Component {
                       
                         <div className='GridItem'>
                             <Dashboard item={item} color={this.state.colors[cnt%4]}></Dashboard>
-
+                            
                         </div>
                         
                 )
@@ -67,12 +68,20 @@ class Home extends React.Component {
                 })
                 
                 
-                }
+                }</div>
+                        <div className='wrapper2' style={{alignItems:'center', alignContent:'centre'}} >
+                    <Grid container xs={12} justify="space-between" spacing={0} style={{paddingTop:20}}>
+                        <Grid item xs={12}>
+                            
+                        </Grid>
+                        <Grid item xs={9}><hr></hr></Grid>
+                        <Grid item xs={3}><hr></hr><CategoryWise/></Grid>
+                    
+                    </Grid></div>
 
 
 
-
-                </div>
+                
                 
             </div>
         )

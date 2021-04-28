@@ -122,13 +122,14 @@ router.route('/ApproveContractorRequest').post((req,res)=>{
   let proj_id=req.body.proj_id
   let request_id=req.body.request_id;
   
-  project.findById(proj_id)
+  Project.findById(proj_id)
   .then(resp=>{
     resp.contractor_Authorized.contractor_details.contractor_requests.findById(request_id)
     .then(rre=>{
+      console.log(rre)
       rre.requests_status='Authorized'
       resp.contractor_Authorized.contractor_project_account=resp.contractor_Authorized.contractor_project_account+rre.requests_amount
-
+      
       const newTransaction= new Transaction({
 
         category:res.req_category,
