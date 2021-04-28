@@ -23,7 +23,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import rupee from '../icons/rupee.svg'
-
+import Web3 from 'web3';
+import Mycontract from "../contracts/Transactions.json";
 
 const useStyles = makeStyles((theme)=>({
 
@@ -184,12 +185,13 @@ const[alldata,handleAlldata]=useState([])
 
 
 
-const handleApprove=e=>{
+function handleApprove(e,_amt){
   let d={
     proj_id:props.details._id,
     request_id:e
 
   }
+  loadBlockChainData(_amt);
     axios.post('http://localhost:5000/states/ApproveContractorRequest',d)
     .then(r=>{
       console.log('Request Approved by state')
@@ -197,9 +199,49 @@ const handleApprove=e=>{
     })
 
 }
+// async componentWillMount() 
+// {
+//   await this.loadWeb3()
+//   //console.log(window.web3);
+// //  await this.loadBlockChainData()
+// }
 
-
+async function loadWeb3() {
+  if(window.ethereum)
+  {
+    window.web3 = new Web3(window.ethereum)
+    await window.ethereum.enable();
+  }
+  else if(window.web3)
+  {
+    window.web3 = new Web3(window.web3.currentProvider)
+  }
+  else
+  {
+    window.alert('Non-Ethereum browser derected')
+  }
+}
+async function loadBlockChainData(_amt){
+  const web3 = window.web3;
+  const accounts = await web3.eth.getAccounts()
+  console.log(accounts);
+  const id = await web3.eth.net.getId();
+  const networkData = Mycontract.networks[id]
+  const instance = new web3.eth.Contract(Mycontract.abi, networkData.address)
+  //console.log(networkData.address)
+        var part_amount = _amt;
+       //var etherValue1 = Web3.utils.toWei(part_amount, 'ether')
+       const send_to_contractor = instance.methods.funds_To_Contractor('0xE4f026137C4BfCD6e75304d69DB8833868c98de0',part_amount)
+       .send({
+         from:'0xdC9E3631F7fa43E4CEEf53C491A2A788815ae9f3',
+         value: web3.utils.toWei((part_amount).toString(),"ether")
+       })
+      }
 useEffect(()=>{
+  
+   loadWeb3();
+  //console.log(window.web3);
+   //loadBlockChainData();
 
   // if(condition===true){
   axios.get('http://localhost:5000/project/details/'+props.details._id)
@@ -353,7 +395,7 @@ useEffect(()=>{
               <TableCell align="right">{row.requests_amount}</TableCell>
               <TableCell align="right">{row.requests_description}</TableCell>
               <TableCell align="right">{JSON.stringify(row.requests_date).substring(1,10)}</TableCell>
-              <TableCell align='right'><Button onClick={()=>handleApprove(row._id)}>ACCEPT</Button></TableCell>
+              <TableCell align='right'><Button onClick={()=>handleApprove(row._id,row.requests_amount)}>ACCEPT</Button></TableCell>
               {/* <TableCell align="right">{row.protein}</TableCell> */}
             </TableRow>
           )})}
