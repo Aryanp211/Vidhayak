@@ -226,6 +226,7 @@ function ProjectDashboard(props) {
   let request_amount=55
   let bid_amount=details.contractor_Authorized.bid_amount
   console.log("gekfipoefew",bid_amount)
+  const [amountused,handleChangeAmountused]=useState('')
   // const vendor_requests=details.contractor_Authorized.contractor_details.vendor_requests;
   let dueamount=0
   let amountdue=0
@@ -267,6 +268,7 @@ function ProjectDashboard(props) {
       axios.get('http://localhost:5000/project/details/'+props.details._id)
       .then(res=>{
         handleReqdata(res.data.contractor_Authorized.contractor_details.vendor_requests)
+        handleChangeAmountused(res.data.contractor_Authorized.contractor_amountused)
       }
         )
     // }
@@ -307,7 +309,7 @@ function ProjectDashboard(props) {
 
       
       <CardContent style={{textAlign:'center'}} >
-      <div className={classes.text}>{details.contractor_Authorized.contractor_amountused}</div>
+      <div className={classes.text}>{amountused}</div>
       <hr></hr>
         <div className={classes.centreText}>EXPENDITURE</div>
       </CardContent>

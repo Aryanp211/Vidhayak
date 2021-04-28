@@ -92,6 +92,10 @@ const useStyles = makeStyles((theme) => ({
   const [verify,handleVerifyChange]=useState(false)
   // const [photo,setPhoto]=useState('')
 
+
+  const handleClick=()=>{
+    props.history.push('/')
+  }
   const handleSubmit=e=>{
     e.preventDefault();
     
@@ -112,9 +116,9 @@ const useStyles = makeStyles((theme) => ({
     console.log(details)
     axios.post('http://localhost:5000/contractor/vendorrequest',details)
     .then(r=>{console.log(r,'Requstedd!!')
-          props.history.push('/')
+          
   }).catch(error=>console.log('Did not post'))
-    
+  props.history.push('/')
 }
 
 
@@ -298,6 +302,19 @@ const handleToggleVerify=()=>{
           </Button>
 
           </Grid>
+          <Grid xs={12} sm={12} style={{textAlign:'center'}}>
+          <Button
+            type="button"
+            
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleClick}
+          >
+        Cancel
+          </Button>
+          </Grid>
+
           </Grid>
         </form>
       </div>
