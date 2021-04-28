@@ -290,9 +290,11 @@ useEffect(()=>{
     
 
       <CardContent style={{textAlign:'center'}} >
-          <div className={classes.text}>Nagpur</div>
+          <div className={classes.text}>{ reqdata.filter(i=>i.requests_status==='Pending').length}</div>
           <hr></hr>
-        <div className={classes.centreText}>PLACE</div>
+        <div className={classes.centreText}><p>REQUEST(s)
+                                              <br></br>click to see </p>
+        </div>
       </CardContent>
 
       </Card>

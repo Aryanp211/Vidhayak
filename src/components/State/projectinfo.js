@@ -104,10 +104,10 @@ handleRefresh=()=>{
                             <ProjectDescription details={this.state.details}></ProjectDescription>
                             <hr></hr>
                         </Grid>
-
+{/* 
                         <Grid item xs={12} style={{paddingTop:50}}>
                             <Button onClick={this.handleRefresh}>Refresh</Button>
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={12} style={{paddingTop:50}}>
                             <ProjectTransaction details={this.state.details}></ProjectTransaction>
                         </Grid>

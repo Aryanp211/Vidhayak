@@ -19,15 +19,15 @@ const useStyles = makeStyles({
     }
 })
 
-function ProjectDescription() {
+function ProjectDescription(props) {
     const classes=useStyles();
     return (
         <div className={classes.root}>
             
-        <Typography className={classes.typography}>O2 FACTORY</Typography>
+        <Typography className={classes.typography}>{props.details.req_Projname}</Typography>
         <div className={classes.description}>
-        Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as “a group of sentences or a single sentence that forms a unit” (Lunsford and Connors 116). Length and appearance do not determine whether a section in a paper is a paragraph. For instance, in some styles of writing, particularly journalistic styles, a paragraph can be just one sentence long. Ultimately, a paragraph is a sentence or group of sentences that support one main idea. In this handout, we will refer to this as the “controlling idea,” because it controls what happens in the rest of the paragraph.
-        </div></div>
+        {props.details.req_description}
+            </div></div>
     )
 }
 
