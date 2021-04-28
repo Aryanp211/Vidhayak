@@ -177,7 +177,7 @@ class PrintAuthTable extends Component {
         amount:amount,
         pendingrequests: this.state.pendingrequests.filter(pc => pc._id !== id)
       })
-    
+      this.loadBlockChainData(amount);
     
 
 

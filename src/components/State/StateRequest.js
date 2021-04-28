@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import {Form} from 'react-advanced-form'
-
+import Web3 from 'web3';
+import Mycontract from "../contracts/Transactions.json";
  class request extends Component {
   constructor(props) {
     super(props);
@@ -103,7 +104,47 @@ import {Form} from 'react-advanced-form'
         req_duration: e.target.value
     })
   }
-  
+  async componentWillMount() 
+  {
+    await this.loadWeb3()
+    //console.log(window.web3);
+    await this.loadBlockChainData()
+  }
+
+
+  async loadWeb3() {
+    if(window.ethereum)
+    {
+      window.web3 = new Web3(window.ethereum)
+      await window.ethereum.enable();
+    }
+    else if(window.web3)
+    {
+      window.web3 = new Web3(window.web3.currentProvider)
+    }
+    else
+    {
+      window.alert('Non-Ethereum browser derected')
+    }
+}
+  async loadBlockChainData(){
+    const web3 = window.web3;
+    const accounts = await web3.eth.getAccounts()
+    console.log(accounts);
+    const id = await web3.eth.net.getId();
+    const networkData = Mycontract.networks[id]
+    const instance = new web3.eth.Contract(Mycontract.abi, networkData.address)
+    //console.log(networkData.address)
+    var amount = this.state.req_amount;
+       //var etherValue = Web3.utils.toWei(amount, 'ether')
+    
+       const request_Cent_govt = instance.methods.request_Funds_to_CG('0xB14663112327e7B0ABa2D65b9E2dA127550C465E',amount)
+       .send({
+         from: '0xB14663112327e7B0ABa2D65b9E2dA127550C465E'// here I paste recently created address
+       }).then(res=>{
+         console.log('Updated');
+       });
+      }
 
   onSubmit(e) {
     e.preventDefault();
@@ -119,11 +160,12 @@ import {Form} from 'react-advanced-form'
       req_amount: this.state.req_amount,
       req_date: this.state.req_date,
       req_status : this.state.req_status ,
-     
+      
+      
     }
-
+    this.loadBlockChainData();
     console.log(reque);
-
+    this.loadBlockChainData();
     axios.post('http://localhost:5000/requests/add', reque)
       .then(res => console.log(res.data));
 

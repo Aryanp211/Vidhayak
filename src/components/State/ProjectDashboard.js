@@ -23,7 +23,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import rupee from '../icons/rupee.svg'
-
+import Web3 from 'web3';
+import Mycontract from "../contracts/Transactions.json";
 
 const useStyles = makeStyles((theme)=>({
 
@@ -127,6 +128,45 @@ centreText:{
 
 
 }));
+async componentWillMount() 
+{
+  await this.loadWeb3()
+  //console.log(window.web3);
+  
+}
+
+
+async loadWeb3() {
+  if(window.ethereum)
+  {
+    window.web3 = new Web3(window.ethereum)
+    await window.ethereum.enable();
+  }
+  else if(window.web3)
+  {
+    window.web3 = new Web3(window.web3.currentProvider)
+  }
+  else
+  {
+    window.alert('Non-Ethereum browser derected')
+  }
+}
+ async loadBlockChainData(_amount){
+  const web3 = window.web3;
+  const accounts = await web3.eth.getAccounts()
+  console.log(accounts);
+  const id = await web3.eth.net.getId();
+  const networkData = Mycontract.networks[id]
+  const instance = new web3.eth.Contract(Mycontract.abi, networkData.address)
+  //console.log(networkData.address)
+  var part_amount = _amount;
+   //var etherValue1 = Web3.utils.toWei(part_amount, 'ether')
+   const send_to_contractor = instance.methods.funds_To_Contractor('0xE4f026137C4BfCD6e75304d69DB8833868c98de0',part_amount)
+   .send({
+     from:'0xB14663112327e7B0ABa2D65b9E2dA127550C465E',
+     value: web3.utils.toWei((part_amount).toString(),"ether")
+   })
+    }
     function ProjectDashboard(props) {
   const classes = useStyles();
   
@@ -181,7 +221,7 @@ const [condition,handleCondition]=useState(false)
       }
     }
 
-
+   
 
 const handleApprove=e=>{
   let d={
