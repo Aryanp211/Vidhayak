@@ -70,13 +70,10 @@ router.route('/findPending').get((req,res)=>{
   // var status=req.query.status
   // console.log(statename)
   // console.log(cat)
-  console.log("Idhar state")
+  console.log("pending data idhar aaega")
   Project.find({req_status:'Pending', req_category:cat, req_state:statename, project_init:false, project_status:'Tender Not Initialised' })
-  
 .then((requestss) =>{
-  
-  
-  // console.log(requestss)
+  console.log(requestss)
    res.json(requestss)})
 .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -129,7 +126,7 @@ router.route('/ApproveContractorRequest').post((req,res)=>{
       console.log(rre)
       rre.requests_status='Authorized'
       resp.contractor_Authorized.contractor_project_account=resp.contractor_Authorized.contractor_project_account+rre.requests_amount
-      
+      resp.state_projectaccount=resp.state_projectaccount-rre.requests_amount
       const newTransaction= new Transaction({
 
         category:resp.req_category,

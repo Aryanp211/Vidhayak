@@ -141,7 +141,7 @@ class StateCard extends Component {
      
      
      else if (this.state.status==='Pending'){
-      this.props.history.push('stategov/PrintPendingTable',{category:this.state.category,statename:this.state.statename})
+      this.props.history.push('/stategov/PrintPendingTable',{category:this.state.category,statename:this.state.statename})
      }
     }
     }>

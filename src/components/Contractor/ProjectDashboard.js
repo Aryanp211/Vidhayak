@@ -183,6 +183,11 @@ centreText:{
 
 
 function ProjectDashboard(props) {
+  const [vendor_requests,handleReqdata]=useState([])
+
+
+
+
   const classes = useStyles();
   console.log(props.details.project_id)
   
@@ -215,19 +220,22 @@ function ProjectDashboard(props) {
    
 
 
- const details=props.details
+  let details=props.details
   console.log("hooooo",details)
   let project_state=details.project_state
   let request_amount=55
   let bid_amount=details.contractor_Authorized.bid_amount
   console.log("gekfipoefew",bid_amount)
-  const vendor_requests=details.contractor_Authorized.contractor_details.vendor_requests;
+  // const vendor_requests=details.contractor_Authorized.contractor_details.vendor_requests;
   let dueamount=0
+  let amountdue=0
+  let cnt=0
   console.log(details)
+  let description=''
     // console.log(data)
 
     const handleRequest=()=>{
-      props.history.push('/contractor/request',{details:details,request_amount:request_amount})
+      props.history.push('/contractor/request',{details:details,request_amount:amountdue,description:description})
       
     }
     
@@ -242,9 +250,28 @@ function ProjectDashboard(props) {
         console.log(",/,/,/,/,/,/,,,/,/,/,/,/,/,/,/,/,/,/,/,/,,/,/,,/")
         console.log(r.data)
       })
+
+      axios.get('http://localhost:5000/project/details/'+props.details._id)
+      .then(res=>{
+        details=res.data
+        console.log(details)
+        // handleCondition(false)
+      }
+        )
+
     }
 
+    useEffect(()=>{
 
+      // if(condition===true){
+      axios.get('http://localhost:5000/project/details/'+props.details._id)
+      .then(res=>{
+        handleReqdata(res.data.contractor_Authorized.contractor_details.vendor_requests)
+      }
+        )
+    // }
+    })
+  
 
   return (
     
@@ -277,7 +304,8 @@ function ProjectDashboard(props) {
     <Card className={classes.root} 
   
      >
-    
+
+      
       <CardContent style={{textAlign:'center'}} >
       <div className={classes.text}>{details.contractor_Authorized.contractor_amountused}</div>
       <hr></hr>
@@ -290,7 +318,11 @@ function ProjectDashboard(props) {
 
 
   
-
+    { vendor_requests.filter(i=>i.payment_status==='Pending').map((x) => {
+             amountdue+=x.amount
+             cnt+=1
+             description="\n"+x.reason+" || "+description+"\n"
+        })}
 
 
 
@@ -300,9 +332,9 @@ function ProjectDashboard(props) {
      >
     
       <CardContent style={{textAlign:'center'}} >
-          <div className={classes.text}>Nagpur</div>
+          <div className={classes.text}>Rs.{amountdue}/{vendor_requests.filter(i=>i.payment_status==='Pending').length}</div>
           <hr></hr>
-        <div className={classes.centreText}>PAYMENT DUE</div>  
+        <div className={classes.centreText}>PAYMENT REQUEST DUE</div>  
         {/* Request from Vendors */}
       </CardContent>
   
@@ -334,11 +366,16 @@ function ProjectDashboard(props) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
+          <TableCell>
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpenq(!openq)}>
+            {openq ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
             {/* <TableCell>Dessert (100g serving)</TableCell> */}
             <TableCell/>
-            <TableCell  >FROM</TableCell>
-            <TableCell  >JOB TITLE</TableCell>
-            <TableCell >AMOUNT</TableCell>
+            <TableCell>FROM</TableCell>
+            <TableCell>JOB TITLE</TableCell>
+            <TableCell>AMOUNT</TableCell>
             <TableCell align="right">DATE</TableCell>
             <TableCell/>
           </TableRow>
@@ -356,11 +393,7 @@ function ProjectDashboard(props) {
 <React.Fragment>
 <TableRow className={classes.tablerow}>
   
-        <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={() => setOpenq(!openq)}>
-            {openq ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
+      
         {/* <TableCell/> */}
         <TableCell >{row.name}</TableCell>
         <TableCell >{row.jobtitle}</TableCell>
@@ -411,9 +444,9 @@ function ProjectDashboard(props) {
     
       <CardContent style={{textAlign:'center'}} >
       <div className={classes.centreText}>REQUEST</div>
-      <div className={classes.text}>{request_amount}</div>
+      <div className={classes.text}>{amountdue}</div>
       <hr></hr>
-        <div className={classes.centreText}>TO GOVT OF {(project_state)}</div>
+        <div className={classes.centreText}>TO GOVT OF {(props.details.req_state).toUpperCase()}</div>
       </CardContent>
   
     </Card>

@@ -108,6 +108,7 @@ const useStyles = makeStyles((theme) => ({
   const user_firstname=props.data.user_firstname;
   const user_lastname=props.data.user_lastname;
   const contractor_id=props.data._id;
+  const desc=props.history.location.state.description
 
 
   const [date,handleDateChange]=useState(new Date())
@@ -134,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
         contractor_id:contractor_id,
         contractor_firstname:user_firstname,
         contractor_lastname:user_lastname,
-        description:description
+        description:desc
     }
     // console.log(bid,date,id)
     console.log('DATE')
@@ -151,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
 }
 
 const handleClick=()=>{
-    props.history.push('/contractor/projectinfo')
+    props.history.push('/contractor/projectinfo',{details:props.history.location.state.details})
 }
 
     function handleChange(e){
@@ -247,6 +248,7 @@ const handleClick=()=>{
             id="bid"
             label="Date"
             name="bid"
+            // value={new Date()}
             // onChange={(e)=>handleBidChange(e.target.value)}
             autoComplete="bid"
             onChange={(e)=>handleDateChange(e.target.value)}
@@ -264,7 +266,9 @@ const handleClick=()=>{
                 margin="normal"
                 fullWidth
                 label='Description'
-                onChange={e=>handleDescription(e.target.value)}/>
+                value={desc}
+                // onChange={e=>handleDescription(e.target.value)}
+                />
           </Grid>
 
 {/* 

@@ -33,6 +33,7 @@ import OngoingProjects from './OngoingProjects';
 import Projectinfo from './projectinfo';
 import Pending from './Pending';
 import Statealltransaction from './Statealltransaction';
+import PrintPendingTable from './PrintPendingTable';
 // import Emblem from 'src\Logos\Emblem'
 //import ShowCrimetype from './components/crimetype.component';
 
@@ -164,11 +165,9 @@ console.log(statename)
 
 
 
-<Route path="/stategov/Pending" render={(props) => (
-    <Pending {...props} statename={statename} />
-  )} />
 
 
+    <Route path="/stategov/PrintPendingTable" component={PrintPendingTable}/>
     <Route path="/stategov/PrintAuthTable" component={PrintAuthTable} />
     <Route path="/stategov/Initialise" component={InitForm} />
     <Route path="/stategov/projectinfo" component={Projectinfo} />

@@ -166,6 +166,7 @@ function ProjectTransaction(props) {
     return (
         
         <div>
+        <Typography>Project Id: {props.details._id}</Typography>
         <Typography>TRANSACTIONS</Typography>
         <TableContainer component={Paper}>
       

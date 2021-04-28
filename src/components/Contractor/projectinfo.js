@@ -35,7 +35,7 @@ class projectinfo extends React.Component {
                 .then(res=>{
                     this.setState({ 
                         details:res.data,
-                        condition:true
+                        condition:false,
                     })
                 })
             }
@@ -62,20 +62,35 @@ handleClick=()=>{
     // scrolls = (scrollOffset) => {
     //     this.myRef.current.scrollLeft += scrollOffset;
     //   };
-
+    componentDidMount() {
+        console.log('HHHCHCHCHCHCHC')
+                console.log(this.props.history.location.state.details)
+        
+                axios.get('http://localhost:5000/project/details/'+this.props.history.location.state.details._id)
+                .then(res=>{
+                    this.setState({ 
+                        details:res.data,
+                        condition:true
+                    })
+                })
+            }
     
     render() {
     let cnt=-1
     console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
     console.log(this.props.history.location.state.details.project_id)
         return(
+
+            
             <div className='Griddiv' style={{textAlign:'center'}}>
+              
             {/* <Grid container justify='center' alignItems='center' className='GridContainerCon' spacing={4} >
             {this.state.Cat.map((mapItem)=>{
                 cnt=cnt+1; */}
                 {/* // return(
                     // <Grid item className='GridItemCon'  xs={3}> */}
                         {this.state.condition===true?
+                          
                     <Grid container xs>
                         <Grid item xs={12}>
                     
@@ -90,7 +105,7 @@ handleClick=()=>{
                             <ProjectDescription details={this.state.details}></ProjectDescription>
                             <hr></hr>
                         </Grid>
-
+                        
                         <Grid item xs={12} style={{paddingTop:50}}>
                             <ProjectTransaction details={this.state.details}></ProjectTransaction>
                         </Grid>

@@ -154,7 +154,7 @@ centreText:{
     };
     
 
-
+let amountrequested=0;
 const [req_amount,handleReqAmount]=useState(0);
 const [req_description,handleReqDescription]=useState('')
       // const [reqdata,handleReqData]=useState([])
@@ -171,6 +171,7 @@ const [requests,handleRequests]=useState([])
     console.log('#######################################################################')
     
 const [condition,handleCondition]=useState(false)
+const[alldata,handleAlldata]=useState([])
     const [reqdata,handleReqdata]=useState([])
     console.log('contractor',reqdata)
 
@@ -205,6 +206,7 @@ useEffect(()=>{
   .then(res=>{
     handleReqdata(res.data.contractor_Authorized.contractor_details.contractor_requests)
     console.log(reqdata)
+    handleAlldata(res.data)
     handleCondition(false)
   }
     )
@@ -239,9 +241,9 @@ useEffect(()=>{
       >
     
       <CardContent style={{textAlign:'center'}} >
-          <div className={classes.text}>35,50,098</div>
+          <div className={classes.text}>{props.details.contractor_Authorized.bid_amount}</div>
           <hr></hr>
-        <div className={classes.centreText}> TOTAL MONEY ALLOCATED  </div>
+        <div className={classes.centreText}>TOTAL MONEY FOR PROJECT</div>
       </CardContent>
   
     </Card>
@@ -256,9 +258,9 @@ useEffect(()=>{
      >
     
       <CardContent style={{textAlign:'center'}} >
-      <div className={classes.text}>35,50,098</div>
+      <div className={classes.text}>{alldata.state_projectaccount}</div>
       <hr></hr>
-        <div className={classes.centreText}>EXPENDITURE</div>
+        <div className={classes.centreText}>MONEY LEFT</div>
       </CardContent>
   
     </Card>
@@ -287,14 +289,13 @@ useEffect(()=>{
     <Card className={classes.root} onClick={handleOpen} style={{cursor:'pointer'}}
     // style={{backgroundColor:props.color}} 
      >
-    
-
+     { reqdata.filter(i=>i.requests_status==='Pending').map((row) => {
+                  amountrequested+=row.requests_amount
+     })}
       <CardContent style={{textAlign:'center'}} >
-          <div className={classes.text}>{ reqdata.filter(i=>i.requests_status==='Pending').length}</div>
+          <div className={classes.text}>{amountrequested}</div>
           <hr></hr>
-        <div className={classes.centreText}><p>REQUEST(s)
-                                              <br></br>click to see </p>
-        </div>
+        <div className={classes.centreText}>REQUEST</div>
       </CardContent>
 
       </Card>

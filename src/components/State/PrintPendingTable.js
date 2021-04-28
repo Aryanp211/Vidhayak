@@ -88,13 +88,7 @@ const Pendingrequest = props =>
     <td>{props.pendingrequest.req_status}</td>
     <td>
 
-<button className="btn btn-primary mx-1" 
-onClick={
-    () => 
-       { props.updaterequest(props.pendingrequest._id)}}> 
-     
-        Initialise Project
-  </button>
+
   
 </td>
 {/* <div>
@@ -113,21 +107,16 @@ class PrintPendingTable extends Component {
     // if(this.props.init===false){
     //   this.componentDidMount()
     // }
-    this.updaterequest = this.updaterequest.bind(this)
+
     this.state = {
       pendingrequests: [],
       init:false,
       send_id:0,
-      // open:false,
+    
       category:this.props.history.location.state.category,
       statename:this.props.history.location.state.statename
     };
-    // if(this.props.init===false){
-    //   console.log('AGAIN')
-    //   this.setState({
-    //   pendingrequests: this.state.pendingrequests.filter(pc => pc.project_init !== true)
-    //   })
-    // }
+  
   }
 
   componentDidMount() {
@@ -138,10 +127,7 @@ class PrintPendingTable extends Component {
   console.log('Rajat Lauda')
     console.log(this.state.statename)
 
-    const details={
-      statename:this.props.statename,
-      category:this.props.category
-    }
+ 
   
     var request = {
       params: {
@@ -168,24 +154,13 @@ class PrintPendingTable extends Component {
   }
 
   
-  updaterequest(id) {
 
-      this.setState({
-        init:true,
-        send_id:id,
-        pendingrequests: this.state.pendingrequests.filter(pc => pc._id !== id)
-      })
-    
-    
-
-
-  }
 
 
   pendingrequestList() {
     console.log(this.state.pendingrequests)
     return this.state.pendingrequests.map(allpendingrequestlist => {
-      return <Pendingrequest pendingrequest={allpendingrequestlist} updaterequest={this.updaterequest} key={allpendingrequestlist._id}/>;
+      return <Pendingrequest pendingrequest={allpendingrequestlist}  key={allpendingrequestlist._id}/>;
     })
   }
 
@@ -195,7 +170,7 @@ class PrintPendingTable extends Component {
     return (
         <div>
           {/* <br></br> */}
-          {this.state.init==false? <div>
+          <div>
           <h3>{this.props.history.location.state.category} approved requests:</h3>
         <table className="table">
           <thead className="thead-light">
@@ -215,13 +190,13 @@ class PrintPendingTable extends Component {
             {this.pendingrequestList()}
           </tbody>
         </table>
-        <button className="Register" onClick={()=>{this.props.history.push('stategov/Pending')}}>Back</button>
+        <button className="Register" onClick={()=>{this.props.history.push('/stategov/Pending')}}>Back</button>
         </div>
         
-      :
+      {/* : */}
       
-            <InitForm id={this.state.send_id}></InitForm>
-          }
+            {/* // <InitForm id={this.state.send_id}></InitForm> */}
+          
 
       
       </div>

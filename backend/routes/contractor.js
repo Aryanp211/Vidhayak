@@ -115,6 +115,7 @@ router.route('/filedtenders/:id').get(async(req, res) => {
   .then(res=>{
     let details={requests_status:'Pending',requests_amount:request_amount,requests_date:date, requests_description:description}
     res.contractor_Authorized.contractor_details.contractor_requests.push(details)
+    res.contractor_Authorized.contractor_total_amount_requested_state+=request_amount
     res.save()
 
   })

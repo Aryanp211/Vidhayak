@@ -24,9 +24,11 @@ console.log(x)
 
 
 router.route('/details/:id').get((req,res)=>{
-  console.log("mein aya")
+  // console.log("mein aya")
+  console.log("[][[]][[][][][][][][][][][]]][][][]][][][")
   let id=req.params.id
   console.log(id)
+  console.log("mein ayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
   project.findById(id)
   .then(re=>{
     console.log(re)
@@ -119,6 +121,7 @@ router.route('/terminatetender').post((req, res) => {
     console.log(x)
     x.project_status="Project Started"
     x.project_init=false
+    x.state_projectaccount=x.contractor_Authorized.bid_amount
     x.save()
     // console.log(x)
     console.log("Total bids contractor details")
