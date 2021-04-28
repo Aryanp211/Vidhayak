@@ -117,5 +117,49 @@ router.route('/findPending').get((req,res)=>{
 //     .catch(err => res.status(400).json('Error: ' + err));
 // });
     
+router.route('/ApproveContractorRequest').post((req,res)=>{
+  console.log('inside route')
+  let proj_id=req.body.proj_id
+  let request_id=req.body.request_id;
+  
+  project.findById(proj_id)
+  .then(resp=>{
+    resp.contractor_Authorized.contractor_details.contractor_requests.findById(request_id)
+    .then(rre=>{
+      rre.requests_status='Authorized'
+      resp.contractor_Authorized.contractor_project_account=resp.contractor_Authorized.contractor_project_account+rre.requests_amount
+
+      const newTransaction= new Transaction({
+
+        category:res.req_category,
+          project_details:{project_name:resp.req_Projname,project_id:resp._id, project_state:resp.req_state},
+         
+          from:{
+            from_id:resp.state_gov.id,
+            from_name:resp.state_gov.username,
+            from_posit:'State',
+            from_state:resp.req_state},
+         
+          to:{
+            to_id:resp.contractor_Authorized.contractor_details.contractor_id,
+            to_name:resp.contractor_Authorized.contractor_details.contractor_name,
+            to_posit:'Contractor',
+            to_state:resp.contractor_Authorized.contractor_details.contractor_state},
+
+
+          amount:amountpaid,
+          desc:rre.requests_description,
+          date:new Date(),
+        
+          })
+      
+          resp.save()
+          newTransaction.save()
+          .then(r=>console.log('yess')).catch(r=>console.log('transaction failed'))
+    })
+  })
+  
+  })
+
 
 module.exports = router;

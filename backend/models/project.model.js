@@ -38,7 +38,7 @@ state_gov: {
   },
     // req_reqby:{type: String, default: null},
 
-    
+  state_projectaccount:{type:Number,required: true},
 
 
   // project_details: {type:mongoose.Types.ObjectId,ref:'Requests'}, 
@@ -117,6 +117,9 @@ project_status: {    //Project Complete or onGoing?
       
 
     },
+    contractor_project_account:{type:Number,default:0,sparse: true},
+    contractor_amountused:{type:Number,default:0,sparse: true},
+    contractor_total_amount_requested_state:{type:Number,default:0,sparse: true},
     bid_amount:{type:Number,default:0,sparse: true},
   },
 

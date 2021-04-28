@@ -40,7 +40,6 @@ router.route('/add').post((req, res) => {
     req_description:req_description, 
     req_duration:req_duration,
     req_amount:req_amount, 
-    
     req_status:req_status,
     
   });
@@ -144,6 +143,7 @@ router.route('/update').post((req, res) => {
         res.category_authorized+=1
         console.log('Amount kata')
         console.log(res.category_amount)
+        requestss.state_projectaccount=requestss.req_amount
         requestss.req_status= "Authorized";
         requestss.central_gov.username=name;
         requestss.central_gov.id=from._id;

@@ -22,6 +22,7 @@ import FiledTenders from './FiledTenders';
 import {withRouter} from 'react-router-dom';
 import Projectinfo from './projectinfo';
 import RequestToState from './RequestToState';
+import Alltransaction from './Alltransaction';
 
 
 
@@ -104,6 +105,12 @@ const classes=userStyles()
 
       <Route path='/contractor/FiledTenders' render={(props)=>(
         <FiledTenders {...props} data={data}/> )}/>
+
+
+
+
+      <Route path='/contractor/SeeTransactions' render={(props)=>(
+        <Alltransaction {...props} data={data}/> )}/>
       {/* <Route path='/contractor/NewTenders' component={NewTenders}/>
       <Route path='/contractor/NewTenders' component={NewTenders}/> */}
       {/* <Route exact path='/central/Pending' component={Pending}/> */}

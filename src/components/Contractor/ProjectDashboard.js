@@ -216,6 +216,21 @@ function ProjectDashboard(props) {
       props.history.push('/contractor/request',{details:details,request_amount:request_amount})
     }
     
+    const handlePayment=e=>{
+      console.log(e)
+      // opprs.condition(true)
+      var xx={
+        vendor_id:e,
+        details:details
+      }
+      axios.post('http://localhost:5000/contractor/settlepayment',xx).then(r=>{
+        console.log(",/,/,/,/,/,/,,,/,/,/,/,/,/,/,/,/,/,/,/,/,,/,/,,/")
+        console.log(r.data)
+      })
+    }
+
+
+
   return (
     
 
@@ -232,7 +247,7 @@ function ProjectDashboard(props) {
       >
     
       <CardContent style={{textAlign:'center'}} >
-          <div className={classes.text}></div>
+          <div className={classes.text}>{details.contractor_Authorized.contractor_details.project_bidamount}</div>
           <hr></hr>
         <div className={classes.centreText}> PROJECT BID AMOUNT  </div>
       </CardContent>
@@ -249,7 +264,7 @@ function ProjectDashboard(props) {
      >
     
       <CardContent style={{textAlign:'center'}} >
-      <div className={classes.text}>35,50,098</div>
+      <div className={classes.text}>{details.contractor_Authorized.contractor_amountused}</div>
       <hr></hr>
         <div className={classes.centreText}>EXPENDITURE</div>
       </CardContent>
@@ -349,7 +364,7 @@ function ProjectDashboard(props) {
               {row.reason}
               
               <TableRow>
-              <Button variant="contained" color="secondary" onClick={()=>props.history.push('/contractor/Bidform',{proj_id:row._id})}>Settle Payment</Button>
+              <Button variant="contained" color="secondary" onClick={function(){handlePayment(row._id)}}>Settle Payment</Button>
               </TableRow>
             </Box>
           </Collapse>

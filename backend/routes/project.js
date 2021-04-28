@@ -176,22 +176,7 @@ console.log('rajat initialise me aya hai ')
 
 
 
-router.route('/ApproveContractorRequest').post((req,res)=>{
-console.log('inside route')
-let proj_id=req.body.proj_id
-let request_id=req.body.request_id;
 
-project.findById(proj_id)
-.then(resp=>{
-  resp.contractor_Authorized.contractor_details.contractor_requests.findById(request_id)
-  .then(rre=>{
-    rre.requests_status='Authorized'
-    rre
-
-  })
-})
-
-})
 
 
 

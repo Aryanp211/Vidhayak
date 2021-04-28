@@ -116,7 +116,7 @@ function Row(props) {
                Description:
               </Typography>
               {row.req_description}
-              {row._id}
+              Project id:{row._id}
               <TableRow>
               <Button variant="contained" color="secondary" onClick={()=>history.push('/contractor/Bidform',{proj_id:row._id})}> Place Bid</Button>
               </TableRow>

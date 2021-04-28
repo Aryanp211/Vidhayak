@@ -3,11 +3,57 @@ let Central = require('../models/central.model');
 let Contractor =require('../models/contractor.model');
 let Project =require('../models/project.model')
 const mongoose = require('mongoose');
+let Transaction=require('../models/alltransaction.model');
 // router.route('/').get((req, res) => {
 //   Contractor.find()
 //     .then(centralusers => res.json(centralusers))
 //     .catch(err => res.status(400).json('Error: ' + err));
 // });
+
+router.route('/transaction/:contractor_id').get((req, res) => {
+
+  let contractor_id=req.params.contractor_id
+  console.log(contractor_id)
+  // let statename=req.query.statename
+  Contractor.findOne({"user_id":contractor_id}).
+  then(c=>{
+    Transaction.find({ $or: [{"from.from_id":c._id},{"to.to_id":c._id}]})
+    .then(transactions => {
+      console.log(transactions)
+      res.json(transactions)})
+    .catch(err => res.status(400).json('Error: ' + err));
+  })
+  
+});
+
+router.route('/projecttransactions').get((req, res) => {
+  let proj_id=req.query.proj_id
+  let projname=req.query.projname
+  let contractor_id=req.query.contractor_id
+  console.log(proj_id)
+  let statename=req.query.statename
+  Transaction.find({"project_details.project_id":proj_id, $or: [{"from.from_id":contractor_id},{"to.to_id":contractor_id}]})
+    .then(transactions => {
+      console.log(transactions)
+      res.json(transactions)})
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.route('/filedtenders/:id').get(async(req, res) => {
   console.log("-----------------=----------------=---------------=--------=")
@@ -111,7 +157,58 @@ router.route('/vendorrequest').post((req,res)=>{
  });
 
 
+ router.route('/settlepayment').post((req,res)=>{
+  let vendor_id=req.body.vendor_id
+  let details=req.body.details
 
+
+
+ 
+   Project.findById(details._id)
+   .then(res=>{
+    console.log("******************************************")
+    console.log(res.contractor_Authorized.contractor_details.vendor_requests)
+    console.log(vendor_id)
+   var v= res.contractor_Authorized.contractor_details.vendor_requests.find(x=>x._id==vendor_id)
+  
+      v.payment_status='Settled'
+      let amountpaid=v.amount
+      let reason=v.reason
+      let date=new Date()
+      let jobtitle=v.jobtitle
+      res.contractor_Authorized.contractor_amountused+=amountpaid
+      res.contractor_Authorized.contractor_project_account=res.contractor_Authorized.contractor_project_account-amountpaid
+      const newTransaction= new Transaction({
+
+        category:res.req_category,
+          project_details:{project_name:res.req_Projname,project_id:res._id, project_state:res.req_state},
+         
+          from:{
+            from_id:res.contractor_Authorized.contractor_details.contractor_id,
+            from_name:res.contractor_Authorized.contractor_details.contractor_name,
+            from_posit:'Contractor',
+            from_state:res.contractor_Authorized.contractor_details.contractor_state},
+         
+          to:{
+            to_id:v._id,
+            to_name:v.name,
+            to_posit:'Vendors',
+            to_state:res.req_state},
+
+
+          amount:amountpaid,
+          desc:reason,
+          date:date
+        
+          })
+          res.save()
+          newTransaction.save()
+          .then(r=>console.log('yess')).catch(r=>console.log('transaction failed'))
+    
+   })
+
+ 
+ });
 
 
 router.route('/filetender').post((req,res)=>{ //to post: to file tender
