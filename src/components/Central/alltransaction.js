@@ -85,7 +85,7 @@ class alltransaction extends Component {
     return (
         <div>
           <br></br>
-          <h3>{this.props.history.location.state.name} approved requests:</h3>
+          <h3 style={{fontFamily:'Montserrat', textAlign:'center'}}>AUTHORIZED PROJECTS: {(this.props.history.location.state.name).toUpperCase()} <hr></hr></h3>
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -106,7 +106,7 @@ class alltransaction extends Component {
           </tbody>
         </table>
 
-      <button className="Register" onClick={()=>{this.props.history.push('central/Authorized')}}>Back</button>
+      <Button style={{color:'white',backgroundColor:'black', fontSize:12, fontFamily:'Montserrat'}} className="Register" onClick={()=>{this.props.history.push('central/Authorized')}}>Back</Button>
       </div>
     )
   }

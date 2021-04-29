@@ -9,6 +9,9 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 var dataPoints =[];
 class Graph extends Component {
+    constructor(props){
+        super(props)
+    }
  
     render() {
         const options = {
@@ -41,7 +44,7 @@ class Graph extends Component {
 
     componentDidMount(){
         var chart = this.chart;
-        axios.get('http://localhost:5000/transaction/')
+        axios.get('http://localhost:5000/state/transaction/'+this.props.statename)
 
         .then(function(response) {
             console.log(response)
@@ -61,4 +64,4 @@ class Graph extends Component {
     }
 }
  
-export default  Graph;
+export default  Graph

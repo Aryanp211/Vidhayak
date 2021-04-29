@@ -7,7 +7,7 @@ import './CSS/Home.css'
 import axios from 'axios'
 import CategoryWise from './CategoryWise'
 // import ref from 
-
+import Graph from './graph';
 
 
 class Home extends React.Component {
@@ -74,10 +74,11 @@ class Home extends React.Component {
                         <Grid item xs={12}>
                             
                         </Grid>
-                        <Grid item xs={9}><hr></hr></Grid>
+                        <Grid item xs={9}><hr></hr><Graph statename={this.props.history.location.state.data}></Graph></Grid>
                         <Grid item xs={3}><hr></hr><CategoryWise/></Grid>
                     
                     </Grid></div>
+                    
 
 
 

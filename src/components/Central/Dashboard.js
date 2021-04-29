@@ -11,6 +11,7 @@ import { red } from '@material-ui/core/colors';
 import { CardHeader } from '@material-ui/core';
 import tp1 from './tp1';
 import rupee from '../icons/rupee.svg'
+import ether from '../icons/ethereum.svg'
 // import graph from './graph';
 import Graph from './graph';
 
@@ -83,7 +84,7 @@ const useStyles = makeStyles({
   return (
     <div>
     {/* <div className={classes.head}>FIELD NAME</div> */}
-    <Card className={classes.root} style={{background:'linear-gradient(#17ead9,#36b8e0)'}}  >
+    <Card className={classes.root} style={{background:' linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)',fontFamily: 'Montserrat'}}  >
     
       <CardContent>
             <Grid item container spacing={2} alignItems='center' justify='center'>
@@ -107,7 +108,7 @@ const useStyles = makeStyles({
     
                       > */}
                       <div>
-                      <img src={rupee} className='RupeeIcon'></img> 
+                      <img src={ether} className='RupeeIcon'></img> 
                       {/* </Grid> */}
                       {/* <Grid item xs={8} className={classes.cost}> */}
                       {props.item.category_amount}</div></Grid>

@@ -122,6 +122,7 @@ const handleSubmit = (event) => {
   return (
 
     <div>
+      <div style={{fontFamily:'Montserrat',textAlign:'center', fontSize:30}}>BUDGET<hr></hr></div>
     
     <Container component="main" maxWidth="xs">
         

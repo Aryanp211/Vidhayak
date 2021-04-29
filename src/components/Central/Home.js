@@ -7,6 +7,7 @@ import './CSS/Home.css'
 import axios from 'axios'
 // import ref from 
 import Graph from './graph';
+import StateWise from './StateWise'
 
 
 class Home extends React.Component {
@@ -72,11 +73,30 @@ class Home extends React.Component {
                 
                 }
 
-
-
-
                 </div>
-                <Graph></Graph>
+
+
+                <div className='wrapper2' style={{alignItems:'center', alignContent:'centre'}} >
+                    <Grid container xs={12} justify="space-between" spacing={0} style={{paddingTop:20}}>
+                        {/* <Grid item xs={12}>
+                            
+                        </Grid> */}
+
+
+<Grid item xs={9} style={{paddingRight:5, alignItems:'center'}}><div style={{textAlign:'center'}}><hr></hr>TRANSACTIONS<hr></hr></div></Grid>
+                        <Grid item xs={3}style={{paddingLeft:20}}><div style={{textAlign:'center'}}><hr></hr>STATEWISE PROJECTS<hr></hr></div></Grid>
+                        
+                        <Grid item xs={9} style={{paddingRight:5}}><Graph ></Graph></Grid>
+                        <Grid item xs={3}style={{paddingLeft:20}}><StateWise/></Grid>
+                    
+                    </Grid></div>
+
+
+
+
+
+
+                
             </div>
         )
     }
