@@ -48,7 +48,7 @@ class App extends Component{
       //console.log(networkData.address)
       this.setState({account : accounts[0]})
       console.log(accounts[0])
-      var amount = '15';
+     // var amount = '15';
        //var etherValue = Web3.utils.toWei(amount, 'ether')
     
       //  const request_Cent_govt = instance.methods.request_Funds_to_CG('0xdC9E3631F7fa43E4CEEf53C491A2A788815ae9f3',amount)
@@ -71,12 +71,12 @@ class App extends Component{
       //    from:'0xdC9E3631F7fa43E4CEEf53C491A2A788815ae9f3',
       //    value: web3.utils.toWei(part_amount,"ether")
       //  })
-       var vendors_payment = '2';
-       const to_vendors = instance.methods.payment_from_Contractor('0x8b2E48DD1189Ade0A322Dcf4ef06cCFAe056eDf2')
-       .send({
-         from: '0x10d38571f50117bb285A6a43FA94e1D27971a481',
-         value:web3.utils.toWei(vendors_payment,"ether")
-       })
+      //  var vendors_payment = '2';
+      //  const to_vendors = instance.methods.payment_from_Contractor('0x8b2E48DD1189Ade0A322Dcf4ef06cCFAe056eDf2')
+      //  .send({
+      //    from: '0x10d38571f50117bb285A6a43FA94e1D27971a481',
+      //    value:web3.utils.toWei(vendors_payment,"ether")
+      //  })
       //console.log(etherValue)
      // const state_transfer_update = await instance.methods.request_Funds_to_CG(amountToSend,'0x04bE43F707673D690e75432Ad88A3a51c1CE57B4').send(from)
     // var send = await instance.methods.funds_To_SG().call({ from:this.state.address }).then(res =>{console.log('success')})
