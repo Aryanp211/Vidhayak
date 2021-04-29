@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import {Form} from 'react-advanced-form'
-import {Button} from '@material-ui/core'
-
+import Web3 from 'web3';
+import Mycontract from "../contracts/Transactions.json";
  class request extends Component {
   constructor(props) {
     super(props);
@@ -104,7 +104,47 @@ import {Button} from '@material-ui/core'
         req_duration: e.target.value
     })
   }
-  
+  async componentWillMount() 
+  {
+    await this.loadWeb3()
+    //console.log(window.web3);
+  //  await this.loadBlockChainData()
+  }
+
+
+  async loadWeb3() {
+    if(window.ethereum)
+    {
+      window.web3 = new Web3(window.ethereum)
+      await window.ethereum.enable();
+    }
+    else if(window.web3)
+    {
+      window.web3 = new Web3(window.web3.currentProvider)
+    }
+    else
+    {
+      window.alert('Non-Ethereum browser derected')
+    }
+}
+  async loadBlockChainData(){
+    const web3 = window.web3;
+    const accounts = await web3.eth.getAccounts()
+    console.log(accounts);
+    const id = await web3.eth.net.getId();
+    const networkData = Mycontract.networks[id]
+    const instance = new web3.eth.Contract(Mycontract.abi, networkData.address)
+    //console.log(networkData.address)
+    var amount = this.state.req_amount;
+       //var etherValue = Web3.utils.toWei(amount, 'ether')
+    
+       const request_Cent_govt = instance.methods.request_Funds_to_CG('0xdC9E3631F7fa43E4CEEf53C491A2A788815ae9f3',amount)
+       .send({
+         from: '0xdC9E3631F7fa43E4CEEf53C491A2A788815ae9f3'// here I paste recently created address
+       }).then(res=>{
+         console.log('Updated');
+       });
+      }
 
   onSubmit(e) {
     e.preventDefault();
@@ -124,7 +164,7 @@ import {Button} from '@material-ui/core'
     }
 
     console.log(reque);
-
+    this.loadBlockChainData();
     axios.post('http://localhost:5000/requests/add', reque)
       .then(res => console.log(res.data));
 
@@ -153,7 +193,8 @@ import {Button} from '@material-ui/core'
   render() {
     return (
     <div>
-       <div style={{fontFamily:'Montserrat',textAlign:'center',alignContent:'center', fontSize:30}}>ENTER NEW REQUEST<hr></hr></div>
+      <div style={{fontFamily:'Montserrat',textAlign:'center',alignContent:'center', fontSize:30}}>ENTER NEW REQUEST<hr></hr></div>
+      
       <form className='form' onSubmit={this.onSubmit}>
         <div className="form-group"> 
           <label className='AllocLabel'>Name: </label>
@@ -257,10 +298,10 @@ import {Button} from '@material-ui/core'
         <div className="form-group">
 
        
-          <Button type="submit" style={{fontFamily:'Montserrat',backgroundColor:'black',color:'white'}} value="Register request" className="Register" >Register</Button>
+          <button type="submit" value="Register request" className="Register" >Register</button>
 
 
-          {/* <button value='Reset' className="ResetButton" onClick={this.resetState}/> */}
+          <button value='Reset' className="ResetButton" onClick={this.resetState}/>
         </div>
       </form>
     </div>

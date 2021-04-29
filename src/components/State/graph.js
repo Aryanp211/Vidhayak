@@ -44,9 +44,10 @@ class Graph extends Component {
 
     componentDidMount(){
         var chart = this.chart;
-        axios.get('http://localhost:5000/state/transaction/'+this.props.statename)
+        axios.get('http://localhost:5000/transaction/')
 
         .then(function(response) {
+            console.log(response)
             console.log(response)
             return response.data;
         })

@@ -157,7 +157,7 @@ console.log(statename)
          <Switch>
          <div className="CentralContainer container"> 
        {/* <Route exact path="/" component={Login} /> */}
-       <Route path="/stategov/Home" render={(props)=>(<Home {...props} data={data}/>)}/>
+       <Route path="/stategov/Home" render={(props)=>(<Home {...props} data={data} statename={statename}/>)}/>
        <Route path="/stategov/Request" render={(props)=>(<Request {...props} data={data}/>)}/>
        <Route path="/stategov/Authorized" render={(props) => (
     <Authorized {...props} statename={statename} />

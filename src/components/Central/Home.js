@@ -28,7 +28,7 @@ class Home extends React.Component {
             Items:res.data
             })
             console.log(res.data)
-        }).catch(()=>console.log('Nahi hora'))
+        }).catch(()=>console.log('Not'))
     }
 
     scrolls = (scrollOffset) => {

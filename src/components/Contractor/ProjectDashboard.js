@@ -67,7 +67,8 @@ import IconButton from '@material-ui/core/IconButton';
 // import Chip from '@material-ui/core/Chip'
 // import { useHistory } from 'react-router-dom'
 // import { withRouter } from 'react-router';
-
+import Web3 from 'web3';
+import Mycontract from "../contracts/Transactions.json";
 const useStyles = makeStyles((theme)=>({
   
 
@@ -240,9 +241,10 @@ function ProjectDashboard(props) {
       
     }
     
-    const handlePayment=e=>{
+    function handlePayment(e,_amount){
       console.log(e)
       // opprs.condition(true)
+      loadBlockChainData(_amount);
       var xx={
         vendor_id:e,
         details:details
@@ -259,11 +261,49 @@ function ProjectDashboard(props) {
         // handleCondition(false)
       }
         )
+      }
 
+
+
+    async function loadWeb3() {
+      if(window.ethereum)
+      {
+        window.web3 = new Web3(window.ethereum)
+        await window.ethereum.enable();
+      }
+      else if(window.web3)
+      {
+        window.web3 = new Web3(window.web3.currentProvider)
+      }
+      else
+      {
+        window.alert('Non-Ethereum browser derected')
+      }
     }
 
-    useEffect(()=>{
 
+    async function loadBlockChainData(_amt){
+      const web3 = window.web3;
+      const accounts = await web3.eth.getAccounts()
+      console.log(accounts);
+      const id = await web3.eth.net.getId();
+      const networkData = Mycontract.networks[id]
+      const instance = new web3.eth.Contract(Mycontract.abi, networkData.address)
+      //console.log(networkData.address)
+      var vendors_payment = _amt;
+      const to_vendors = instance.methods.payment_from_Contractor('0x8b2E48DD1189Ade0A322Dcf4ef06cCFAe056eDf2')
+      .send({
+        from: '0x10d38571f50117bb285A6a43FA94e1D27971a481',
+        value:web3.utils.toWei((vendors_payment).toString(),"ether")
+      })
+          }
+
+
+
+    useEffect(()=>{
+      loadWeb3();
+  //console.log(window.web3);
+    //loadBlockChainData();
       // if(condition===true){
       axios.get('http://localhost:5000/project/details/'+props.details._id)
       .then(res=>{
@@ -415,7 +455,7 @@ function ProjectDashboard(props) {
               {row.reason}
               
               <TableRow>
-              <Button variant="contained" color="secondary" onClick={function(){handlePayment(row._id)}}>Settle Payment</Button>
+              <Button variant="contained" color="secondary" onClick={function(){handlePayment(row._id,row.amount)}}>Settle Payment</Button>
               </TableRow>
             </Box>
           </Collapse>

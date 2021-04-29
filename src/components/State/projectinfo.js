@@ -121,10 +121,10 @@ handleRefresh=()=>{
                             <ProjectTransaction details={this.state.details}></ProjectTransaction>
                         </Grid>
                         
-
+{/* 
                         <Grid item xs={12} style={{paddingTop:50}}>
                             <Button style={{color:'white', backgroundColor:'black'} } onClick={this.handleEnd(this.state.details)}></Button>
-                        </Grid>
+                        </Grid> */}
 
 
 

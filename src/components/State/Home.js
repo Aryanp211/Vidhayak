@@ -16,7 +16,7 @@ class Home extends React.Component {
         this.state={
             Items:['TOTAL TENDERS INITIATED','TOTAL CONTRACTORS',' ONGOING PROJECTS','PROJECTS FINISHED'],
             colors:[152,15,4,2],//IDHAR NUMBERS DAALNA RAJAT
-            data:this.props.history.location.state.data
+            data:this.props.data
         }
     }
 
@@ -38,7 +38,7 @@ class Home extends React.Component {
     
     render() {
         let cnt=-1;
-
+console.log(this.props.statename)
         return (
             <div>
                          {/* <Grid  container
@@ -74,7 +74,7 @@ class Home extends React.Component {
                     <Grid container xs={12} justify="space-between" spacing={0} style={{paddingTop:20}}>
                     <Grid item xs={9} style={{paddingRight:5, alignItems:'center'}}><div style={{textAlign:'center'}}><hr></hr>TRANSACTIONS<hr></hr></div></Grid>
                         <Grid item xs={3}style={{paddingLeft:20}}><div style={{textAlign:'center'}}><hr></hr>CATEGORY WISE ALLOCATION<hr></hr></div></Grid>
-                        <Grid item xs={9} style={{paddingRight:5}}><Graph statename={this.props.history.location.state.data}></Graph></Grid>
+                        <Grid item xs={9} style={{paddingRight:5}}><Graph statename={this.props.statename}></Graph></Grid>
                         <Grid item xs={3} style={{paddingLeft:20}}><CategoryWise/></Grid>
                     
                     </Grid></div>
