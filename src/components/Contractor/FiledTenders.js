@@ -95,11 +95,16 @@ const useRowStyles = makeStyles({
     let history = useHistory();
     let row = props.row;
     // {console.log(row)}
-    let rang='red'
+    let rang='white'
     let op=false
     const [details,updatedetails]=useState([])
     if(row.bid_status=='Tender Won'){
-      rang='green'
+      rang='#9fdf9f'
+      op=true
+      
+    }
+    if(row.bid_status=='Tender Lost'){
+      rang='#ffe6e6'
       op=true
       
     }
@@ -319,7 +324,7 @@ function FiledTenders(props) {
 
     return (
         <div>
-            Filed Tenders
+           <div style={{fontFamily:'Montserrat',textAlign:'center',alignContent:'center', fontSize:30}}>FILED TENDERS<hr></hr></div>
     <FormControl className={classes.formControl}>
         <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
         <Select

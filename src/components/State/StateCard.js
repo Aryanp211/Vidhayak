@@ -133,7 +133,7 @@ class StateCard extends Component {
     console.log(this.state.category)
   return (
     <div>
-    <Card className='f' variant="outlined" >
+    <Card className='f' variant="outlined" style={{borderRadius:10, fontFamily: 'Montserrat', width:320, height:175, background:'linear-gradient(#17ead9,#36b8e0)'}}>
      <header onClick={()=>{
 
      if (this.state.status==='Authorized'){

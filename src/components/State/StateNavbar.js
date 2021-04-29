@@ -40,6 +40,10 @@ const useStyles = makeStyles({
       
       
     },
+    DrawerText:{
+      fontFamily:'Montserrat',
+      fontWeight:'bold'
+    },
     fullList: {
       width: 'auto',
       // height:10
@@ -97,30 +101,30 @@ const classes = useStyles();
                 
               
 <ListItem>
-<Button className='NavButton' color='inherit' component={Link} to='/stategov/Home' >Home</Button>
+<Button  className={classes.DrawerText} fullWidth color='inherit' component={Link} to='/stategov/Home' >Home</Button>
 </ListItem>
 
-<ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/Authorized'>Authorized Projects</Button>
-</ListItem>
-
-
-
-
-
-<ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/Pending'>Pending Projects</Button>
+<ListItem><Button className={classes.DrawerText} fullWidth  color='inherit' component={Link} to='/stategov/Authorized'>Authorized Projects</Button>
 </ListItem>
 
 
-<ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/Tenders'>Initialised Tenders</Button>
+
+
+
+<ListItem><Button className={classes.DrawerText} fullWidth color='inherit' component={Link} to='/stategov/Pending'>Pending Projects</Button>
 </ListItem>
 
-<ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/Request'>Request Project</Button>
+
+<ListItem><Button className={classes.DrawerText} fullWidth color='inherit' component={Link} to='/stategov/Tenders'>Initialised Tenders</Button>
 </ListItem>
 
-<ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/OngoingProjects'>Ongoing Projects</Button>
+<ListItem><Button className={classes.DrawerText} fullWidth color='inherit' component={Link} to='/stategov/Request'>Request Project</Button>
 </ListItem>
 
-<ListItem><Button className='NavButton' color='inherit' component={Link} to='/stategov/alltransaction'>All transactions</Button>
+<ListItem><Button className={classes.DrawerText} fullWidth color='inherit' component={Link} to='/stategov/OngoingProjects'>Ongoing Projects</Button>
+</ListItem>
+
+<ListItem><Button className={classes.DrawerText} fullWidth color='inherit' component={Link} to='/stategov/alltransaction'>All transactions</Button>
 </ListItem>
 </List>
           <Divider />
@@ -136,7 +140,7 @@ const classes = useStyles();
     return (
         // <Container className={classes.root} disableGutters>
         
-        <AppBar  position='static'>
+        <AppBar  position='static' style={{backgroundColor:'black'}}>
         
         <Toolbar className='AppBar' >
             <Typography variant='h6' style={{flexGrow:1, display:'flex'}}>
@@ -149,7 +153,7 @@ const classes = useStyles();
 
                 <Button edge='start' 
                     onClick={toggleDrawer(anchor, true)}>
-                    <DehazeIcon></DehazeIcon>
+                    <DehazeIcon style={{color:'white'}}></DehazeIcon>
                 </Button>
 
                 <Drawer anchor={anchor} 
@@ -166,13 +170,13 @@ const classes = useStyles();
     <img src={Emblem} className='EmblemCentral'></img>
     </div> */}
             
-            <div className={classes.name}>
+            
               {/* <p className={classes.ptag} > */}
-              <div className={classes.child}>
+              <div className={classes.child} style={{textAlign:'center',verticalAlign:'center',display:'flex',alignSelf:'center',fontFamily:'Montserrat', fontSize:15}}>
             STATE GOVERNMENT
             </div>
             {/* </p> */}
-            </div>
+           
 
         {/* </div> */}
             </Typography>
@@ -185,11 +189,11 @@ const classes = useStyles();
 
 
 
-                <Button className='HomeButton' color='inherit' component={Link} to='/stategov/Home' ><HomeIcon></HomeIcon></Button>
+                <Button className='HomeButton' style={{fontFamily:'Montserrat'}} color='inherit' component={Link} to='/stategov/Home' ><HomeIcon></HomeIcon></Button>
                 {/* <Button className='NavButton' color='inherit' component={Link} to='/stategov/Request'>Request</Button>
                 <Button className='NavButton' color='inherit' component={Link} to='/stategov/Authorized'>Authorized Projects</Button> */}
                 {/* <Button className='NavButton' color='inherit' component={Link} to='/state/Allocate'>Allocate Budget</Button> */}
-                <Button className='LogOutButton' color='inherit' href='http://localhost:3000/'>Log Out</Button>
+                <Button className='LogOutButton' style={{fontFamily:'Montserrat'}} color='inherit' href='http://localhost:3000/'>Log Out</Button>
                 
             </Toolbar>
         </AppBar>

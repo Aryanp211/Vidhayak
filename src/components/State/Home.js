@@ -14,21 +14,22 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            Items:[],
-            colors:['aliceblue','blanchedalmond','wheat','green']
+            Items:['TOTAL TENDERS INITIATED','TOTAL CONTRACTORS',' ONGOING PROJECTS','PROJECTS FINISHED'],
+            colors:[152,15,4,2],//IDHAR NUMBERS DAALNA RAJAT
+            data:this.props.history.location.state.data
         }
     }
 
-    componentDidMount(){
-        // console.log('Idharrrr')
-        axios.get('http://localhost:5000/requests/categories')
-        .then(res=>{
-            this.setState({
-            Items:res.data
-            })
-            console.log(res.data)
-        }).catch(()=>console.log('Nahi hora'))
-    }
+    // componentDidMount(){
+    //     // console.log('Idharrrr')
+    //     axios.get('http://localhost:5000/requests/categories')
+    //     .then(res=>{
+    //         this.setState({
+    //         Items:res.data
+    //         })
+    //         console.log(res.data)
+    //     }).catch(()=>console.log('Nahi hora'))
+    // }
 
     scrolls = (scrollOffset) => {
         this.myRef.current.scrollLeft += scrollOffset;
@@ -71,11 +72,10 @@ class Home extends React.Component {
                 }</div>
                         <div className='wrapper2' style={{alignItems:'center', alignContent:'centre'}} >
                     <Grid container xs={12} justify="space-between" spacing={0} style={{paddingTop:20}}>
-                        <Grid item xs={12}>
-                            
-                        </Grid>
-                        <Grid item xs={9}><hr></hr><Graph statename={this.props.history.location.state.data}></Graph></Grid>
-                        <Grid item xs={3}><hr></hr><CategoryWise/></Grid>
+                    <Grid item xs={9} style={{paddingRight:5, alignItems:'center'}}><div style={{textAlign:'center'}}><hr></hr>TRANSACTIONS<hr></hr></div></Grid>
+                        <Grid item xs={3}style={{paddingLeft:20}}><div style={{textAlign:'center'}}><hr></hr>CATEGORY WISE ALLOCATION<hr></hr></div></Grid>
+                        <Grid item xs={9} style={{paddingRight:5}}><Graph statename={this.props.history.location.state.data}></Graph></Grid>
+                        <Grid item xs={3} style={{paddingLeft:20}}><CategoryWise/></Grid>
                     
                     </Grid></div>
                     

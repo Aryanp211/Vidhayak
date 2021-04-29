@@ -170,8 +170,9 @@ class PrintPendingTable extends Component {
     return (
         <div>
           {/* <br></br> */}
+          <h3 style={{fontFamily:'Montserrat', textAlign:'center'}}>PENDING PROJECTS: <hr></hr></h3>
           <div>
-          <h3>{this.props.history.location.state.category} approved requests:</h3>
+      
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -190,7 +191,7 @@ class PrintPendingTable extends Component {
             {this.pendingrequestList()}
           </tbody>
         </table>
-        <button className="Register" onClick={()=>{this.props.history.push('/stategov/Pending')}}>Back</button>
+        <Button style={{color:'white',backgroundColor:'black', fontSize:12, fontFamily:'Montserrat'}} className="Register" onClick={()=>{this.props.history.push('/stategov/Pending')}}>Back</Button>
         </div>
         
       {/* : */}

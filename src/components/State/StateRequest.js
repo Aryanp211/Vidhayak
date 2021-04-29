@@ -152,7 +152,7 @@ import {Form} from 'react-advanced-form'
   render() {
     return (
     <div>
-      <h3>Enter the new Request</h3>
+       <div style={{fontFamily:'Montserrat',textAlign:'center',alignContent:'center', fontSize:30}}>ENTER NEW REQUEST<hr></hr></div>
       <form className='form' onSubmit={this.onSubmit}>
         <div className="form-group"> 
           <label className='AllocLabel'>Name: </label>

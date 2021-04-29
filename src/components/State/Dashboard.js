@@ -76,7 +76,7 @@ const useStyles = makeStyles({
   return (
     <div>
     {/* <div className={classes.head}>FIELD NAME</div> */}
-    <Card className={classes.root} style={{backgroundColor:props.color}} >
+    <Card className={classes.root} style={{background:' linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)',fontFamily: 'Montserrat'}} >
     
       <CardContent>
             <Grid item container spacing={2} alignItems='center' justify='center'>
@@ -84,14 +84,14 @@ const useStyles = makeStyles({
                   
                   <Grid item container xs={12}  justify='center'
                     alignItems='center'>
-                      <Grid item xs={8}><div className='Category'>{props.item.category_name}</div></Grid>
-                      <Grid item xs={4}><div className='TotalAlloc'>{props.item.category_amountAlloc}</div></Grid>
+                      <Grid item xs={12}><div className='Category' style={{textAlign:'center'}}>{props.item}<hr></hr></div></Grid>
+                      <Grid item xs={12}><div className='TotalAlloc' style={{textAlign:'center', fontSize:20}}>{props.color}</div></Grid>
                       
                   </Grid>
                   
 
-                  <Grid item container xs={12} 
-                    alignItems='center' justify='center' className={classes.cost}>
+                  {/* <Grid item container xs={12} 
+                    alignItems='center' justify='center' className={classes.cost}> */}
                   
                       {/* <hr className='hrTag'></hr> */}
                       {/* <Grid item xs={12} 
@@ -99,29 +99,29 @@ const useStyles = makeStyles({
                         justify='right'
     
                       > */}
-                      <div>
+                      {/* <div>
                       <img src={rupee} className='RupeeIcon'></img> 
                       {/* </Grid> */}
                       {/* <Grid item xs={8} className={classes.cost}> */}
-                      {props.item.category_amount}</div></Grid>
+                      {/* {props.item.category_amount}</div></Grid> */} 
                       
           
 
-                  <Grid item container xs={12}  className={classes.PendingAuth}>
+                  {/* <Grid item container xs={12}  className={classes.PendingAuth}>
              
                   <Grid item xs={5}><div className='PendingDiv' id='Attributes'>Pending</div></Grid>
                   <Grid item xs={2}></Grid>
                   <Grid item xs={5} ><div className='AuthDiv' id='Attributes' >Authorized</div></Grid>
                   
-                </Grid>  
+                </Grid>   */}
 
 
-                  <Grid item container xs={12} alignItems='center' justify='center'>
+                  {/* <Grid item container xs={12} alignItems='center' justify='center'>
                   
                   <Grid item xs={5}><div className='PendingNum' id='SmallNum'>{props.item.category_pending}</div></Grid>
                   <Grid item xs={2}></Grid>
                   <Grid item xs={5}><div className='AuthNum' id='SmallNum'>{props.item.category_authorized}</div></Grid>
-                </Grid>  
+                </Grid>   */}
 
                   
             </Grid>

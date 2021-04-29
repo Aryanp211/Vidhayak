@@ -33,8 +33,8 @@ class Authorized extends Component {
     render() {
     
         return (
-            <div>
-                <Grid container spacing={3}>
+            <div><div style={{fontFamily:'Montserrat',textAlign:'center', fontSize:30}}>AUTHORIZED PROJECTS<hr></hr></div>
+                <Grid container spacing={3} justify='center' alignItems='center'>
                 {this.state.category.map((mapitem)=>{
                     console.log('---',this.props.statename)
                     return ( 

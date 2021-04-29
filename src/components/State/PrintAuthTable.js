@@ -88,7 +88,7 @@ const Pendingrequest = props =>
     <td>{props.pendingrequest.req_status}</td>
     <td>
 
-<button className="btn btn-primary mx-1" 
+<button  className="btn btn-primary mx-1" 
 onClick={
     () => 
        { props.updaterequest(props.pendingrequest._id,props.pendingrequest.req_amount)}}> 
@@ -197,8 +197,9 @@ class PrintAuthTable extends Component {
     return (
         <div>
           {/* <br></br> */}
+          <h3 style={{fontFamily:'Montserrat', textAlign:'center'}}>AUTHORIZED PROJECTS: <hr></hr></h3>
           {this.state.init==false? <div>
-          <h3>{this.props.history.location.state.category} approved requests:</h3>
+     
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -217,7 +218,7 @@ class PrintAuthTable extends Component {
             {this.pendingrequestList()}
           </tbody>
         </table>
-        <button className="Register" onClick={()=>{this.props.history.push('/stategov/Authorized')}}>Back</button>
+        <Button style={{color:'white',backgroundColor:'black', fontSize:12, fontFamily:'Montserrat'}}  className="Register" onClick={()=>{this.props.history.push('/stategov/Authorized')}}>Back</Button>
         </div>
         
       :

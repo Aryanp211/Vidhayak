@@ -222,7 +222,7 @@ function NewTendersTable() {
 
   return (
   <div>
-    Open tenders
+    
     <FormControl className={classes.formControl}>
         <InputLabel id="demo-mutiple-checkbox-label">Select State</InputLabel>
         <Select

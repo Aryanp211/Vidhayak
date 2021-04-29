@@ -146,7 +146,7 @@ function StatealltransactionTable(props) {
 
     return (
         <div>
-              All state transactions
+             
     <TableContainer component={Paper}>
       
       

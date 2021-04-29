@@ -54,7 +54,7 @@ const useStyles = makeStyles({
 
 centreText:{
     fontSize:30,
-    textDecoration:'underline',
+    // textDecoration:'underline',
     // textDecorationStyle:'wavy'
 },
 
@@ -104,10 +104,10 @@ centreText:{
     <div onClick={handleClick}> 
     {/* <div className={classes.head}>FIELD NAME</div> */}
     <Card className={classes.root} 
-    style={{backgroundColor:props.color}}  >
+    style={{background:' linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)',fontFamily: 'Montserrat'}}   >
     
       <CardContent style={{textAlign:'center'}} >
-        <div className={classes.centreText}>{props.item}</div>
+        <div className={classes.centreText}>{props.item}<hr></hr></div>
       </CardContent>
   
     </Card>

@@ -15,8 +15,8 @@ class Home extends React.Component {
         super(props)
         this.state={
             Items:[],
-            Cat:['New Tenders','Filed Tenders','Archived Tenders','See Transactions'],
-            routes:['NewTenders','FiledTenders','ArchivedTenders','SeeTransactions'],
+            Cat:['New Tenders','Filed Tenders','See Transactions'],
+            routes:['NewTenders','FiledTenders','SeeTransactions'],
             colors:['#793c3c']
         }
     }

@@ -148,7 +148,7 @@ function AlltransactionTable(props) {
 
     return (
         <div>
-              All state transactions
+              <div style={{fontFamily:'Montserrat',textAlign:'center',alignContent:'center', fontSize:30}}>ALL TRANSACTIONS<hr></hr></div>
     <TableContainer component={Paper}>
       
       

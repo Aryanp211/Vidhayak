@@ -126,7 +126,7 @@ function ContractorNavbar() {
                 
 {/* <div> */}
 
-        <div>
+        {/* <div>
             {['left'].map((anchor) => (
                 <React.Fragment key={anchor}>
 
@@ -142,20 +142,20 @@ function ContractorNavbar() {
                     </Drawer>
                 </React.Fragment>
             ))}
-        </div>
+        </div> */}
                 {/* <Button onClick={()=>{this.pro}} */}
 
                 {/* <div className='EmblemCentraldiv'>
         <img src={Emblem} className='EmblemCentral'></img>
         </div> */}
                 
-                <div className={classes.name}>
+                
                   {/* <p className={classes.ptag} > */}
-                  <div className={classes.child}>
+                  <div className={classes.child} style={{textAlign:'center',verticalAlign:'center',display:'flex',alignSelf:'center',fontFamily:'Montserrat', fontSize:15}}>
                 CONTRACTOR
                 </div>
                 {/* </p> */}
-                </div>
+                
 
             {/* </div> */}
                 </Typography>
@@ -170,7 +170,7 @@ function ContractorNavbar() {
                 {/* <Button className='NavButton' color='inherit' component={Link} to='/central/Pending'>Pending Projects</Button>
                 <Button className='NavButton' color='inherit' component={Link} to='/central/Authorized'>Authorized Projects</Button>
                 <Button className='NavButton' color='inherit' component={Link} to='/central/Allocate'>Allocate Budget</Button> */}
-                <Button className='LogOutButton' color='inherit' href='http://localhost:3000/'>Log Out</Button>
+                <Button className='LogOutButton' style={{fontFamily:'Montserrat'}} color='inherit' href='http://localhost:3000/'>Log Out</Button>
                 
             </Toolbar>
         </AppBar>

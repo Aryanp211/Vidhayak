@@ -6,7 +6,7 @@ export class NewTenders extends Component {
     render() {
 
         return (
-            <div>
+            <div><div style={{fontFamily:'Montserrat',textAlign:'center',alignContent:'center', fontSize:30}}>NEW TENDERS<hr></hr></div>
                 <NewTendersTable/>
             </div>
         )

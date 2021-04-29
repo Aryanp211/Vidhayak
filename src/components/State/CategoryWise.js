@@ -62,7 +62,7 @@ let [data,handleData]= useState([])
   )
 // const classes=useStyle()
   return (
-    <TableContainer component={Paper} style={{ maxHeight: 300 }} className={classes.container}>
+    <TableContainer component={Paper} style={{ maxHeight: 400 }} className={classes.container}>
       <Table stickyHeader className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>

@@ -155,7 +155,7 @@ function OngoingProjects(props) {
 
     return (
         <div>
-             Ongoing Projects
+              <div style={{fontFamily:'Montserrat',textAlign:'center',alignContent:'center', fontSize:30}}>ONGOING PROJECTS<hr></hr></div>
     <TableContainer component={Paper}>
       
       

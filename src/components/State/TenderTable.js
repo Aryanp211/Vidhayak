@@ -158,7 +158,7 @@ function TenderTable(props) {
 
     return (
         <div>
-             Initialised Tenders
+             
     <TableContainer component={Paper}>
       
       

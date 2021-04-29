@@ -4,6 +4,7 @@ import StatealltransactionTable from './StatealltransactionTable';
 function Statealltransaction(props) {
     return (
         <div>
+             <div style={{fontFamily:'Montserrat',textAlign:'center',alignContent:'center', fontSize:30}}>STATE TRANSACTIONS<hr></hr></div>
         <StatealltransactionTable  statename={props.statename}/>
         </div>
     )

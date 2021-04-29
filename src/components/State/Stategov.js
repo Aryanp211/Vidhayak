@@ -153,11 +153,11 @@ console.log(statename)
       
        <StateNavbar></StateNavbar>
       
-      
+       {/* {props.history.location.state.state} */}
          <Switch>
          <div className="CentralContainer container"> 
        {/* <Route exact path="/" component={Login} /> */}
-       <Route path="/stategov/Home" render={(props)=>(<Home {...props} data={props.history.location.state.state}/>)}/>
+       <Route path="/stategov/Home" render={(props)=>(<Home {...props} data={data}/>)}/>
        <Route path="/stategov/Request" render={(props)=>(<Request {...props} data={data}/>)}/>
        <Route path="/stategov/Authorized" render={(props) => (
     <Authorized {...props} statename={statename} />
