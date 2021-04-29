@@ -28,7 +28,7 @@ router.route('/details/:id').get((req,res)=>{
   console.log("[][[]][[][][][][][][][][][]]][][][]][][][")
   let id=req.params.id
   console.log(id)
-  console.log("mein ayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+  
   project.findById(id)
   .then(re=>{
     console.log(re)
@@ -152,7 +152,7 @@ router.route('/terminatetender').post((req, res) => {
 
 
 router.route('/initialise').post((req,res)=>{
-console.log('rajat initialise me aya hai ')
+
   let id=req.body.id;
   let bid=req.body.bid;
   let date=req.body.date;
@@ -172,7 +172,7 @@ console.log('rajat initialise me aya hai ')
   .then((e)=>{
   //  console.log('init hogya');
   res.json(ress)})
-  .catch(e=>console.log('Rajat _ hai'))
+  .catch(e=>console.log('done'))
 } )
 .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -195,7 +195,7 @@ router.route('/end').post((req,res)=>{
     .then((e)=>{
     //  console.log('init hogya');
     res.json(ress)})
-    .catch(e=>console.log('Rajat _ hai'))
+    .catch(e=>console.log('i'))
   } )
   .catch(err => res.status(400).json('Error: ' + err));
   });

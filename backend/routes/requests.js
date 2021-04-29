@@ -13,7 +13,7 @@ router.route('/').get((req, res) => {
 
 
 router.route('/categories').get((req, res) => {
-  console.log('aaaa')
+  console.log('a')
   CategorySchema.find()
     .then(requestss => res.json(requestss))
     .catch(err => res.status(400).json('Error: ' + err));
@@ -86,7 +86,7 @@ router.route('/finderState/:q').get((req,res)=>{
   // var status=req.query.status
   console.log(name)
   // console.log(status)
-  console.log("Idhar")
+  console.log("Ir")
   Project.find({req_status:'Pending', req_category:name})
   
 .then((requestss) => res.json(requestss))
@@ -99,7 +99,7 @@ router.route('/finderAuth/:q').get((req,res)=>{
   // var status=req.query.status
   console.log(name)
   // console.log(status)
-  console.log("Idhar")
+  console.log("Ir")
   Project.find({req_status:'Authorized', req_category:name})
   
 .then((requestss) => res.json(requestss))
@@ -133,9 +133,9 @@ router.route('/update').post((req, res) => {
   console.log(req.body)
   Project.findById(proj_id)
     .then(requestss  => {
-     console.log('XXXXXXXXXXXXXXXXX')
+    //  console.log('XXXXXXXXXXXXXXXXX')
       console.log(requestss.req_category)
-      console.log('XXXXXXXXXXXXXXXXX')
+      // console.log('XXXXXXXXXXXXXXXXX')
       CategorySchema.findOne( {category_name:requestss.req_category})
       .then(res=>{
         res.category_amount= res.category_amountAlloc-requestss.req_amount

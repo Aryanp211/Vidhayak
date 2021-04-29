@@ -82,7 +82,7 @@ router.route('/filedtenders/:id').get(async(req, res) => {
         zz.bid_status='Tender Won';
     }
     else if(projectdetails.project_status=='Project Started' && projectdetails.contractor_Authorized.contractor_details.contractor_id!=x._id){
-      console.log('pagal hao kya be');
+      // console.log('pagal hao kya be');
       zz.bid_status='Tender Lost';
     }
     else{
@@ -213,7 +213,7 @@ router.route('/vendorrequest').post((req,res)=>{
 
 
 router.route('/filetender').post((req,res)=>{ //to post: to file tender
-  console.log('rajat filetender me aya hai ')
+  // console.log('rajat filetender me aya hai ')
     let user_id1=req.body.user_id;
     let bidamount=req.body.bidamount;
     let date=req.body.date;

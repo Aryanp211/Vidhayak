@@ -28,7 +28,7 @@ class alltransaction extends Component {
   }
 
   componentDidMount() {
-    console.log('Mai agaya')
+    console.log('M')
 
   // axios.get('http://localhost:5000/requests/finder/Pending')
   // .then(response => {

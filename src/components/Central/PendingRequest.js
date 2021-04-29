@@ -38,7 +38,7 @@ class PendingRequest extends Component {
   }
 
   componentDidMount() {
-    console.log('Mai agaya')
+    console.log('M')
     console.log(this.props)
 
  console.log('||||||||||||||||||||||||||||||||||||||||')

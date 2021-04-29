@@ -48,7 +48,7 @@ router.route('/findAuth').get((req,res)=>{
   // var status=req.query.status
   // console.log(statename)
   // console.log(cat)
-  console.log("Idhar state")
+  console.log("Id")
   Project.find({req_status:'Authorized', req_category:cat, req_state:statename, project_init:false, project_status:'Tender Not Initialised' })
   
 .then((requestss) =>{
@@ -70,7 +70,7 @@ router.route('/findPending').get((req,res)=>{
   // var status=req.query.status
   // console.log(statename)
   // console.log(cat)
-  console.log("pending data idhar aaega")
+  console.log("pending data")
   Project.find({req_status:'Pending', req_category:cat, req_state:statename, project_init:false, project_status:'Tender Not Initialised' })
 .then((requestss) =>{
   console.log(requestss)
