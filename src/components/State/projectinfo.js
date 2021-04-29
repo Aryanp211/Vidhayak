@@ -56,7 +56,7 @@ console.log('HHHCHCHCHCHCHC')
 
     
 handleClick=()=>{
-    this.props.history.push('/stategov/OngoingProjects')
+    this.props.history.push('/stategov/OngoingProjects',this.props.history.location.state.details.req_state)
 
 }
 

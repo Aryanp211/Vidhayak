@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import {Form} from 'react-advanced-form'
+import {Button} from '@material-ui/core'
 
  class request extends Component {
   constructor(props) {
@@ -256,10 +257,10 @@ import {Form} from 'react-advanced-form'
         <div className="form-group">
 
        
-          <button type="submit" value="Register request" className="Register" >Register</button>
+          <Button type="submit" style={{fontFamily:'Montserrat',backgroundColor:'black',color:'white'}} value="Register request" className="Register" >Register</Button>
 
 
-          <button value='Reset' className="ResetButton" onClick={this.resetState}/>
+          {/* <button value='Reset' className="ResetButton" onClick={this.resetState}/> */}
         </div>
       </form>
     </div>

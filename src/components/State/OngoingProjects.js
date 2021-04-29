@@ -132,7 +132,7 @@ function OngoingProjects(props) {
     useEffect(() => {
       // let zz=[]
       console.log(condition)
-        if(condition===true){
+        // if(condition===true){
         axios.post('http://localhost:5000/project/Ongoing',{statename})
         .then(response => {
           
@@ -145,7 +145,7 @@ function OngoingProjects(props) {
           }).catch(()=>console.log('Then Unsuccessful'))
           
          
-         }
+        //  }
        
       
        }

@@ -107,7 +107,7 @@ centreText:{
     style={{background:' linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)',fontFamily: 'Montserrat'}}   >
     
       <CardContent style={{textAlign:'center'}} >
-        <div className={classes.centreText}>{props.item}<hr></hr></div>
+        <div className={classes.centreText}>{(props.item).toUpperCase()}<hr></hr></div>
       </CardContent>
   
     </Card>

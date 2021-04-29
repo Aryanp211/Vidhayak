@@ -195,7 +195,7 @@ class PrintAuthTable extends Component {
   render() {
     // let init=false
     return (
-        <div>
+        <div> 
           {/* <br></br> */}
           <h3 style={{fontFamily:'Montserrat', textAlign:'center'}}>AUTHORIZED PROJECTS: <hr></hr></h3>
           {this.state.init==false? <div>
