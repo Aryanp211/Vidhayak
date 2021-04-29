@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Personal Details', 'Verification details','Proposal Details','Review your bid'];
+const steps = ['Personal Details', 'Verification details','Proposal Details'];
 
 function getStepContent(step,data,proj_id) {
   switch (step) {
@@ -63,8 +63,6 @@ function getStepContent(step,data,proj_id) {
       return <PaymentForm data={data}/>;
     case 2:
       return <ProposalDetails data={data} proj_id={proj_id}/>;
-    case 3:
-        return <Review data={data}/>;
     default:
       throw new Error('Unknown step');
   }
@@ -89,7 +87,7 @@ function getStepContent(step,data,proj_id) {
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+            {props.data.user_company}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -109,11 +107,10 @@ function getStepContent(step,data,proj_id) {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for the bidding
+                  Thank you for bidding.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your bid id is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
+                  Your project id is {props.history.location.state.proj_id}. We will let you know the result shortly.
                 </Typography>
               </React.Fragment>
             ) : (
@@ -131,7 +128,7 @@ function getStepContent(step,data,proj_id) {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Place bid' : 'Next'}
                   </Button>
                 </div>
               </React.Fragment>

@@ -147,6 +147,10 @@ function TransactionsTable() {
 
     return (
         <div>
+          
+
+
+
               All transactions
     <TableContainer component={Paper}>
       

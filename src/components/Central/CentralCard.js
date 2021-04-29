@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import './CSS/CentralCard.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,6 +10,7 @@ import PendingRequest from './PendingRequest';
 import { BrowserRouter as Router, Link, Route,Switch} from "react-router-dom";
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
+
 
 class CentralCard extends Component {
 
@@ -109,7 +111,7 @@ class CentralCard extends Component {
   render(){
   return (
     <div>
-    <Card className='f' variant="outlined" >
+    <Card className='CentralCard' variant="outlined" style={{borderRadius:10, fontFamily: 'Montserrat', width:320, height:175, background:'linear-gradient(#17ead9,#36b8e0)'}} >
      <header onClick={()=>{
 
      if (this.state.status==='Authorized'){
@@ -145,8 +147,9 @@ class CentralCard extends Component {
           {'"a benevolent smile"'}
         </Typography> */}
 
-        <h1>{this.props.category}</h1>
-        <h3>{this.state.status}: {this.state.count}</h3>
+        <h2>{this.props.category}</h2>
+        <hr></hr>
+        <h5 style={{paddingTop:15}}>{this.state.status}: {this.state.count}</h5>
       </CardContent>
       </header>
 

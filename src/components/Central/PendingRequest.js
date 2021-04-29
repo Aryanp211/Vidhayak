@@ -136,7 +136,7 @@ class PendingRequest extends Component {
     return (
         <div>
           <br></br>
-          <h3>{this.props.history.location.state.name} pending requests:</h3>
+          <h3 style={{fontFamily:'Montserrat', textAlign:'center'}}>PENDING REQUESTS: {(this.props.history.location.state.name).toUpperCase()}  <hr></hr></h3>
         {/* <h3>Pending Requests:</h3> */}
         <table className="table">
           <thead className="thead-light">
@@ -158,7 +158,7 @@ class PendingRequest extends Component {
         </table>
 
 
-      <button className="Register" onClick={()=>{this.props.history.push('central/Pending')}}>Back</button>
+      <Button style={{color:'white',backgroundColor:'black', fontSize:12, fontFamily:'Montserrat'}} className="Register" onClick={()=>{this.props.history.push('central/Pending')}}>Back</Button>
 
 
       </div>

@@ -144,8 +144,10 @@ const useStyles = makeStyles((theme) => ({
     axios.post('http://localhost:5000/contractor/ContractorRequest/',details)
       .then(r=>{
         console.log('Requesting State')
-        props.history.push('/contractor/projectinfo',{details:props.history.location.state.details})
+        
     }).catch(error=>console.log(error))
+
+    props.history.push('/contractor/projectinfo',{details:props.history.location.state.details})
 
    
     

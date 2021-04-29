@@ -36,6 +36,11 @@ const useStyles = makeStyles({
       width: 'auto',
       // height:10
     },
+
+    DrawerText:{
+      fontFamily:'Montserrat',
+      fontWeight:'bold'
+    },
     name: {
       
       // textAlign: 'center',
@@ -89,27 +94,27 @@ function CentralNavbar() {
                 
               
 <ListItem>
- <Button className='NavButton'  component={Link} to='/central/Home' >HOME</Button>
-{/* <ListItemText primary='Home' /> */}
+ <Button className={classes.DrawerText} fullWidth  component={Link} to='/central/Home' >HOME</Button>
+{/* <ListItemText primary='Home' /> */} 
 </ListItem>
 
 <ListItem>
-<Button className='NavButton' color='inherit' component={Link} to='/central/Pending'>PENDING PROJECTS</Button>
+<Button className={classes.DrawerText} fullWidth color='inherit' component={Link} to='/central/Pending'>PENDING PROJECTS</Button>
 {/* <ListItemText primary='Pending Projects' /> */}
 </ListItem>
 
 <ListItem>
-<Button className='NavButton' color='inherit' component={Link} to='/central/Authorized'>AUTHORIZED PROJECTS</Button>
+<Button className={classes.DrawerText} fullWidth  color='inherit' component={Link} to='/central/Authorized'>AUTHORIZED PROJECTS</Button>
 {/* <ListItemText primary='Authorized Projects' /> */}
 </ListItem>
 
 <ListItem>
-<Button className='NavButton' color='inherit' component={Link} to='/central/Allocate'>ALLOCATE BUDGET</Button>
+<Button className={classes.DrawerText} fullWidth   color='inherit' component={Link} to='/central/Allocate'>ALLOCATE BUDGET</Button>
 {/* <ListItemText primary='Allocate Budget' /> */}
 </ListItem>
 
 <ListItem>
-<Button className='NavButton' color='inherit' component={Link} to='/central/Transactions'>Transactions</Button>
+<Button className={classes.DrawerText} fullWidth  color='inherit' component={Link} to='/central/Transactions'>TRANSACTIONS</Button>
 {/* <ListItemText primary='Authorized Projects' /> */}
 </ListItem>
 
@@ -124,7 +129,7 @@ function CentralNavbar() {
 
     return (
         // <Container className={classes.root} disableGutters>
-        <AppBar  position='static'>
+        <AppBar  position='static' color='primary'>
         
             <Toolbar className='AppBar' >
                 <Typography variant='h6' style={{flexGrow:1, display:'flex'}}>
@@ -137,7 +142,7 @@ function CentralNavbar() {
 
                     <Button edge='start' 
                         onClick={toggleDrawer(anchor, true)}>
-                        <DehazeIcon></DehazeIcon>
+                        <DehazeIcon style={{color:'white'}}></DehazeIcon>
                     </Button>
 
                     <Drawer anchor={anchor} 
@@ -154,13 +159,13 @@ function CentralNavbar() {
         <img src={Emblem} className='EmblemCentral'></img>
         </div> */}
                 
-                <div className={classes.name}>
+                {/* <div className={classes.name}> */}
                   {/* <p className={classes.ptag} > */}
-                  <div className={classes.child}>
+                  <div style={{textAlign:'center',verticalAlign:'center',display:'flex',alignSelf:'center',fontFamily:'Montserrat', fontSize:15}}>
                 CENTRAL GOVERNMENT
                 </div>
                 {/* </p> */}
-                </div>
+                {/* </div> */}
 
             {/* </div> */}
                 </Typography>
@@ -171,11 +176,11 @@ function CentralNavbar() {
        </div>
 
 
-                <Button className='HomeButton' color='inherit' component={Link} to='/central/Home' ><HomeIcon></HomeIcon></Button>
+                <Button className='HomeButton' style={{fontFamily:'Montserrat'}} color='inherit' component={Link} to='/central/Home' ><HomeIcon></HomeIcon></Button>
                 {/* <Button className='NavButton' color='inherit' component={Link} to='/central/Pending'>Pending Projects</Button>
                 <Button className='NavButton' color='inherit' component={Link} to='/central/Authorized'>Authorized Projects</Button>
                 <Button className='NavButton' color='inherit' component={Link} to='/central/Allocate'>Allocate Budget</Button> */}
-                <Button className='LogOutButton' color='inherit' href='http://localhost:3000/'>Log Out</Button>
+                <Button className='LogOutButton' style={{fontFamily:'Montserrat'}} color='inherit' href='http://localhost:3000/'>Log Out</Button>
                 
             </Toolbar>
         </AppBar>

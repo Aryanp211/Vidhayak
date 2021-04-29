@@ -177,7 +177,28 @@ console.log('rajat initialise me aya hai ')
 .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/end').post((req,res)=>{
 
+    let id=req.body.id;
+   
+    // console.log(req.body)
+    // let date=Date(req.body);
+    // let date=req.body.date;
+    console.log('-------')
+    // console.log(id,bid)
+    project.findOne({_id:id})
+  .then((ress) =>{
+    // console.log('andar')
+    
+    ress.project_status='Project Completed'
+    ress.save()
+    .then((e)=>{
+    //  console.log('init hogya');
+    res.json(ress)})
+    .catch(e=>console.log('Rajat _ hai'))
+  } )
+  .catch(err => res.status(400).json('Error: ' + err));
+  });
 
 
 

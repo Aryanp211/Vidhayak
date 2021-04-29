@@ -60,7 +60,16 @@ handleClick=()=>{
 
 }
 
+handleEnd=()=>{
+    var x={
+        id:this.props.history.location.state.details._id
+    }
+    axios.post('http://localhost:5000/project/end',x)
+    .then(res=>{
 
+     console.log(res)
+})
+}
 handleRefresh=()=>{
     axios.get('http://localhost:5000/project/details/'+this.props.history.location.state.details._id)
         .then(res=>{
@@ -111,7 +120,11 @@ handleRefresh=()=>{
                         <Grid item xs={12} style={{paddingTop:50}}>
                             <ProjectTransaction details={this.state.details}></ProjectTransaction>
                         </Grid>
+                        
 
+                        <Grid item xs={12} style={{paddingTop:50}}>
+                            <Button style={{color:'white', backgroundColor:'black'} } onClick={this.handleEnd(this.state.details)}></Button>
+                        </Grid>
 
 
 

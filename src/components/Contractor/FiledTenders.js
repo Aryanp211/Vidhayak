@@ -353,7 +353,7 @@ function FiledTenders(props) {
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>WON</option>
+          <option value={10}>Won</option>
           <option value={20}>Ongoing</option>
           <option value={30}>Lost</option>
         </NativeSelect>
