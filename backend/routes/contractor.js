@@ -40,21 +40,6 @@ router.route('/projecttransactions').get((req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 router.route('/filedtenders/:id').get(async(req, res) => {
   console.log("-----------------=----------------=---------------=--------=")
   console.log(1)

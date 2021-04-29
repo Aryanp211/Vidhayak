@@ -68,7 +68,7 @@ import IconButton from '@material-ui/core/IconButton';
 // import { useHistory } from 'react-router-dom'
 // import { withRouter } from 'react-router';
 import Web3 from 'web3';
-import Mycontract from "../contracts/Transactions.json";
+import Mycontract from "../contracts/Transactions.json"
 const useStyles = makeStyles((theme)=>({
   
 

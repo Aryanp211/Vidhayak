@@ -24,7 +24,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import rupee from '../icons/rupee.svg'
 import Web3 from 'web3';
-import Mycontract from "../contracts/Transactions.json";
+import Mycontract from "../contracts/Transactions.json"
 
 const useStyles = makeStyles((theme)=>({
 

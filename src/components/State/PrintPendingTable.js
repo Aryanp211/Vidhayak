@@ -124,7 +124,7 @@ class PrintPendingTable extends Component {
     console.log(this.props.init)
     
   
-  console.log('Rajat Lauda')
+  console.log('prop aaya')
     console.log(this.state.statename)
 
  
@@ -140,7 +140,7 @@ class PrintPendingTable extends Component {
   .then(response => {
     console.log('length',response.data.length)
     if (response.data.length > 0) {
-      console.log('Rajat Gand mara')
+      console.log('length exceeded')
       console.log(response.data)
       
       this.setState({

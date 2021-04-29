@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import {Form} from 'react-advanced-form'
 import Web3 from 'web3';
-import Mycontract from "../contracts/Transactions.json";
+import Mycontract from "../contracts/Transactions.json"
  class request extends Component {
   constructor(props) {
     super(props);
